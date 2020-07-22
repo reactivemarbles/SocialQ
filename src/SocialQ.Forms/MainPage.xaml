@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reactiveui:ReactiveContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                                xmlns:reactiveui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                                xmlns:viewModels="clr-namespace:SocialQ.ViewModels;assembly=SocialQ.ViewModels"
+                                x:Class="SocialQ.Forms.MainPage"
+                                x:TypeArguments="viewModels:MainViewModel">
+    <StackLayout>
+        <!-- Place new controls here -->
+        <Label Text="Welcome to Xamarin.Forms!" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+    </StackLayout>
+</reactiveui:ReactiveContentPage>
