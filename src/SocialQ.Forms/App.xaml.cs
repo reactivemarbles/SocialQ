@@ -8,8 +8,8 @@ namespace SocialQ.Forms
         public App()
         {
             InitializeComponent();
-
-            MainPage = new Startup().NavigateToStart<MainViewModel>();
+            var _ = new SocialQStartup();
+            MainPage = SocialQStartup.NavigateToStart<MainViewModel>();
         }
 
         protected override void OnStart()

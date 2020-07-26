@@ -1,13 +1,42 @@
 using System;
+using System.Diagnostics;
+using Splat;
 
 namespace SocialQ.Forms
 {
-    public class SocialQExceptionHandler : IObserver<Exception>
+    public class SocialQExceptionHandler : IObserver<Exception>, IEnableLogger
     {
-        public void OnCompleted() { }
+        /// <inheritdoc />
+        public void OnNext(Exception value)
+        {
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
 
-        public void OnError(Exception error) { }
+            this.Log().Error(value, "Unhandled exception");
+            ////RxApp.MainThreadScheduler.Schedule(() => { throw value; });
+        }
 
-        public void OnNext(Exception value) { }
+        /// <inheritdoc />
+        public void OnError(Exception error)
+        {
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
+
+            this.Log().Error(error, "Unhandled exception");
+            ////RxApp.MainThreadScheduler.Schedule(() => { throw error; });
+        }
+
+        /// <inheritdoc />
+        public void OnCompleted()
+        {
+            if (Debugger.IsAttached)
+            {
+                Debugger.Break();
+            }
+        }
     }
 }
