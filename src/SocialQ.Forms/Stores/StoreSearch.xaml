@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<forms:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
+                       xmlns:viewmodels="clr-namespace:SocialQ.ViewModels.Stores;assembly=SocialQ.ViewModels"
+                       xmlns:stores="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
+                       xmlns:resources="clr-namespace:SocialQ.Forms.Resources;assembly=SocialQ.Forms"
+                       x:Class="SocialQ.Forms.StoreSearch"
+                       x:DataType="viewmodels:StoreSearchViewModel"
+                       x:TypeArguments="viewmodels:StoreSearchViewModel">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <SearchBar
+                Grid.Row="0"
+                x:Name="SearchBar"
+                Text="{Binding SearchText}"
+                Placeholder="{x:Static resources:Strings.StoreSearchPlaceholder}" />
+            <ListView
+                Grid.Row="1"
+                x:Name="StoreList"
+                HasUnevenRows="True"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <stores:StoreCard />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button
+                Grid.Row="2"
+                x:Name="Search"
+                Text="Search"
+                VerticalOptions="EndAndExpand"
+                Style="{StaticResource PrimaryButton}" />
+            <ActivityIndicator Grid.Row="0" Grid.RowSpan="3" x:Name="LoadingIndicator" />
+        </Grid>
+    </ContentPage.Content>
+</forms:ContentPageBase>

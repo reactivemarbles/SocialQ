@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<forms:ViewCellBase xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
+                    xmlns:viewmodels="clr-namespace:SocialQ.ViewModels.Stores;assembly=SocialQ.ViewModels"
+                    x:Class="SocialQ.Forms.StoreCard"
+                    x:DataType="viewmodels:StoreCardViewModel"
+                    x:TypeArguments="viewmodels:StoreCardViewModel">
+    <Grid RowSpacing="4">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BackgroundColor="BlueViolet" />
+        <Label Grid.Row="0" Grid.Column="1" x:Name="StoreName" />
+    </Grid>
+</forms:ViewCellBase>

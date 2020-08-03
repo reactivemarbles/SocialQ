@@ -1,5 +1,7 @@
 ﻿using SocialQ.ViewModels;
+using SocialQ.ViewModels.Stores;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace SocialQ.Forms
 {
@@ -9,7 +11,7 @@ namespace SocialQ.Forms
         {
             InitializeComponent();
             var _ = new SocialQStartup();
-            MainPage = SocialQStartup.NavigateToStart<MainViewModel>();
+            MainPage = SocialQStartup.NavigateToStart<StoreSearchViewModel>();
         }
 
         protected override void OnStart()

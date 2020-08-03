@@ -1,9 +1,12 @@
 using System;
+using Akavache;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
+using Refit;
 using Sextant;
 using Shiny;
 using SocialQ.ViewModels;
+using SocialQ.ViewModels.Stores;
 using Splat.Microsoft.Extensions.DependencyInjection;
 using Xamarin.Forms;
 
@@ -15,7 +18,7 @@ namespace SocialQ.Forms
         {
 
             RxApp.DefaultExceptionHandler = new SocialQExceptionHandler();
-
+            BlobCache.ApplicationName = $"{nameof(SocialQ)}";
 
             services.UseNotifications(); // set true
             services
@@ -23,10 +26,13 @@ namespace SocialQ.Forms
                 .AddAkavache()
                 .AddSerilog()
                 .RegisterForNavigation<MainPage, MainViewModel>()
+                .RegisterForNavigation<StoreSearch, StoreSearchViewModel>()
+                .AddSingleton<IStoreService, StoreService>()
+                .AddSingleton<IStoreApiClient, StoreApiClient>()
+                .AddSingleton(RestService.For<IStoreApiContract>(""))
                 .UseMicrosoftDependencyResolver();
         }
 
-        
         public static Page NavigateToStart<T>()
             where T : IViewModel
         {
