@@ -63,7 +63,7 @@ namespace SocialQ.ViewModels.Stores
 
         public ReadOnlyObservableCollection<StoreCardViewModel> Stores => _stores;
 
-        private IObservable<Unit> ExecuteInitializeData() => _storeService.GetStores();
+        private IObservable<Unit> ExecuteInitializeData() => _storeService.GetStores().Select(x => Unit.Default);
 
         private IObservable<Unit> ExecuteSearch() =>
             Observable
@@ -86,7 +86,7 @@ namespace SocialQ.ViewModels.Stores
 
                     _storeService
                         .GetStores()
-                        .Subscribe(observer)
+                        .Subscribe()
                         .DisposeWith(disposables);
 
                     return disposables;

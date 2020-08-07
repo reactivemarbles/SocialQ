@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AzureFunctionsVersion>V3</AzureFunctionsVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Bogus" Version="29.0.2" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.2.0" />
+        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.6" />
+        <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
+        <PackageReference Include="CosmosDbRepository" Version="1.1.72" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="host.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="local.settings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+        </None>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </None>
+    </ItemGroup>
+</Project>
