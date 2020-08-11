@@ -38,7 +38,7 @@
                 Text="Search"
                 VerticalOptions="EndAndExpand"
                 Style="{StaticResource PrimaryButton}" />
-            <ActivityIndicator Grid.Row="0" Grid.RowSpan="3" x:Name="LoadingIndicator" />
+            <ActivityIndicator Grid.Row="0" Grid.RowSpan="3" x:Name="LoadingIndicator" IsRunning="{Binding IsLoading}" />
         </Grid>
     </ContentPage.Content>
 </forms:ContentPageBase>

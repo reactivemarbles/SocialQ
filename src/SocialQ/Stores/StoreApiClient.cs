@@ -11,11 +11,11 @@ namespace SocialQ
         private readonly IBlobCache _blobCache;
         private readonly IFullLogger _logger;
 
-        public StoreApiClient(IStoreApiContract apiContract, IBlobCache blobCache, IFullLogger logger)
+        public StoreApiClient(IStoreApiContract apiContract, IBlobCache blobCache, ILogManager logger)
         {
             _apiContract = apiContract;
             _blobCache = blobCache;
-            _logger = logger;
+            _logger = logger.GetLogger(GetType());
         }
 
         public IObservable<StoreDto> GetStore(Guid storeId, bool forceUpdate = false) =>

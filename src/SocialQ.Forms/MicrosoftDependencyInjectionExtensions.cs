@@ -1,11 +1,14 @@
+using System;
 using Akavache;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
+using Serilog;
 using Sextant;
 using Sextant.Abstractions;
 using Sextant.XamForms;
 using SocialQ.ViewModels;
 using Splat;
+using ILogger = Shiny.Logging.ILogger;
 
 namespace SocialQ.Forms
 {
@@ -34,8 +37,9 @@ namespace SocialQ.Forms
             return serviceCollection;
         }
 
-        public static IServiceCollection AddSerilog(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddSerilog(this IServiceCollection serviceCollection, Func<LoggerConfiguration> factory)
         {
+            Log.Logger = factory().CreateLogger();
             var funcLogManager = new FuncLogManager(type =>
             {
                 var actualLogger = global::Serilog.Log.ForContext(type);

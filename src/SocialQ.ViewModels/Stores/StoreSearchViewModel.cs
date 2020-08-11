@@ -90,8 +90,6 @@ namespace SocialQ.ViewModels.Stores
                         .DisposeWith(disposables);
 
                     return disposables;
-                })
-                .Delay(TimeSpan.FromSeconds(3), RxApp.TaskpoolScheduler)
-                .ObserveOn(RxApp.MainThreadScheduler);
+                });
     }
 }

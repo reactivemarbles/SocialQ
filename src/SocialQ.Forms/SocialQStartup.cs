@@ -3,6 +3,7 @@ using Akavache;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using Refit;
+using Serilog;
 using Sextant;
 using Shiny;
 using SocialQ.ViewModels;
@@ -22,14 +23,14 @@ namespace SocialQ.Forms
 
             services.UseNotifications(); // set true
             services
+                .AddSerilog(() => new LoggerConfiguration())
                 .AddSextant()
                 .AddAkavache()
-                .AddSerilog()
                 .RegisterForNavigation<MainPage, MainViewModel>()
                 .RegisterForNavigation<StoreSearch, StoreSearchViewModel>()
                 .AddSingleton<IStoreService, StoreService>()
                 .AddSingleton<IStoreApiClient, StoreApiClient>()
-                .AddSingleton(RestService.For<IStoreApiContract>(""))
+                .AddSingleton(RestService.For<IStoreApiContract>("https://socialq.azurewebsites.net"))
                 .UseMicrosoftDependencyResolver();
         }
 

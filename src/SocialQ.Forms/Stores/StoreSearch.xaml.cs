@@ -14,7 +14,7 @@ namespace SocialQ.Forms
             InitializeComponent();
 
             this.WhenAnyValue(x => x.ViewModel.InitializeData)
-                .SelectMany(x => x.Execute())
+                .SelectMany(command => command.Execute())
                 .Subscribe()
                 .DisposeWith(PageDisposables);
 
@@ -23,13 +23,6 @@ namespace SocialQ.Forms
                 .BindTo(this, x => x.StoreList.ItemsSource)
                 .DisposeWith(PageDisposables);
 
-            this.WhenAnyValue(x => x.ViewModel.IsLoading)
-                .Subscribe(isLoading =>
-                {
-                    LoadingIndicator.IsVisible = isLoading;
-                    LoadingIndicator.IsRunning = isLoading;
-                });
-            
             SearchBar
                 .Events()
                 .TextChanged

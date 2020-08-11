@@ -70,7 +70,11 @@ namespace SocialQ
             if (forceUpdate)
             {
                 // TODO: [rlittlesii: July 30, 2020] Add retry and cached
-                return source;
+                return source.SelectMany(async value =>
+                {
+                    await blobCache.InsertObject(cacheKey, value, expiration);
+                    return value;
+                });
             }
 
             blobCache
