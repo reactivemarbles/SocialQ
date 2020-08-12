@@ -17,6 +17,7 @@ namespace SocialQ.ViewModels.Stores
         private readonly ObservableAsPropertyHelper<bool> _isLoading;
         private readonly ReadOnlyObservableCollection<StoreCardViewModel> _stores;
         private string _searchText;
+        private ReadOnlyObservableCollection<string> _storeNames;
 
         public StoreSearchViewModel(IStoreService storeService)
         {
@@ -26,7 +27,6 @@ namespace SocialQ.ViewModels.Stores
                     x => x.Search.IsExecuting,
                     x => x.InitializeData.IsExecuting,
                     (search, initialize) => search || initialize)
-                .Skip(1)
                 .DistinctUntilChanged()
                 .ToProperty(this, nameof(IsLoading), out _isLoading, deferSubscription: true)
                 .DisposeWith(Subscriptions);
@@ -45,7 +45,14 @@ namespace SocialQ.ViewModels.Stores
                 .Subscribe()
                 .DisposeWith(Subscriptions);
 
-            Search = ReactiveCommand.CreateFromObservable(ExecuteSearch);
+            _storeService
+                .Metadata
+                .Bind(out _storeNames)
+                .DisposeMany()
+                .Subscribe()
+                .DisposeWith(Subscriptions);
+
+            Search = ReactiveCommand.CreateFromObservable<string, Unit>(ExecuteSearch);
             InitializeData = ReactiveCommand.CreateFromObservable(ExecuteInitializeData);
         }
 
@@ -59,13 +66,13 @@ namespace SocialQ.ViewModels.Stores
 
         public ReactiveCommand<Unit, Unit> InitializeData { get; }
 
-        public ReactiveCommand<Unit, Unit> Search { get; }
+        public ReactiveCommand<string, Unit> Search { get; }
 
         public ReadOnlyObservableCollection<StoreCardViewModel> Stores => _stores;
 
         private IObservable<Unit> ExecuteInitializeData() => _storeService.GetStores().Select(x => Unit.Default);
 
-        private IObservable<Unit> ExecuteSearch() =>
+        private IObservable<Unit> ExecuteSearch(string searchText) =>
             Observable
                 .Create<Unit>(observer =>
                 {
@@ -82,11 +89,12 @@ namespace SocialQ.ViewModels.Stores
                             return dto.Name.ToLower().Contains(term.ToLower());
                         };
 
-                    _searchFunction.OnNext(Search(SearchText));
+                    _searchFunction.OnNext(Search(searchText));
 
                     _storeService
-                        .GetStores()
-                        .Subscribe()
+                        .GetStores(false)
+                        .Select(x => Unit.Default)
+                        .Subscribe(observer)
                         .DisposeWith(disposables);
 
                     return disposables;

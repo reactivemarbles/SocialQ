@@ -28,7 +28,7 @@ namespace SocialQ.Forms
                 .TextChanged
                 .Throttle(TimeSpan.FromMilliseconds(250), RxApp.TaskpoolScheduler)
                 .Where(x => x?.OldTextValue?.Length > 0 && x.NewTextValue?.Length == 0)
-                .Select(x => Unit.Default)
+                .Select(x => x.NewTextValue)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .InvokeCommand(this, x => x.ViewModel.Search)
                 .DisposeWith(PageDisposables);

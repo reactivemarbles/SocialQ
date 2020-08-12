@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using CosmosDbRepository;
 using Microsoft.AspNetCore.Mvc;
@@ -30,13 +31,7 @@ namespace SocialQ.Functions
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "stores")]
             HttpRequest req, ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-
-            string name = req.Query["name"];
-
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
+            log.LogInformation($"C# HTTP trigger {nameof(GetAllStores)} function processed a request.");
 
             var documents = await _storeRepository.FindAsync();
             return new OkObjectResult(documents);
@@ -47,8 +42,7 @@ namespace SocialQ.Functions
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "stores/{id}")]
             HttpRequest req, ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-
+            log.LogInformation($"C# HTTP trigger {nameof(GetStore)} function processed a request.");
 
             if (!Guid.TryParse(req.Query["id"], out Guid id))
             {
@@ -72,6 +66,18 @@ namespace SocialQ.Functions
             // }
 
             return new OkResult();
+        }
+
+        [FunctionName("GetStoreMetadata")]
+        public async Task<IActionResult> GetStoreMetadata(
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "metadata/stores")]
+            HttpRequest req, ILogger log)
+        {
+            log.LogInformation($"C# HTTP trigger {nameof(GetStoreMetadata)} function processed a request.");
+
+            var documents = await _storeRepository.SelectAsync(x => x.Name);
+            var grouping = documents.GroupBy(x => x).SelectMany(x => x.Distinct());
+            return new OkObjectResult(grouping);
         }
     }
 }

@@ -362,3 +362,5 @@ MigrationBackup/
 **/Droid/**/[Rr]esource.[Dd]esigner.cs
 
 *.DotSettings
+
+.run/

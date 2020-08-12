@@ -20,12 +20,17 @@ namespace SocialQ
 
         public IObservable<StoreDto> GetStore(Guid storeId, bool forceUpdate = false) =>
             _apiContract
-                .GetStore(storeId)
+                .GetStore(storeId, FunctionParameters.Default)
                 .CacheApiResult($"{nameof(GetStore)}-{storeId}", _blobCache, _logger, forceUpdate: forceUpdate);
 
         public IObservable<IEnumerable<StoreDto>> GetStores(bool forceUpdate = false) =>
             _apiContract
-                .GetStores()
+                .GetStores(FunctionParameters.Default)
                 .CacheApiResult($"{nameof(GetStores)}", _blobCache, _logger, forceUpdate: forceUpdate);
+
+        public IObservable<IEnumerable<string>> GetStoreMetadata(bool forceUpdate = false) =>
+            _apiContract
+                .GetMetadata(FunctionParameters.Default)
+                .CacheApiResult($"{nameof(GetStoreMetadata)}", _blobCache, _logger, forceUpdate: forceUpdate);
     }
 }
