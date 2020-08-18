@@ -1,4 +1,4 @@
-namespace SocialQ.Functions
+namespace SocialQ.Functions.Store
 {
     public class Coordinate
     {

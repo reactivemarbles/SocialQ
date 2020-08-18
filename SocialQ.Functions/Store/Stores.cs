@@ -1,29 +1,23 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CosmosDbRepository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
-namespace SocialQ.Functions
+namespace SocialQ.Functions.Store
 {
     public class Stores
     {
-        private ICosmosDbRepository<StoreDocument> _storeRepository;
-        private List<StoreDocument> _data;
+        private readonly ICosmosDbRepository<StoreDocument> _storeRepository;
 
         public Stores(ICosmosDb cosmosDb)
         {
             _storeRepository = cosmosDb.Repository<StoreDocument>();
-            _data = new StoreDocumentGenerator().Items;
         }
 
         [FunctionName("GetAllStores")]
@@ -44,9 +38,9 @@ namespace SocialQ.Functions
         {
             log.LogInformation($"C# HTTP trigger {nameof(GetStore)} function processed a request.");
 
-            if (!Guid.TryParse(req.Query["id"], out Guid id))
+            if (!Guid.TryParse(req.Query["id"], out var id))
             {
-                return new NotFoundResult();
+                return new BadRequestObjectResult($"{nameof(id)} not provided");
             }
             
             var documents = await _storeRepository.FindAsync(x => x.Id == id);
@@ -60,7 +54,9 @@ namespace SocialQ.Functions
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            // foreach (var storeDocument in _data)
+            // var data = new StoreDocumentGenerator().Items;
+
+            // foreach (var storeDocument in data)
             // {
             //     await _storeRepository.AddAsync(storeDocument);
             // }
@@ -71,7 +67,8 @@ namespace SocialQ.Functions
         [FunctionName("GetStoreMetadata")]
         public async Task<IActionResult> GetStoreMetadata(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "metadata/stores")]
-            HttpRequest req, ILogger log)
+            HttpRequest req,
+            ILogger log)
         {
             log.LogInformation($"C# HTTP trigger {nameof(GetStoreMetadata)} function processed a request.");
 

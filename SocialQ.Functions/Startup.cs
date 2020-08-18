@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using SocialQ.Functions;
+using SocialQ.Functions.Store;
 
 [assembly: FunctionsStartup(typeof(Startup))]
 namespace SocialQ.Functions
@@ -18,7 +19,7 @@ namespace SocialQ.Functions
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(provider: new PhysicalFileProvider(AppContext.BaseDirectory) , "appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables()
                 .Build();
 

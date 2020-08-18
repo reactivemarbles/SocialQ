@@ -8,7 +8,8 @@ namespace SocialQ
 {
     public class StoreService : IStoreService
     {
-        private readonly SourceCache<StoreDto, Guid> _stores = new SourceCache<StoreDto, Guid>(x => x.Id);
+        private readonly SourceCache<StoreDto, Guid> _stores =
+            new SourceCache<StoreDto, Guid>(x => x.Id);
         private readonly SourceList<string> _metadata = new SourceList<string>();
         private readonly IStoreApiClient _apiClient;
 

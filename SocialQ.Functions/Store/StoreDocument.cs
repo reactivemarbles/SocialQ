@@ -1,11 +1,9 @@
 using System;
 
-namespace SocialQ.Functions
+namespace SocialQ.Functions.Store
 {
-    public class StoreDocument
+    public class StoreDocument : DocumentBase
     {
-        public Guid Id { get; set; }
-
         public string Name { get; set; }
 
         public DateTimeOffset OpeningTime { get; set; }

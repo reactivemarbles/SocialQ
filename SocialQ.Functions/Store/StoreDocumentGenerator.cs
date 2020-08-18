@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Bogus;
 
-namespace SocialQ.Functions
+namespace SocialQ.Functions.Store
 {
     public class StoreDocumentGenerator
     {
@@ -11,6 +11,7 @@ namespace SocialQ.Functions
         {
             new StoreNameCategory { Name = "Academy", Category = StoreCategory.Sporting},
             new StoreNameCategory { Name = "Target", Category = StoreCategory.Grocery},
+            new StoreNameCategory { Name = "Walmart", Category = StoreCategory.Grocery},
             new StoreNameCategory { Name = "Home Depot", Category = StoreCategory.HomeImprovement},
             new StoreNameCategory { Name = "Lowes", Category = StoreCategory.HomeImprovement},
             new StoreNameCategory { Name = "HEB", Category = StoreCategory.Grocery},
@@ -18,8 +19,7 @@ namespace SocialQ.Functions
             new StoreNameCategory { Name = "Sam's Club", Category = StoreCategory.Grocery},
             new StoreNameCategory { Name = "Costco", Category = StoreCategory.Grocery},
             new StoreNameCategory { Name = "Aldi", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "H Mart", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "Costco", Category = StoreCategory.Grocery},
+            new StoreNameCategory { Name = "H-Mart", Category = StoreCategory.Grocery},
             new StoreNameCategory { Name = "Torchy's Tacos", Category = StoreCategory.Restaurant},
             new StoreNameCategory { Name = "Velvet Taco", Category = StoreCategory.Restaurant},
             new StoreNameCategory { Name = "CVS", Category = StoreCategory.Grocery},
@@ -34,7 +34,15 @@ namespace SocialQ.Functions
             new StoreNameCategory { Name = "Apple", Category = StoreCategory.Electronics},
             new StoreNameCategory { Name = "AT&T", Category = StoreCategory.Electronics},
             new StoreNameCategory { Name = "Verizon", Category = StoreCategory.Electronics},
-            new StoreNameCategory { Name = "TMobile", Category = StoreCategory.Electronics}
+            new StoreNameCategory { Name = "TMobile", Category = StoreCategory.Electronics},
+            new StoreNameCategory { Name = "Woolworth's", Category = StoreCategory.Grocery},
+            new StoreNameCategory { Name = "K-Mart", Category = StoreCategory.Grocery},
+            new StoreNameCategory { Name = "Bunning's", Category = StoreCategory.HomeImprovement},
+            new StoreNameCategory { Name = "Telstra", Category = StoreCategory.Electronics},
+            new StoreNameCategory { Name = "JB Hi-Fi", Category = StoreCategory.Electronics},
+            new StoreNameCategory { Name = "Best Buy", Category = StoreCategory.Electronics},
+            new StoreNameCategory { Name = "Fry's", Category = StoreCategory.Electronics},
+            new StoreNameCategory { Name = "McDonald's", Category = StoreCategory.Restaurant}
         };
 
         private readonly IEnumerable<string> _zips = new List<string>

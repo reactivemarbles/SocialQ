@@ -1,12 +1,16 @@
 using System;
 using Akavache;
+using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using Refit;
 using Serilog;
 using Sextant;
 using Shiny;
+using SocialQ.Forms.Queue;
+using SocialQ.Queue;
 using SocialQ.ViewModels;
+using SocialQ.ViewModels.Queue;
 using SocialQ.ViewModels.Stores;
 using Splat.Microsoft.Extensions.DependencyInjection;
 using Xamarin.Forms;
@@ -27,10 +31,16 @@ namespace SocialQ.Forms
                 .AddSextant()
                 .AddAkavache()
                 .RegisterForNavigation<MainPage, MainViewModel>()
+                .RegisterForNavigation<Queues, QueuesViewModel>()
                 .RegisterForNavigation<StoreSearch, StoreSearchViewModel>()
+                .AddSingleton<IQueueService, QueueService>()
+                .AddSingleton<IQueueApiClient, QueueApiClient>()
                 .AddSingleton<IStoreService, StoreService>()
                 .AddSingleton<IStoreApiClient, StoreApiClient>()
+                .AddSingleton(RestService.For<IQueueApiContract>("https://socialq.azurewebsites.net"))
                 .AddSingleton(RestService.For<IStoreApiContract>("https://socialq.azurewebsites.net"))
+                .AddScoped(typeof(IHubClient<>), typeof(SignalRHubClientBase<>))
+                .AddSingleton(SignalRParameters.Client)
                 .UseMicrosoftDependencyResolver();
         }
 

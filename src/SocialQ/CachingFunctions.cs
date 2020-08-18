@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +7,12 @@ using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using Akavache;
 using DynamicData;
+using DynamicData.Annotations;
 using Splat;
 
 namespace SocialQ
 {
-    public static class Extensions
+    public static class CachingFunctions
     {
         // <summary>
         /// Places the contents of a cached IChangeSet into a Akavache data store.
@@ -26,17 +28,20 @@ namespace SocialQ
         public static IObservable<IChangeSet<TSource, TKey>> CacheChangeSet<TSource, TKey>(
             this IObservable<IChangeSet<TSource, TKey>> source,
             string cacheKey,
-            IBlobCache blobCache,
+            IBlobCache? blobCache = null,
             IFullLogger? log = default)
         {
             if (source == null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
+
             if (cacheKey == null)
             {
                 throw new ArgumentNullException(nameof(cacheKey));
             }
+
+            blobCache ??= BlobCache.LocalMachine;
 
             return Observable
                 .Create<IChangeSet<TSource, TKey>>(observer =>
@@ -60,7 +65,7 @@ namespace SocialQ
             this IObservable<T> source,
             string cacheKey,
             IBlobCache blobCache,
-            IFullLogger logger,
+            IFullLogger? logger = null,
             IScheduler? scheduler = null,
             bool forceUpdate = false,
             TimeSpan expiration = default)
@@ -73,13 +78,16 @@ namespace SocialQ
                 return source.SelectMany(async value =>
                 {
                     await blobCache.InsertObject(cacheKey, value, expiration);
+
+                    logger?.Debug($"CACHE: Writing {{Value}} to cache with key: {{CacheKey}}", value, cacheKey);
+
                     return value;
                 });
             }
 
             blobCache
                 .GetObject<T>(cacheKey)
-                .Subscribe(obj => logger.Debug("Found: {@Object}", obj));
+                .Subscribe(obj => logger?.Debug("Found: {@Object}", obj));
 
             // TODO: [rlittlesii: July 30, 2020] Add retry and cached
             return blobCache

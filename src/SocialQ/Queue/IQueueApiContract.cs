@@ -14,10 +14,6 @@ namespace SocialQ.Queue
         /// <param name="parameters">The azure function parameters.</param>
         /// <returns>An observable which signals with the store.</returns>
         [Post("/api/queue/add")]
-        IObservable<Unit> AddToQueue([Body(BodySerializationMethod.Json)] EnqueueRequest enqueueRequest, [Query] FunctionParameters parameters);
-    }
-
-    public class EnqueueRequest
-    {
+        IObservable<Unit> Enqueue([Body(BodySerializationMethod.Serialized)] EnqueueRequest enqueueRequest, [Query] FunctionParameters parameters);
     }
 }

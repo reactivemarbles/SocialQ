@@ -16,8 +16,8 @@ namespace SocialQ.ViewModels.Stores
         private readonly IStoreService _storeService;
         private readonly ObservableAsPropertyHelper<bool> _isLoading;
         private readonly ReadOnlyObservableCollection<StoreCardViewModel> _stores;
-        private string _searchText;
         private ReadOnlyObservableCollection<string> _storeNames;
+        private string _searchText;
 
         public StoreSearchViewModel(IStoreService storeService)
         {

@@ -1,10 +1,15 @@
 using System;
 using System.Reactive;
+using Akavache;
 
 namespace SocialQ.Queue
 {
     public interface IQueueApiClient
     {
-        IObservable<Unit> AddToQueue()
+        IBlobCache BlobCache { get; }
+
+        IObservable<Unit> Enqueue(QueuedStoreDto dto);
+
+        IObservable<QueuedStoreDto> GetQueue(Guid userId, bool forceUpdate = false);
     }
 }

@@ -36,7 +36,7 @@ namespace SocialQ.Forms
             Search
                 .Events()
                 .Pressed
-                .ToSignal()
+                .Select(x => SearchBar.Text)
                 .InvokeCommand(this, x => x.ViewModel.Search)
                 .DisposeWith(PageDisposables);
 
