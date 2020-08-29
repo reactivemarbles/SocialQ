@@ -28,6 +28,6 @@ namespace SocialQ.Queue
 
         public IObservable<QueuedStoreDto> GetQueue(Guid userId, bool forceUpdate = false) =>
             _hubClient
-                .InvokeAsync(nameof(QueueApiClient));
+                .Connect($"{nameof(QueueApiClient)}-{userId}");
     }
 }

@@ -3,23 +3,26 @@
 <forms:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
-                       xmlns:queue="clr-namespace:SocialQ.ViewModels.Queue;assembly=SocialQ.ViewModels"
-                       xmlns:queue1="clr-namespace:SocialQ.Forms.Queue;assembly=SocialQ.Forms"
+                       xmlns:social="clr-namespace:SocialQ.Queue;assembly=SocialQ"
+                       xmlns:queue="clr-namespace:SocialQ.Forms.Queue;assembly=SocialQ.Forms"
                        x:Class="SocialQ.Forms.Queue.Queues"
-                       x:TypeArguments="queue:QueuesViewModel"
-                       x:DataType="queue:QueuesViewModel">
+                       x:TypeArguments="social:QueuesViewModel"
+                       x:DataType="social:QueuesViewModel">
     <ContentPage.Content>
         <StackLayout>
-            <CollectionView 
-                AutomationId="CoffeeListView"
+            <ListView 
+                AutomationId="QueueCollectionViewId"
                 x:Name="Queue"
-                SelectionMode="Single">
-                <CollectionView.ItemTemplate>
+                SeparatorVisibility="None"
+                HasUnevenRows="True">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <queue1:QueuedItemView />
+                        <ViewCell>
+                            <queue:QueuedItemView />
+                        </ViewCell>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </ListView.ItemTemplate>
+            </ListView>
             <Button x:Name="Button" />
         </StackLayout>
     </ContentPage.Content>

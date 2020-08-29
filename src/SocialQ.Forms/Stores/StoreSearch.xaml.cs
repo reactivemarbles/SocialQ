@@ -1,11 +1,10 @@
 using System;
-using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveUI;
 using Xamarin.Forms;
 
-namespace SocialQ.Forms
+namespace SocialQ.Forms.Stores
 {
     public partial class StoreSearch
     {

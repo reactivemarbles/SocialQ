@@ -4,7 +4,7 @@ namespace SocialQ
 {
     public abstract class DtoBase
     {
-        public DtoBase()
+        protected DtoBase()
         {
             Id = Guid.NewGuid();
         }

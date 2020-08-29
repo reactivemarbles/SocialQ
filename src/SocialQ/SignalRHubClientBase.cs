@@ -13,59 +13,32 @@ namespace SocialQ
     public class SignalRHubClientBase<T> : IHubClient<T>
         where T : class
     {
-        private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
-        private readonly SerialDisposable _connectionDisposable = new SerialDisposable();
-        private readonly ReplaySubject<T> _replaySubject = new ReplaySubject<T>(1);
         private readonly HubConnection _connection;
 
         public SignalRHubClientBase(HubConnection connection)
         {
             _connection = connection;
-            _replaySubject.DisposeWith(_compositeDisposable);
         }
 
-        public virtual IObservable<Unit> Connect() => _connection.StartAsync().ToObservable();
-
-        public IObservable<Unit> Connect(string channel) =>
-            Observable.Create<Unit>(observer =>
+        public virtual IObservable<T> Connect(string channel) =>
+            Observable.Create<T>(async (observer, cancellation) =>
             {
-                var disposable = new CompositeDisposable();
-                    _connection
-                        .StreamAsChannelAsync<T>(channel)
-                        .ToObservable()
-                        .Publish()
-                        .Subscribe(channelReader =>
-                            (channelReader.ReadAsync() as Task<T>)
-                            .ToObservable()
-                            .Subscribe(value =>
-                                _replaySubject.OnNext(value))
-                            .DisposeWith(disposable))
-                        .DisposeWith(disposable);
+                var reader = await _connection.StreamAsChannelAsync<T>(channel, cancellation);
+                while (!cancellation.IsCancellationRequested && await reader.WaitToReadAsync(cancellation))
+                {
+                    while (reader.TryRead(out var item))
+                    {
+                        observer.OnNext(item);
+                    }
+                }
 
-                    _connectionDisposable.Disposable = disposable;
-                    return _connectionDisposable.Disposable;
+                await reader.Completion;
+                return Disposable.Empty;
             });
 
-        public virtual IObservable<T> InvokeAsync(string methodName) =>
+        public virtual IObservable<T> Invoke(string methodName) =>
             _connection
                 .InvokeAsync<T>(methodName)
                 .ToObservable();
-
-        public IObservable<T> Hub => _replaySubject.AsObservable();
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-    
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _connectionDisposable?.Dispose();
-                _compositeDisposable?.Dispose();
-            }
-        }
     }
 }

@@ -1,9 +1,8 @@
 using Akavache;
-using ReactiveUI;
 using Sextant;
 using Shiny.Notifications;
 
-namespace SocialQ.ViewModels
+namespace SocialQ
 {
     public class MainViewModel : ViewModelBase
     {

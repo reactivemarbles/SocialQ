@@ -5,7 +5,7 @@ using System.Reactive.Linq;
 using ReactiveUI;
 using Sextant;
 
-namespace SocialQ.ViewModels
+namespace SocialQ
 {
     public abstract class ViewModelBase : ReactiveObject, INavigable, IDestructible
     {

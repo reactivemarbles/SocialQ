@@ -12,7 +12,5 @@ namespace SocialQ.Queue
         IObservable<QueuedStoreDto> GetQueue(Guid userId, bool forceUpdate = true);
 
         IObservable<Unit> EnQueue(QueuedStoreDto dto);
-
-        IObservable<Unit> UpdateQueue();
     }
 }

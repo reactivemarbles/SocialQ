@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SocialQ.Mocks\SocialQ.Mocks.csproj" />
     <ProjectReference Include="..\SocialQ.ViewModels\SocialQ.ViewModels.csproj" />
     <ProjectReference Include="..\SocialQ\SocialQ.csproj" />
   </ItemGroup>

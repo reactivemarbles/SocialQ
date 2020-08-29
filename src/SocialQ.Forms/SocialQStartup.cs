@@ -8,10 +8,9 @@ using Serilog;
 using Sextant;
 using Shiny;
 using SocialQ.Forms.Queue;
+using SocialQ.Forms.Stores;
+using SocialQ.Mocks.Queue;
 using SocialQ.Queue;
-using SocialQ.ViewModels;
-using SocialQ.ViewModels.Queue;
-using SocialQ.ViewModels.Stores;
 using Splat.Microsoft.Extensions.DependencyInjection;
 using Xamarin.Forms;
 
@@ -39,7 +38,8 @@ namespace SocialQ.Forms
                 .AddSingleton<IStoreApiClient, StoreApiClient>()
                 .AddSingleton(RestService.For<IQueueApiContract>("https://socialq.azurewebsites.net"))
                 .AddSingleton(RestService.For<IStoreApiContract>("https://socialq.azurewebsites.net"))
-                .AddScoped(typeof(IHubClient<>), typeof(SignalRHubClientBase<>))
+                .AddTransient<IHubClient<QueuedStoreDto>, QueueHubClientMock>()
+                // .AddScoped(typeof(IHubClient<>), typeof(SignalRHubClientBase<>))
                 .AddSingleton(SignalRParameters.Client)
                 .UseMicrosoftDependencyResolver();
         }

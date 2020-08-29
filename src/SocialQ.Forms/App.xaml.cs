@@ -1,6 +1,4 @@
-﻿using SocialQ.ViewModels;
-using SocialQ.ViewModels.Queue;
-using SocialQ.ViewModels.Stores;
+﻿using SocialQ.Queue;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

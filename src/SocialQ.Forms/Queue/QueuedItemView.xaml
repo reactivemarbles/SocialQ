@@ -2,8 +2,8 @@
 <forms:ContentViewBase xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-                   xmlns:queue="clr-namespace:SocialQ.ViewModels.Queue;assembly=SocialQ.ViewModels"
                    xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
+                   xmlns:queue="clr-namespace:SocialQ.Queue;assembly=SocialQ"
                    x:Class="SocialQ.Forms.Queue.QueuedItemView"
                    x:TypeArguments="queue:QueuedItemViewModel">
 

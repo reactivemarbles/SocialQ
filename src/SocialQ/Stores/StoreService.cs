@@ -25,7 +25,8 @@ namespace SocialQ
 
         public IObservable<IEnumerable<string>> GetStoreMetadata(bool forceUpdate = true) =>
             _apiClient
-                .GetStoreMetadata(forceUpdate);
+                .GetStoreMetadata(forceUpdate)
+                .AddRange(_metadata);
 
         public IObservable<StoreDto> GetStore(Guid id, bool forceUpdate = true) =>
             _apiClient

@@ -1,10 +1,9 @@
 using System.Reactive.Disposables;
 using ReactiveUI;
-using SocialQ.ViewModels.Queue;
-
+using SocialQ.Queue;
 namespace SocialQ.Forms.Queue
 {
-    public partial class QueuedItemView : ContentViewBase<QueuedItemViewModel>
+    public partial class QueuedItemView
     {
         public QueuedItemView()
         {
@@ -16,7 +15,7 @@ namespace SocialQ.Forms.Queue
             this.OneWayBind(ViewModel, x => x.RemainingQueueTime, x => x.RemainingQueue.Text)
                 .DisposeWith(ViewDisposables);
 
-            this.OneWayBind(ViewModel, x => x.CurrentQueueTime, x => x.CurrentTime.Text)
+            this.OneWayBind(ViewModel, x => x.CurrentQueueTime, x => x.CurrentTime.Text, remainingTime => $"{remainingTime:hh\\:mm\\:ss}")
                 .DisposeWith(ViewDisposables);
         }
     }

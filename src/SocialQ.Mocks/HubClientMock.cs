@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reactive;
 using System.Reactive.Linq;
 
@@ -6,16 +7,15 @@ namespace SocialQ.Mocks
 {
     public abstract class HubClientMock<T> : IHubClient<T>
     {
-        public abstract IObservable<T> Hub { get; }
+        private readonly Random _random = new Random();
 
-        public IObservable<Unit> Connect() => Observable.Return(Unit.Default);
+        protected readonly List<T> Items = new List<T>();
 
-        public IObservable<Unit> Connect(string channel) => Observable.Return(Unit.Default);
+        public IObservable<T> Connect(string channel) =>
+            Observable
+                .Interval(TimeSpan.FromSeconds(8))
+                .Select(x => Items[_random.Next(0, Items.Count)]);
 
-        public IObservable<T> InvokeAsync(string methodName) => Observable.Empty<T>();
-
-        public void Dispose()
-        {
-        }
+        public IObservable<T> Invoke(string methodName) => Observable.Empty<T>();
     }
 }

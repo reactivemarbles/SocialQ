@@ -6,7 +6,8 @@ using Serilog;
 using Sextant;
 using Sextant.Abstractions;
 using Sextant.XamForms;
-using SocialQ.ViewModels;
+using SocialQ.Mocks.Queue;
+using SocialQ.Queue;
 using Splat;
 using ILogger = Shiny.Logging.ILogger;
 
@@ -48,6 +49,32 @@ namespace SocialQ.Forms
 
             serviceCollection.AddSingleton<ILogManager>(funcLogManager);
 
+            return serviceCollection;
+        }
+
+        public static IServiceCollection AddClients(this IServiceCollection serviceCollection, bool useMocks)
+        {
+            if (useMocks)
+            {
+                serviceCollection.AddMockApiClients();
+            }
+            else
+            {
+                serviceCollection.AddApiClients();
+            }
+
+            return serviceCollection;
+        }
+
+
+        public static IServiceCollection AddApiClients(this IServiceCollection serviceCollection)
+        {
+            return serviceCollection;
+        }
+
+        public static IServiceCollection AddMockApiClients(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddSingleton<IHubClient<QueuedStoreDto>>(new QueueHubClientMock());
             return serviceCollection;
         }
     }

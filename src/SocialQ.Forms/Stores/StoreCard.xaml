@@ -3,10 +3,10 @@
 <forms:ViewCellBase xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
-                    xmlns:viewmodels="clr-namespace:SocialQ.ViewModels.Stores;assembly=SocialQ.ViewModels"
+                    xmlns:socialQ="clr-namespace:SocialQ;assembly=SocialQ"
                     x:Class="SocialQ.Forms.StoreCard"
-                    x:DataType="viewmodels:StoreCardViewModel"
-                    x:TypeArguments="viewmodels:StoreCardViewModel">
+                    x:DataType="socialQ:StoreCardViewModel"
+                    x:TypeArguments="socialQ:StoreCardViewModel">
     <Grid RowSpacing="4">
         <Grid.RowDefinitions>
             <RowDefinition />

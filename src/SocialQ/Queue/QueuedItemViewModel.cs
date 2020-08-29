@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Reactive.Linq;
 using ReactiveUI;
-using SocialQ.Queue;
 
-namespace SocialQ.ViewModels.Queue
+namespace SocialQ.Queue
 {
     public class QueuedItemViewModel : ReactiveObject
     {
@@ -22,7 +20,7 @@ namespace SocialQ.ViewModels.Queue
             this.WhenAnyValue(x => x.RemainingQueueTime)
                 .RemainingTime(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
-                .ToProperty(this, nameof(CurrentQueueTime), out _currentQueueTime, dto.RemainingQueueTime.TimeOfDay);
+                .ToProperty(this, nameof(CurrentQueueTime), out _currentQueueTime, dto.RemainingQueueTime.TimeOfDay - DateTimeOffset.Now.TimeOfDay);
         }
 
         public Guid Id

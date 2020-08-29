@@ -3,12 +3,12 @@
 <forms:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
-                       xmlns:viewmodel="clr-namespace:SocialQ.ViewModels.Stores;assembly=SocialQ.ViewModels"
                        xmlns:stores="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
                        xmlns:resources="clr-namespace:SocialQ.Forms.Resources;assembly=SocialQ.Forms"
-                       x:Class="SocialQ.Forms.StoreSearch"
-                       x:DataType="viewmodel:StoreSearchViewModel"
-                       x:TypeArguments="viewmodel:StoreSearchViewModel">
+                       xmlns:socialQ="clr-namespace:SocialQ;assembly=SocialQ"
+                       x:Class="SocialQ.Forms.Stores.StoreSearch"
+                       x:DataType="socialQ:StoreSearchViewModel"
+                       x:TypeArguments="socialQ:StoreSearchViewModel">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
