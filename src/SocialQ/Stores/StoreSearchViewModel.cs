@@ -6,29 +6,26 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using DynamicData;
 using ReactiveUI;
+using Sextant;
+using Sextant.Plugins.Popup;
 
 namespace SocialQ
 {
     public class StoreSearchViewModel : ViewModelBase
     {
         private readonly BehaviorSubject<Func<StoreDto, bool>> _searchFunction = new BehaviorSubject<Func<StoreDto, bool>>(dto => false);
+        private readonly IPopupViewStackService _popupViewStackService;
         private readonly IStoreService _storeService;
         private readonly ObservableAsPropertyHelper<bool> _isLoading;
         private readonly ReadOnlyObservableCollection<StoreCardViewModel> _stores;
         private ReadOnlyObservableCollection<string> _storeNames;
         private string _searchText;
 
-        public StoreSearchViewModel(IStoreService storeService)
+        public StoreSearchViewModel(IParameterViewStackService parameterViewStackService, IPopupViewStackService popupViewStackService, IStoreService storeService)
+            : base(parameterViewStackService)
         {
+            _popupViewStackService = popupViewStackService;
             _storeService = storeService;
-
-            this.WhenAnyObservable(
-                    x => x.Search.IsExecuting,
-                    x => x.InitializeData.IsExecuting,
-                    (search, initialize) => search || initialize)
-                .DistinctUntilChanged()
-                .ToProperty(this, nameof(IsLoading), out _isLoading, deferSubscription: true)
-                .DisposeWith(Subscriptions);
 
             _searchFunction.DisposeWith(Subscriptions);
 
@@ -51,7 +48,18 @@ namespace SocialQ
                 .Subscribe()
                 .DisposeWith(Subscriptions);
 
+            var isLoading =
+                this.WhenAnyObservable(
+                        x => x.Search.IsExecuting,
+                        x => x.InitializeData.IsExecuting,
+                        (search, initialize) => search || initialize);
+
+            isLoading
+                .ToProperty(this, nameof(IsLoading), out _isLoading, deferSubscription: true)
+                .DisposeWith(Subscriptions);
+
             Search = ReactiveCommand.CreateFromObservable<string, Unit>(ExecuteSearch);
+            Details = ReactiveCommand.CreateFromObservable<StoreCardViewModel, Unit>(ExecuteDetails);
             InitializeData = ReactiveCommand.CreateFromObservable(ExecuteInitializeData);
         }
 
@@ -67,16 +75,23 @@ namespace SocialQ
 
         public ReactiveCommand<string, Unit> Search { get; }
 
+        public ReactiveCommandBase<StoreCardViewModel, Unit> Details { get; set; }
+
         public ReadOnlyObservableCollection<StoreCardViewModel> Stores => _stores;
 
-        private IObservable<Unit> ExecuteInitializeData() => _storeService.GetStores().Select(x => Unit.Default);
+        private IObservable<Unit> ExecuteInitializeData() =>
+            _storeService
+                .GetStores()
+                .Select(x => Unit.Default);
+
+        private IObservable<Unit> ExecuteDetails(StoreCardViewModel arg) =>
+            _popupViewStackService
+                .PushPopup<StoreDetailViewModel>(new NavigationParameter {{WellKnownNavigationParameters.Id, arg.Id}});
 
         private IObservable<Unit> ExecuteSearch(string searchText) =>
             Observable
                 .Create<Unit>(observer =>
                 {
-                    var disposables = new CompositeDisposable();
-
                     Func<StoreDto, bool> Search(string term) =>
                         dto =>
                         {
@@ -90,13 +105,10 @@ namespace SocialQ
 
                     _searchFunction.OnNext(Search(searchText));
 
-                    _storeService
+                    return _storeService
                         .GetStores(false)
                         .Select(x => Unit.Default)
-                        .Subscribe(observer)
-                        .DisposeWith(disposables);
-
-                    return disposables;
+                        .Subscribe(observer);
                 });
     }
 }

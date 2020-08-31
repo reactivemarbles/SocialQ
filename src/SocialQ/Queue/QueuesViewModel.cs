@@ -6,6 +6,7 @@ using System.Reactive.Linq;
 using DynamicData;
 using DynamicData.Binding;
 using ReactiveUI;
+using Sextant;
 
 namespace SocialQ.Queue
 {
@@ -14,7 +15,8 @@ namespace SocialQ.Queue
         private readonly IQueueService _queueService;
         private readonly ReadOnlyObservableCollection<QueuedItemViewModel> _queue;
 
-        public QueuesViewModel(IQueueService queueService)
+        public QueuesViewModel(IParameterViewStackService parameterViewStackService, IQueueService queueService)
+            : base(parameterViewStackService)
         {
             _queueService = queueService;
 

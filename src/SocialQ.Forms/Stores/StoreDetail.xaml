@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<forms:PopupPageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
+                     xmlns:socialQ="clr-namespace:SocialQ;assembly=SocialQ"
+                     x:Class="SocialQ.Forms.Stores.StoreDetail"
+                     x:DataType="socialQ:StoreDetailViewModel"
+                     x:TypeArguments="socialQ:StoreDetailViewModel"
+                     HasSystemPadding="False"
+                     Padding="48, 250">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Purple">
+            <Label Text="Hello, world!"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</forms:PopupPageBase>

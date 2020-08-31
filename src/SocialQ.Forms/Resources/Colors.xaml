@@ -1,0 +1,14 @@
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="SocialQ.Forms.Resources.Colors">
+    <Color x:Key="PrimaryButtonActiveBackground">Crimson</Color>
+    <Color x:Key="PrimaryButtonActiveForeground">WhiteSmoke</Color>
+    <Color x:Key="PrimaryButtonDisabledBackground">WhiteSmoke</Color>
+    <Color x:Key="PrimaryButtonDisabledForeground">Crimson</Color>
+    <Color x:Key="SecondaryButtonActiveBackground"></Color>
+    <Color x:Key="SecondaryButtonActiveForeground"></Color>
+    <Color x:Key="SecondaryButtonDisabledBackground"></Color>
+    <Color x:Key="SecondaryButtonDisabledForeground"></Color>
+    
+    <x:String x:Key="RoundLogo">https://raw.githubusercontent.com/reactiveui/styleguide/master/logo/circle.png</x:String>
+</ResourceDictionary>

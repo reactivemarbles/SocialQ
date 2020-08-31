@@ -3,6 +3,8 @@ using Akavache;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using Refit;
+using Rg.Plugins.Popup.Contracts;
+using Rg.Plugins.Popup.Services;
 using Serilog;
 using Sextant;
 using Sextant.Plugins.Popup;
@@ -27,15 +29,17 @@ namespace SocialQ.Forms
         
         public static IServiceCollection AddSextant(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<IView, NavigationView>();
-            serviceCollection.AddSingleton<IParameterViewStackService, ParameterViewStackService>();
+            serviceCollection.AddSingleton<IView>(provider => new NavigationView(RxApp.TaskpoolScheduler, RxApp.MainThreadScheduler, provider.GetService<IViewLocator>()));
+            serviceCollection.AddSingleton<IViewLocator, DefaultViewLocator>();
+            serviceCollection.AddSingleton<IParameterViewStackService, PopupViewStackService>();
+            serviceCollection.AddSingleton<IPopupViewStackService, PopupViewStackService>();
             serviceCollection.AddSingleton<IViewModelFactory, DefaultViewModelFactory>();
             return serviceCollection;
         }
         
         public static IServiceCollection AddAkavache(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<IBlobCache>(BlobCache.LocalMachine);
+            serviceCollection.AddSingleton(BlobCache.LocalMachine);
             return serviceCollection;
         }
 
