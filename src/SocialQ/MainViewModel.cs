@@ -14,6 +14,7 @@ namespace SocialQ
             IParameterViewStackService parameterViewStackService,
             INotificationManager notificationManager,
             IBlobCache blobCache)
+            : base(parameterViewStackService)
         {
             _parameterViewStackService = parameterViewStackService;
             _notificationManager = notificationManager;

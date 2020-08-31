@@ -6,6 +6,7 @@
                        xmlns:stores="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
                        xmlns:resources="clr-namespace:SocialQ.Forms.Resources;assembly=SocialQ.Forms"
                        xmlns:socialQ="clr-namespace:SocialQ;assembly=SocialQ"
+                       Title="Find a store"
                        x:Class="SocialQ.Forms.Stores.StoreSearch"
                        x:DataType="socialQ:StoreSearchViewModel"
                        x:TypeArguments="socialQ:StoreSearchViewModel">

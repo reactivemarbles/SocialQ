@@ -2,9 +2,14 @@
 
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:SocialQ.Forms.Resources;assembly=SocialQ.Forms"
              x:Class="SocialQ.Forms.App">
     <Application.Resources>
-        <ResourceDictionary Source="Resources/Styles.xaml" />
-        <x:String x:Key="RoundLogo">https://raw.githubusercontent.com/reactiveui/styleguide/master/logo/circle.png</x:String>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <resources:Colors />
+                <resources:Styles />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -5,7 +5,6 @@ using ReactiveUI;
 using Refit;
 using Serilog;
 using Sextant;
-using Sextant.Abstractions;
 using Sextant.XamForms;
 using SocialQ.Mocks.Queue;
 using SocialQ.Mocks.Stores;
@@ -27,7 +26,8 @@ namespace SocialQ.Forms
         
         public static IServiceCollection AddSextant(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<IView, NavigationView>();
+            serviceCollection.AddSingleton<IView>(provider => new NavigationView(RxApp.TaskpoolScheduler, RxApp.MainThreadScheduler, provider.GetService<IViewLocator>()));
+            serviceCollection.AddSingleton<IViewLocator, DefaultViewLocator>();
             serviceCollection.AddSingleton<IParameterViewStackService, ParameterViewStackService>();
             serviceCollection.AddSingleton<IViewModelFactory, DefaultViewModelFactory>();
             return serviceCollection;
@@ -35,7 +35,7 @@ namespace SocialQ.Forms
         
         public static IServiceCollection AddAkavache(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<IBlobCache>(BlobCache.LocalMachine);
+            serviceCollection.AddSingleton(BlobCache.LocalMachine);
             return serviceCollection;
         }
 

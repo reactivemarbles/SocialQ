@@ -11,6 +11,7 @@ using SocialQ.Forms.Queue;
 using SocialQ.Forms.Stores;
 using SocialQ.Mocks.Queue;
 using SocialQ.Queue;
+using Splat;
 using Splat.Microsoft.Extensions.DependencyInjection;
 using Xamarin.Forms;
 
@@ -32,6 +33,7 @@ namespace SocialQ.Forms
                 .RegisterForNavigation<MainPage, MainViewModel>()
                 .RegisterForNavigation<Queues, QueuesViewModel>()
                 .RegisterForNavigation<StoreSearch, StoreSearchViewModel>()
+                .RegisterForNavigation<StoreDetail, StoreDetailViewModel>()
                 .AddApiContracts(true)
                 .AddApiClients()
                 .AddDataServices()
@@ -42,8 +44,8 @@ namespace SocialQ.Forms
         public static Page NavigateToStart<T>()
             where T : IViewModel
         {
-           ShinyHost.Container.GetService<IParameterViewStackService>().PushPage<T>().Subscribe();
-            return (Page) ShinyHost.Container.GetService<IView>();
+           Locator.Current.GetService<IParameterViewStackService>().PushPage<T>(resetStack: true, animate: false).Subscribe();
+            return (NavigationPage) Locator.Current.GetService<IView>();
         }
     }
 }

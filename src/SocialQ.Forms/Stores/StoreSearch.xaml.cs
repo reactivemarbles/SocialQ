@@ -1,4 +1,5 @@
 using System;
+using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveUI;
@@ -12,14 +13,24 @@ namespace SocialQ.Forms.Stores
         {
             InitializeComponent();
 
-            this.WhenAnyValue(x => x.ViewModel.InitializeData)
-                .SelectMany(command => command.Execute())
-                .Subscribe()
+            this.OneWayBind(ViewModel, x => x.IsLoading, x => x.Search.IsEnabled, x => !x);
+
+            this.WhenAnyValue(x => x.ViewModel)
+                .Where(x => x != null)
+                .Select(x => Unit.Default)
+                .InvokeCommand(this, x => x.ViewModel.InitializeData)
                 .DisposeWith(PageDisposables);
 
             this.WhenAnyValue(x => x.ViewModel.Stores)
                 .Where(x => x != null)
                 .BindTo(this, x => x.StoreList.ItemsSource)
+                .DisposeWith(PageDisposables);
+
+            this.WhenAnyObservable(x => x.ViewModel.Search.IsExecuting,
+                    x => x.ViewModel.InitializeData.IsExecuting,
+                    x => x.ViewModel.Details.IsExecuting,
+                    (search, initialize, details) => search || initialize || details)
+                .Subscribe(executing => Loading.IsRunning = executing)
                 .DisposeWith(PageDisposables);
 
             SearchBar
@@ -32,11 +43,12 @@ namespace SocialQ.Forms.Stores
                 .InvokeCommand(this, x => x.ViewModel.Search)
                 .DisposeWith(PageDisposables);
 
-            Search
+            StoreList
                 .Events()
-                .Pressed
-                .Select(x => SearchBar.Text)
-                .InvokeCommand(this, x => x.ViewModel.Search)
+                .ItemTapped
+                .Select(x => x.Item)
+                .Cast<StoreCardViewModel>()
+                .InvokeCommand(this, x => x.ViewModel.Details)
                 .DisposeWith(PageDisposables);
 
             StoreList
@@ -46,6 +58,22 @@ namespace SocialQ.Forms.Stores
                 {
                     StoreList.SelectedItem = null;
                 })
+                .DisposeWith(PageDisposables);
+
+            this.WhenAnyValue(x => x.ViewModel.IsLoading)
+                .Subscribe(isLoading =>
+                {
+                    var style = isLoading ? "PrimaryButtonDisabled" : "PrimaryButtonEnabled";
+                    Search.Style =
+                        Application.Current.Resources[style] as Style;
+                });
+
+            Search
+                .Events()
+                .Pressed
+                .Select(x => SearchBar.Text)
+                .Where(x => !string.IsNullOrEmpty(x))
+                .InvokeCommand(this, x => x.ViewModel.Search)
                 .DisposeWith(PageDisposables);
         }
     }
