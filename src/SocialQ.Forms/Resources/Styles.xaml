@@ -5,11 +5,11 @@
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="PrimaryButtonCommonStates">
-                    <VisualState Name="Pressed">
-                        <VisualState.Setters>
-                            <Setter Property="Style" Value="{DynamicResource PrimaryButtonPressed}" />
-                        </VisualState.Setters>
-                    </VisualState>
+                    <!-- <VisualState Name="Pressed"> -->
+                    <!--     <VisualState.Setters> -->
+                    <!--         <Setter Property="Style" Value="{DynamicResource PrimaryButtonPressed}" /> -->
+                    <!--     </VisualState.Setters> -->
+                    <!-- </VisualState> -->
                     <VisualState Name="Normal">
                         <VisualState.Setters>
                             <Setter Property="Style" Value="{DynamicResource PrimaryButtonEnabled}" />
@@ -38,6 +38,8 @@
     <Style x:Key="PrimaryButtonPressed" TargetType="Button" BaseResourceKey="PrimaryButtonStyle">
         <Setter Property="TextColor" Value="Crimson" />
         <Setter Property="BackgroundColor" Value="WhiteSmoke" />
+        <Setter Property="BorderWidth" Value="3" />
+        <Setter Property="BorderColor" Value="Crimson" />
     </Style>
     <Style x:Key="PrimaryButtonEnabled" TargetType="Button" BaseResourceKey="PrimaryButtonStyle">
         <Setter Property="BackgroundColor" Value="Crimson" />
@@ -55,7 +57,7 @@
     </Style>
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="CornflowerBlue" />
-        <Setter Property="WidthRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="64" />
         <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
         <Setter Property="VerticalOptions" Value="CenterAndExpand" />
     </Style>

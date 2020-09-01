@@ -19,10 +19,6 @@ namespace SocialQ
             _storeService = storeService;
 
             InitializeData = ReactiveCommand.CreateFromObservable<Guid, Unit>(ExecuteInitializeData);
-
-            this.WhenAnyValue(x => x.StoreId)
-                .InvokeCommand(this, x => x.InitializeData)
-                .DisposeWith(Subscriptions);
         }
 
         [Reactive] public Guid StoreId { get; set; }
@@ -31,12 +27,14 @@ namespace SocialQ
 
         public ReactiveCommand<Guid, Unit> InitializeData { get; }
 
-        protected override IObservable<Unit> WhenNavigatingTo(INavigationParameter parameter)
-        {
-            parameter.TryGetValue(WellKnownNavigationParameters.Id, out object id);
-            StoreId = (Guid) id;
-            return Observable.Return(Unit.Default);
-        }
+        protected override IObservable<Unit> WhenNavigatingTo(INavigationParameter parameter) =>
+            Observable
+                .Create<Unit>(observer =>
+                {
+                    parameter.TryGetValue(WellKnownNavigationParameters.Id, out object id);
+                    StoreId = (Guid) id;
+                    return Disposable.Empty;
+                });
 
         private IObservable<Unit> ExecuteInitializeData(Guid id) =>
             Observable

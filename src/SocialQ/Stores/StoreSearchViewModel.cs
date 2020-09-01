@@ -52,7 +52,7 @@ namespace SocialQ
                         (search, initialize) => search || initialize);
 
             isLoading
-                .ToProperty(this, nameof(IsLoading), out _isLoading, deferSubscription: true, scheduler: RxApp.MainThreadScheduler)
+                .ToProperty(this, nameof(IsLoading), out _isLoading, deferSubscription: true)
                 .DisposeWith(Subscriptions);
 
             Search = ReactiveCommand.CreateFromObservable<string, Unit>(ExecuteSearch);
@@ -84,7 +84,7 @@ namespace SocialQ
 
         private IObservable<Unit> ExecuteDetails(StoreCardViewModel arg) =>
             ViewStackService
-                .PushModal<StoreDetailViewModel>(new NavigationParameter {{WellKnownNavigationParameters.Id, arg.Id}});
+                .PushModal<StoreDetailViewModel>(new NavigationParameter {{WellKnownNavigationParameters.Id, arg.Id}}, withNavigationPage: true);
 
         private IObservable<Unit> ExecuteSearch(string searchText) =>
             Observable

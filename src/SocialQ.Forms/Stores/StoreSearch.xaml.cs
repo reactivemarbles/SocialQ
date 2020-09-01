@@ -13,8 +13,6 @@ namespace SocialQ.Forms.Stores
         {
             InitializeComponent();
 
-            this.OneWayBind(ViewModel, x => x.IsLoading, x => x.Search.IsEnabled, x => !x);
-
             this.WhenAnyValue(x => x.ViewModel)
                 .Where(x => x != null)
                 .Select(x => Unit.Default)
@@ -30,7 +28,13 @@ namespace SocialQ.Forms.Stores
                     x => x.ViewModel.InitializeData.IsExecuting,
                     x => x.ViewModel.Details.IsExecuting,
                     (search, initialize, details) => search || initialize || details)
-                .Subscribe(executing => Loading.IsRunning = executing)
+                .Subscribe(executing =>
+                {
+                    // var style = executing ? "PrimaryButtonDisabled" : "PrimaryButtonEnabled";
+                    // Search.Style =
+                    //     Application.Current.Resources[style] as Style;
+                    Loading.IsRunning = executing;
+                })
                 .DisposeWith(PageDisposables);
 
             SearchBar
@@ -59,14 +63,6 @@ namespace SocialQ.Forms.Stores
                     StoreList.SelectedItem = null;
                 })
                 .DisposeWith(PageDisposables);
-
-            this.WhenAnyValue(x => x.ViewModel.IsLoading)
-                .Subscribe(isLoading =>
-                {
-                    var style = isLoading ? "PrimaryButtonDisabled" : "PrimaryButtonEnabled";
-                    Search.Style =
-                        Application.Current.Resources[style] as Style;
-                });
 
             Search
                 .Events()
