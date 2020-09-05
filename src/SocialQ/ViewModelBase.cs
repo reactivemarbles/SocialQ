@@ -35,7 +35,7 @@ namespace SocialQ
 
         IObservable<Unit> INavigated.WhenNavigatedFrom(INavigationParameter parameter) => WhenNavigatedFrom(parameter);
 
-        IObservable<Unit> INavigating. WhenNavigatingTo(INavigationParameter parameter) => WhenNavigatingTo(parameter);
+        IObservable<Unit> INavigating.WhenNavigatingTo(INavigationParameter parameter) => WhenNavigatingTo(parameter);
 
         void IDestructible.Destroy()
         {

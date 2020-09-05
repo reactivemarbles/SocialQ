@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveUI;
@@ -20,9 +21,8 @@ namespace SocialQ.Forms.Queue
                 .BindTo(this, x => x.Queue.ItemsSource)
                 .DisposeWith(PageDisposables);
 
-            this
-                .Events()
-                .Appearing
+            this.WhenAnyValue(x => x.ViewModel.InitializeData)
+                .Select(_ => Unit.Default)
                 .InvokeCommand(this, x => x.ViewModel.InitializeData)
                 .DisposeWith(PageDisposables);
 

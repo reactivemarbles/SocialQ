@@ -7,21 +7,24 @@ using System.Reactive.Subjects;
 using DynamicData;
 using ReactiveUI;
 using Sextant;
+using Sextant.Plugins.Popup;
 
 namespace SocialQ
 {
     public class StoreSearchViewModel : ViewModelBase
     {
         private readonly BehaviorSubject<Func<StoreDto, bool>> _searchFunction = new BehaviorSubject<Func<StoreDto, bool>>(dto => false);
+        private readonly IPopupViewStackService _popupViewStackService;
         private readonly IStoreService _storeService;
         private readonly ObservableAsPropertyHelper<bool> _isLoading;
         private readonly ReadOnlyObservableCollection<StoreCardViewModel> _stores;
         private ReadOnlyObservableCollection<string> _storeNames;
         private string _searchText;
 
-        public StoreSearchViewModel(IParameterViewStackService parameterViewStackService, IStoreService storeService)
+        public StoreSearchViewModel(IParameterViewStackService parameterViewStackService, IPopupViewStackService popupViewStackService, IStoreService storeService)
             : base(parameterViewStackService)
         {
+            _popupViewStackService = popupViewStackService;
             _storeService = storeService;
 
             _searchFunction.DisposeWith(Subscriptions);
@@ -81,10 +84,9 @@ namespace SocialQ
                 .GetStores()
                 .Select(x => Unit.Default);
 
-
         private IObservable<Unit> ExecuteDetails(StoreCardViewModel arg) =>
-            ViewStackService
-                .PushModal<StoreDetailViewModel>(new NavigationParameter {{WellKnownNavigationParameters.Id, arg.Id}}, withNavigationPage: true);
+            _popupViewStackService
+                .PushPopup<StoreDetailViewModel>(new NavigationParameter {{WellKnownNavigationParameters.Id, arg.Id}});
 
         private IObservable<Unit> ExecuteSearch(string searchText) =>
             Observable

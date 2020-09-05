@@ -3,8 +3,11 @@ using Akavache;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using Refit;
+using Rg.Plugins.Popup.Contracts;
+using Rg.Plugins.Popup.Services;
 using Serilog;
 using Sextant;
+using Sextant.Plugins.Popup;
 using Sextant.XamForms;
 using SocialQ.Mocks.Queue;
 using SocialQ.Mocks.Stores;
@@ -28,7 +31,8 @@ namespace SocialQ.Forms
         {
             serviceCollection.AddSingleton<IView>(provider => new NavigationView(RxApp.TaskpoolScheduler, RxApp.MainThreadScheduler, provider.GetService<IViewLocator>()));
             serviceCollection.AddSingleton<IViewLocator, DefaultViewLocator>();
-            serviceCollection.AddSingleton<IParameterViewStackService, ParameterViewStackService>();
+            serviceCollection.AddSingleton<IParameterViewStackService, PopupViewStackService>();
+            serviceCollection.AddSingleton<IPopupViewStackService, PopupViewStackService>();
             serviceCollection.AddSingleton<IViewModelFactory, DefaultViewModelFactory>();
             return serviceCollection;
         }

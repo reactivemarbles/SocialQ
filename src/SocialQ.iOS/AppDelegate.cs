@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Rg.Plugins.Popup.Contracts;
+using Rg.Plugins.Popup.Services;
 using Shiny;
 using SocialQ.Forms;
+using Splat;
 using UIKit;
 
 namespace SocialQ.iOS
@@ -26,11 +29,16 @@ namespace SocialQ.iOS
         {
             this.ShinyFinishedLaunching(new SocialQStartup());
 
+            Rg.Plugins.Popup.Popup.Init();
+
             global::Xamarin.Forms.Forms.Init();
+            Locator.CurrentMutable.RegisterLazySingleton<IPopupNavigation>(() => PopupNavigation.Instance);
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }
+
         public override void ReceivedRemoteNotification(UIApplication application, NSDictionary userInfo)
             => this.ShinyDidReceiveRemoteNotification(userInfo, null);
 
