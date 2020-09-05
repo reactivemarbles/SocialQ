@@ -32,14 +32,9 @@ namespace SocialQ.Forms
                 .RegisterForNavigation<MainPage, MainViewModel>()
                 .RegisterForNavigation<Queues, QueuesViewModel>()
                 .RegisterForNavigation<StoreSearch, StoreSearchViewModel>()
-                .AddSingleton<IQueueService, QueueService>()
-                .AddSingleton<IQueueApiClient, QueueApiClient>()
-                .AddSingleton<IStoreService, StoreService>()
-                .AddSingleton<IStoreApiClient, StoreApiClient>()
-                .AddSingleton(RestService.For<IQueueApiContract>("https://socialq.azurewebsites.net"))
-                .AddSingleton(RestService.For<IStoreApiContract>("https://socialq.azurewebsites.net"))
-                .AddTransient<IHubClient<QueuedStoreDto>, QueueHubClientMock>()
-                // .AddScoped(typeof(IHubClient<>), typeof(SignalRHubClientBase<>))
+                .AddApiContracts(true)
+                .AddApiClients()
+                .AddDataServices()
                 .AddSingleton(SignalRParameters.Client)
                 .UseMicrosoftDependencyResolver();
         }

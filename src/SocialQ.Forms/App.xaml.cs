@@ -10,7 +10,7 @@ namespace SocialQ.Forms
         {
             InitializeComponent();
             var _ = new SocialQStartup();
-            MainPage = SocialQStartup.NavigateToStart<QueuesViewModel>();
+            MainPage = SocialQStartup.NavigateToStart<StoreSearchViewModel>();
         }
 
         protected override void OnStart()

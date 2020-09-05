@@ -2,14 +2,15 @@ using System;
 using Akavache;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
+using Refit;
 using Serilog;
 using Sextant;
 using Sextant.Abstractions;
 using Sextant.XamForms;
 using SocialQ.Mocks.Queue;
+using SocialQ.Mocks.Stores;
 using SocialQ.Queue;
 using Splat;
-using ILogger = Shiny.Logging.ILogger;
 
 namespace SocialQ.Forms
 {
@@ -52,30 +53,40 @@ namespace SocialQ.Forms
             return serviceCollection;
         }
 
-        public static IServiceCollection AddClients(this IServiceCollection serviceCollection, bool useMocks)
+        public static IServiceCollection AddApiContracts(this IServiceCollection serviceCollection, bool useMocks)
         {
             if (useMocks)
             {
-                serviceCollection.AddMockApiClients();
+                serviceCollection.AddMockApiContracts();
             }
             else
             {
-                serviceCollection.AddApiClients();
+                serviceCollection.AddFunctionApiContracts();
             }
 
             return serviceCollection;
         }
 
+        public static IServiceCollection AddFunctionApiContracts(this IServiceCollection serviceCollection) =>
+            serviceCollection
+                .AddSingleton(RestService.For<IQueueApiContract>("https://socialq.azurewebsites.net"))
+                .AddSingleton(RestService.For<IStoreApiContract>("https://socialq.azurewebsites.net"))
+                .AddScoped(typeof(IHubClient<>), typeof(SignalRHubClientBase<>));
 
-        public static IServiceCollection AddApiClients(this IServiceCollection serviceCollection)
-        {
-            return serviceCollection;
-        }
+        public static IServiceCollection AddMockApiContracts(this IServiceCollection serviceCollection) =>
+            serviceCollection
+                .AddSingleton<IStoreApiContract, StoreApiContractMock>()
+                .AddSingleton<IQueueApiContract, QueueApiContractMock>()
+                .AddSingleton<IHubClient<QueuedStoreDto>, QueueHubClientMock>();
 
-        public static IServiceCollection AddMockApiClients(this IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddSingleton<IHubClient<QueuedStoreDto>>(new QueueHubClientMock());
-            return serviceCollection;
-        }
+        public static IServiceCollection AddApiClients(this IServiceCollection serviceCollection) =>
+            serviceCollection
+                .AddSingleton<IQueueApiClient, QueueApiClient>()
+                .AddSingleton<IStoreApiClient, StoreApiClient>();
+
+        public static IServiceCollection AddDataServices(this IServiceCollection serviceCollection) =>
+            serviceCollection
+                .AddSingleton<IQueueService, QueueService>()
+                .AddSingleton<IStoreService, StoreService>();
     }
 }
