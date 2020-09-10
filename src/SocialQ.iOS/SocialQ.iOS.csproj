@@ -128,6 +128,10 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Sextant\src\Sextant\Sextant.csproj">
+      <Project>{92da0fd4-ff3d-4d09-a3b2-d52b5007414e}</Project>
+      <Name>Sextant</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SocialQ.Forms\SocialQ.Forms.csproj">
       <Project>{377248cf-4643-47c7-9e72-ea20c540e842}</Project>
       <Name>SocialQ.Forms</Name>

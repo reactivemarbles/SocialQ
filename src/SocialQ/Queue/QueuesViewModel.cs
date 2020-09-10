@@ -36,14 +36,14 @@ namespace SocialQ.Queue
                 .Subscribe(_ => _queueService.GetQueue(Guid.Empty))
                 .DisposeWith(Subscriptions);
 
-            InitializeData = ReactiveCommand.CreateFromObservable<EventArgs, Unit>(ExecuteInitializeData);
+            InitializeData = ReactiveCommand.CreateFromObservable(ExecuteInitializeData);
         }
 
-        public ReactiveCommand<EventArgs, Unit> InitializeData { get; set; }
+        public ReactiveCommand<Unit, Unit> InitializeData { get; set; }
 
         public ReadOnlyObservableCollection<QueuedItemViewModel> Queue => _queue;
 
-        private IObservable<Unit> ExecuteInitializeData(EventArgs args) =>
+        private IObservable<Unit> ExecuteInitializeData() =>
             _queueService
                 .GetQueue(Guid.Empty)
                 .Select(_ => Unit.Default);

@@ -5,7 +5,7 @@ using ReactiveUI;
 using Refit;
 using Serilog;
 using Sextant;
-using Sextant.Abstractions;
+using Sextant.Plugins.Popup;
 using Sextant.XamForms;
 using SocialQ.Mocks.Queue;
 using SocialQ.Mocks.Stores;

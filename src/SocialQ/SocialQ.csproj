@@ -19,4 +19,9 @@
       <PackageReference Include="Sextant" Version="2.7.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Sextant\src\Sextant.Plugins.Popup\Sextant.Plugins.Popup.csproj" />
+      <ProjectReference Include="..\..\Sextant\src\Sextant\Sextant.csproj" />
+    </ItemGroup>
+
 </Project>

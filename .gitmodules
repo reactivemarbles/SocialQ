@@ -1,0 +1,3 @@
+[submodule "Sextant"]
+	path = Sextant
+	url = https://github.com/reactiveui/Sextant/
