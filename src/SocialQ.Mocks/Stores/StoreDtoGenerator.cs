@@ -104,6 +104,7 @@ namespace SocialQ.Mocks.Stores
                     {
                         var storeFaker = f.PickRandom(_stores);
                         o.Name = storeFaker.Name;
+                        o.Category = storeFaker.Category;
                     })
                     .RuleFor(x => x.Address, x => addressFaker.Generate())
                     .RuleFor(x => x.Coordinate, x => coordinateFaker.Generate())
@@ -116,25 +117,6 @@ namespace SocialQ.Mocks.Stores
         }
 
         public List<StoreDto> Items { get; set; }
-    }
-
-    public enum StoreCategory
-    {
-        Restaurant,
-        
-        Grocery,
-
-        Sporting,
-
-        Laundry,
-
-        Furniture,
-
-        HomeImprovement,
-
-        Gym,
-
-        Electronics
     }
 
     public class StoreNameCategory

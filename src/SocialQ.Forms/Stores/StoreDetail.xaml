@@ -4,16 +4,18 @@
                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                      xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
                      xmlns:socialQ="clr-namespace:SocialQ;assembly=SocialQ"
+                     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                     xmlns:converters="clr-namespace:SocialQ.Forms.Converters;assembly=SocialQ.Forms"
                      x:Class="SocialQ.Forms.Stores.StoreDetail"
                      x:DataType="socialQ:StoreDetailViewModel"
                      x:TypeArguments="socialQ:StoreDetailViewModel"
                      HasSystemPadding="False"
                      Padding="48, 250">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Purple">
-            <Label Text="Hello, world!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <forms:StoreCardView
+            CurrentTime="{Binding Store.CurrentWait}"
+            StoreName="{Binding Store.Name}"
+            StoreColor="{Binding Store.Category, Converter={StaticResource StoreCategoryConverter}}"
+            AddCommand="{Binding Add}"/>
     </ContentPage.Content>
 </forms:PopupPageBase>

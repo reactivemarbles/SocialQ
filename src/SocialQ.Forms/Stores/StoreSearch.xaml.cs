@@ -13,6 +13,9 @@ namespace SocialQ.Forms.Stores
         {
             InitializeComponent();
 
+            this.BindCommand(ViewModel, x => x.Search, x => x.Search, x => x.SearchText, nameof(Search.Clicked) )
+                .DisposeWith(PageDisposables);
+
             this.WhenAnyValue(x => x.ViewModel)
                 .Where(x => x != null)
                 .Select(x => Unit.Default)
@@ -63,14 +66,14 @@ namespace SocialQ.Forms.Stores
                     StoreList.SelectedItem = null;
                 })
                 .DisposeWith(PageDisposables);
-
-            Search
-                .Events()
-                .Pressed
-                .Select(x => SearchBar.Text)
-                .Where(x => !string.IsNullOrEmpty(x))
-                .InvokeCommand(this, x => x.ViewModel.Search)
-                .DisposeWith(PageDisposables);
+            //
+            // Search
+            //     .Events()
+            //     .Clicked
+            //     .Select(x => SearchBar.Text)
+            //     .Where(x => !string.IsNullOrEmpty(x))
+            //     .InvokeCommand(this, x => x.ViewModel.Search)
+            //     .DisposeWith(PageDisposables);
         }
     }
 }

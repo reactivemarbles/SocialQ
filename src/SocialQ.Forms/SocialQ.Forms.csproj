@@ -16,6 +16,7 @@
     <PackageReference Include="Pharmacist.MsBuild" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="ReactiveUI.XamForms" Version="11.5.6" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.4" />
+<!--    <PackageReference Include="Sextant.XamForms" Version="2.7.1" />-->
     <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
     <PackageReference Include="SkiaSharp" Version="2.80.1" />
     <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="9.5.6" />
@@ -27,27 +28,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\reactiveui\Sextant\src\Sextant.Plugins.Popup\Sextant.Plugins.Popup.csproj" />
+    <ProjectReference Include="..\..\..\..\reactiveui\Sextant\src\Sextant.XamForms\Sextant.XamForms.csproj" />
     <ProjectReference Include="..\SocialQ.Mocks\SocialQ.Mocks.csproj" />
     <ProjectReference Include="..\SocialQ\SocialQ.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Stores\StoreSearch.xaml.cs">
-      <DependentUpon>StoreSearch.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Resources\Strings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Queue\QueuedItemView.xaml.cs">
-      <DependentUpon>CoffeeCell.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Queue\Queues.xaml.cs">
-      <DependentUpon>Queues.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 

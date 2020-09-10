@@ -1,0 +1,6 @@
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:converters="clr-namespace:SocialQ.Forms.Converters;assembly=SocialQ.Forms"
+                    x:Class="SocialQ.Forms.Resources.Converters">
+    <converters:StoreCategoryConverter x:Key="StoreCategoryConverter" />
+</ResourceDictionary>

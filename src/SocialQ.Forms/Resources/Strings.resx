@@ -21,4 +21,7 @@
     <data name="StoreSearchPlaceholder" xml:space="preserve">
         <value>Search for a store</value>
     </data>
+    <data name="Add" xml:space="preserve">
+        <value>Add</value>
+    </data>
 </root>

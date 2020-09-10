@@ -6,6 +6,7 @@ using ReactiveUI;
 using Refit;
 using Serilog;
 using Sextant;
+using Sextant.Plugins.Popup;
 using Shiny;
 using SocialQ.Forms.Queue;
 using SocialQ.Forms.Stores;
