@@ -8,7 +8,7 @@ namespace SocialQ.Queue
     {
         IBlobCache BlobCache { get; }
 
-        IObservable<Unit> Enqueue(QueuedStoreDto dto);
+        IObservable<QueuedStoreDto> Enqueue(EnqueueRequest dto);
 
         IObservable<QueuedStoreDto> GetQueue(Guid userId, bool forceUpdate = false);
     }

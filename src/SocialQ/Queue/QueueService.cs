@@ -26,9 +26,9 @@ namespace SocialQ.Queue
                 .GetQueue(userId, forceUpdate)
                 .AddOrUpdate(_queue);
 
-        public IObservable<Unit> EnQueue(QueuedStoreDto dto) =>
+        public IObservable<QueuedStoreDto> EnQueue(Guid userId, Guid storeId) =>
             _apiClient
-                .Enqueue(dto);
+                .Enqueue(new EnqueueRequest { UserId = userId, StoreId = storeId });
 
         private IObservable<QueuedStoreDto> UpdateQueueCache(QueuedStoreDto queuedStoreDto) =>
             Observable

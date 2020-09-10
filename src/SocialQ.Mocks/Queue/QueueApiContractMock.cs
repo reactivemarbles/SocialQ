@@ -7,7 +7,7 @@ namespace SocialQ.Mocks.Queue
 {
     public class QueueApiContractMock : IQueueApiContract
     {
-        public IObservable<Unit> Enqueue(EnqueueRequest enqueueRequest, FunctionParameters parameters) =>
-            Observable.Return(Unit.Default);
+        public IObservable<QueuedStoreDto> Enqueue(EnqueueRequest enqueueRequest, FunctionParameters parameters) =>
+            Observable.Return(default(QueuedStoreDto));
     }
 }

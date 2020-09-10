@@ -3,8 +3,6 @@ using Akavache;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using Refit;
-using Rg.Plugins.Popup.Contracts;
-using Rg.Plugins.Popup.Services;
 using Serilog;
 using Sextant;
 using Sextant.Plugins.Popup;

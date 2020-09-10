@@ -50,5 +50,11 @@ namespace SocialQ.Forms.Resources {
                 return ResourceManager.GetString("StoreSearchPlaceholder", resourceCulture);
             }
         }
+        
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
     }
 }

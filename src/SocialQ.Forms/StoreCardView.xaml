@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:resources="clr-namespace:SocialQ.Forms.Resources;assembly=SocialQ.Forms"
+             x:Class="SocialQ.Forms.StoreCardView">
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <pancakeView:PancakeView HeightRequest="180" WidthRequest="320" Margin="10" HorizontalOptions="Center" CornerRadius="25" Elevation="2" BackgroundColor="{TemplateBinding StoreColor}">
+                <Grid RowSpacing="0" ColumnSpacing="0" RowDefinitions="*,*,*,*" ColumnDefinitions="*,*">
+                    <Image x:Name="CoffeeBackground" Aspect="AspectFill" Grid.RowSpan="4" Grid.Row="0" />
+                    <BoxView Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="2" BackgroundColor="White" Opacity=".65" />
+                    <Label x:Name="StoreName" AutomationId="StoreNameLabel" Grid.Row="0" Grid.ColumnSpan="2" Text="{TemplateBinding StoreName}" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" />
+                    <Label x:Name="RemainingQueue" AutomationId="StoreRemainingQueueLabel" Grid.Row="1" Text="{TemplateBinding CurrentWait}" HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold" />
+                    <Label x:Name="CurrentTime" AutomationId="CurrentTimeLabel" Grid.Row="2" Grid.ColumnSpan="2" Text="{TemplateBinding CurrentTime}" HorizontalOptions="Center" FontSize="Small" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" />
+
+                    <Button BackgroundColor="{TemplateBinding StoreColor}" TextColor="Black" Text="{x:Static resources:Strings.Add}" Grid.Row="3" Grid.ColumnSpan="2" Command="{TemplateBinding AddCommand}" FontSize="Large" />
+                </Grid>
+            </pancakeView:PancakeView>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>

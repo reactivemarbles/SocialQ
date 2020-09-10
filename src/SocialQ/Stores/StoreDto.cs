@@ -25,10 +25,13 @@ namespace SocialQ
 
         public int CasesReported { get; set; }
 
+        public StoreCategory Category { get; set; }
+
         public static StoreDto Default => new StoreDto
         {
             Id = Guid.NewGuid(),
             Name = "Default",
+            Category = StoreCategory.Electronics,
             Coordinate = Coordinate.Default,
             AverageWait = TimeSpan.FromMinutes(30),
             CurrentWait = TimeSpan.FromMinutes(15),
@@ -45,5 +48,24 @@ namespace SocialQ
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
+    }
+
+    public enum StoreCategory
+    {
+        Restaurant,
+        
+        Grocery,
+
+        Sporting,
+
+        Laundry,
+
+        Furniture,
+
+        HomeImprovement,
+
+        Gym,
+
+        Electronics
     }
 }

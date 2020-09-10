@@ -5,6 +5,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using ReactiveUI;
 using Sextant;
+using Splat;
 
 namespace SocialQ
 {
