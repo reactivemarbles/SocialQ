@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
@@ -33,7 +35,7 @@ namespace SocialQ
                 .Stores
                 .Connect()
                 .RefCount()
-                .Filter(_searchFunction)
+                .Filter(_searchFunction.AsObservable())
                 .Transform(x => new StoreCardViewModel(x))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _stores)
@@ -43,6 +45,7 @@ namespace SocialQ
 
             _storeService
                 .Metadata
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _storeNames)
                 .DisposeMany()
                 .Subscribe()
@@ -52,16 +55,28 @@ namespace SocialQ
                 this.WhenAnyObservable(
                         x => x.Search.IsExecuting,
                         x => x.InitializeData.IsExecuting,
-                        (search, initialize) => search || initialize);
+                        x => x.Category.IsExecuting,
+                        (search, initialize, category) => search || initialize || category);
 
             isLoading
                 .ToProperty(this, nameof(IsLoading), out _isLoading, deferSubscription: true)
                 .DisposeWith(Subscriptions);
 
-            Search = ReactiveCommand.CreateFromObservable<string, Unit>(ExecuteSearch);
+            var canExecute = isLoading.Select(x => !x).StartWith(true);
+
+            Search = ReactiveCommand.CreateFromObservable<string, Unit>(ExecuteSearch, canExecute);
             Details = ReactiveCommand.CreateFromObservable<StoreCardViewModel, Unit>(ExecuteDetails);
             InitializeData = ReactiveCommand.CreateFromObservable(ExecuteInitializeData);
+            Category = ReactiveCommand.CreateFromObservable<string, Unit>(ExecuteCategory, canExecute);
         }
+
+        public ReactiveCommand<string,Unit> Category { get; set; }
+
+        public ReactiveCommand<Unit, Unit> InitializeData { get; }
+
+        public ReactiveCommand<string, Unit> Search { get; }
+
+        public ReactiveCommand<StoreCardViewModel, Unit> Details { get; set; }
 
         public string SearchText
         {
@@ -71,18 +86,30 @@ namespace SocialQ
 
         public bool IsLoading => _isLoading.Value;
 
-        public ReactiveCommand<Unit, Unit> InitializeData { get; }
-
-        public ReactiveCommand<string, Unit> Search { get; }
-
-        public ReactiveCommandBase<StoreCardViewModel, Unit> Details { get; set; }
-
         public ReadOnlyObservableCollection<StoreCardViewModel> Stores => _stores;
 
+        public IEnumerable<string> StoreCategories => StoreCategoryExtensions.ListEnumeration<StoreCategory>().Select(x=>x.ToString());
+
         private IObservable<Unit> ExecuteInitializeData() =>
-            _storeService
-                .GetStores()
-                .Select(x => Unit.Default);
+            Observable
+                .Create<Unit>(observer =>
+                {
+                    var disposable = new CompositeDisposable();
+
+                    _storeService
+                        .GetStoreMetadata()
+                        .Select(x => Unit.Default)
+                        .Subscribe()
+                        .DisposeWith(disposable);
+
+                    _storeService
+                        .GetStores()
+                        .Select(x => Unit.Default)
+                        .Subscribe(observer)
+                        .DisposeWith(disposable);
+
+                    return disposable;
+                });
 
         private IObservable<Unit> ExecuteDetails(StoreCardViewModel arg) =>
             _popupViewStackService
@@ -97,7 +124,7 @@ namespace SocialQ
                         {
                             if (string.IsNullOrEmpty(term))
                             {
-                                return false;
+                                return true;
                             }
 
                             return dto.Name.ToLower().Contains(term.ToLower());
@@ -107,6 +134,29 @@ namespace SocialQ
 
                     return _storeService
                         .GetStores(false)
+                        .Select(x => Unit.Default)
+                        .Subscribe(observer);
+                });
+
+        private IObservable<Unit> ExecuteCategory(string category) => 
+            Observable
+                .Create<Unit>(observer =>
+                {
+                    Func<StoreDto, bool> Filter(string term) =>
+                        dto =>
+                        {
+                            if (string.IsNullOrEmpty(term))
+                            {
+                                return false;
+                            }
+
+                            return dto.Category.ToString().ToLower().Contains(term.ToLower());
+                        };
+
+                    _searchFunction.OnNext(Filter(category));
+
+                    return _storeService
+                        .GetStoreMetadata(false)
                         .Select(x => Unit.Default)
                         .Subscribe(observer);
                 });

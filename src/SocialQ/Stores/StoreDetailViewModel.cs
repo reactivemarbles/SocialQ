@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Sextant;
+using Sextant.Plugins.Popup;
 using SocialQ.Queue;
 using Splat;
 
@@ -13,12 +14,14 @@ namespace SocialQ
 {
     public class StoreDetailViewModel : ViewModelBase
     {
+        private readonly IPopupViewStackService _popupViewStackService;
         private readonly IStoreService _storeService;
         private readonly IQueueService _queueService;
 
-        public StoreDetailViewModel(IParameterViewStackService parameterViewStackService, IStoreService storeService, IQueueService queueService)
+        public StoreDetailViewModel(IParameterViewStackService parameterViewStackService, IPopupViewStackService popupViewStackService, IStoreService storeService, IQueueService queueService)
             : base(parameterViewStackService)
         {
+            _popupViewStackService = popupViewStackService;
             _storeService = storeService;
             _queueService = queueService;
 
@@ -60,7 +63,8 @@ namespace SocialQ
         private IObservable<Unit> ExecuteAdd() =>
             _queueService
                 .EnQueue(Guid.Empty, StoreId)
-                .Select(x => Unit.Default);
+                .Select(x => _popupViewStackService.PopPopup())
+                .Switch();
 
         private IObservable<Unit> ExecuteGetStore(Guid arg) =>
             Observable

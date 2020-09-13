@@ -1,6 +1,4 @@
-﻿using SocialQ.Queue;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace SocialQ.Forms
 {

@@ -27,15 +27,18 @@ namespace SocialQ.Forms.Stores
                 .BindTo(this, x => x.StoreList.ItemsSource)
                 .DisposeWith(PageDisposables);
 
+            this.WhenAnyValue(x => x.ViewModel.StoreCategories)
+                .Where(x => x != null)
+                .BindTo(this, x => x.Categories.ItemsSource)
+                .DisposeWith(PageDisposables);
+
             this.WhenAnyObservable(x => x.ViewModel.Search.IsExecuting,
                     x => x.ViewModel.InitializeData.IsExecuting,
                     x => x.ViewModel.Details.IsExecuting,
-                    (search, initialize, details) => search || initialize || details)
+                    x => x.ViewModel.Category.IsExecuting,
+                    (search, initialize, details, category) => search || initialize || details || category)
                 .Subscribe(executing =>
                 {
-                    // var style = executing ? "PrimaryButtonDisabled" : "PrimaryButtonEnabled";
-                    // Search.Style =
-                    //     Application.Current.Resources[style] as Style;
                     Loading.IsRunning = executing;
                 })
                 .DisposeWith(PageDisposables);

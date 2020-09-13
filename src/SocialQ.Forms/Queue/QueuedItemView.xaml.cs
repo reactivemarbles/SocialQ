@@ -1,6 +1,6 @@
 using System.Reactive.Disposables;
 using ReactiveUI;
-using SocialQ.Queue;
+
 namespace SocialQ.Forms.Queue
 {
     public partial class QueuedItemView

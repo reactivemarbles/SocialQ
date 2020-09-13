@@ -1,5 +1,4 @@
 using System.Reactive.Disposables;
-using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.XamForms;
 

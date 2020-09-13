@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SocialQ
 {
@@ -67,5 +69,12 @@ namespace SocialQ
         Gym,
 
         Electronics
+    }
+
+    public static class StoreCategoryExtensions
+    {
+        public static List<T> ListEnumeration<T>()
+            where T : Enum
+            => ((T[]) Enum.GetValues(typeof(T))).ToList();
     }
 }

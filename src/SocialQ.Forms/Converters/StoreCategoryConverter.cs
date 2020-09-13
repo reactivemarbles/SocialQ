@@ -1,6 +1,5 @@
 using System;
 using System.Globalization;
-using SocialQ.Mocks.Stores;
 using Xamarin.Forms;
 
 namespace SocialQ.Forms.Converters

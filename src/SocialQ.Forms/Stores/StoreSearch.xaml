@@ -6,24 +6,40 @@
                        xmlns:stores="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
                        xmlns:resources="clr-namespace:SocialQ.Forms.Resources;assembly=SocialQ.Forms"
                        xmlns:socialQ="clr-namespace:SocialQ;assembly=SocialQ"
+                       xmlns:system="clr-namespace:System;assembly=netstandard"
                        Title="Find a store"
                        x:Class="SocialQ.Forms.Stores.StoreSearch"
                        x:DataType="socialQ:StoreSearchViewModel"
                        x:TypeArguments="socialQ:StoreSearchViewModel">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="4*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid RowDefinitions="*,54,6*,*">
             <SearchBar
                 Grid.Row="0"
                 x:Name="SearchBar"
                 Text="{Binding SearchText}"
                 Placeholder="{x:Static resources:Strings.StoreSearchPlaceholder}" />
-            <ListView
+            <CollectionView
                 Grid.Row="1"
+                x:Name="Categories">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Horizontal"
+                        SnapPointsType="MandatorySingle"
+                        SnapPointsAlignment="Start"
+                        ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="system:String">
+                        <Button
+                            Text="{Binding .}"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type socialQ:StoreSearchViewModel}}, Path=Category, Mode=OneTime}"
+                            CommandParameter="{Binding .}"
+                            Style="{StaticResource SmallPillButton}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ListView
+                Grid.Row="2"
                 x:Name="StoreList"
                 HasUnevenRows="True"
                 SeparatorVisibility="None">
@@ -34,7 +50,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Button
-                Grid.Row="2"
+                Grid.Row="3"
                 x:Name="Search"
                 Text="Search"
                 VerticalOptions="EndAndExpand"
