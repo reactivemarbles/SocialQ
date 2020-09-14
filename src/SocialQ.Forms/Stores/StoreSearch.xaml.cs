@@ -13,6 +13,9 @@ namespace SocialQ.Forms.Stores
         {
             InitializeComponent();
 
+            this.OneWayBind(ViewModel, x => x.IsLoading, x => x.Loading.IsRunning)
+                .DisposeWith(PageDisposables);
+
             this.BindCommand(ViewModel, x => x.Search, x => x.Search, x => x.SearchText, nameof(Search.Clicked) )
                 .DisposeWith(PageDisposables);
 
@@ -37,10 +40,7 @@ namespace SocialQ.Forms.Stores
                     x => x.ViewModel.Details.IsExecuting,
                     x => x.ViewModel.Category.IsExecuting,
                     (search, initialize, details, category) => search || initialize || details || category)
-                .Subscribe(executing =>
-                {
-                    Loading.IsRunning = executing;
-                })
+                .Subscribe(executing => Loading.IsRunning = executing)
                 .DisposeWith(PageDisposables);
 
             SearchBar
@@ -64,19 +64,8 @@ namespace SocialQ.Forms.Stores
             StoreList
                 .Events()
                 .ItemSelected
-                .Subscribe(item =>
-                {
-                    StoreList.SelectedItem = null;
-                })
+                .Subscribe(item => StoreList.SelectedItem = null)
                 .DisposeWith(PageDisposables);
-            //
-            // Search
-            //     .Events()
-            //     .Clicked
-            //     .Select(x => SearchBar.Text)
-            //     .Where(x => !string.IsNullOrEmpty(x))
-            //     .InvokeCommand(this, x => x.ViewModel.Search)
-            //     .DisposeWith(PageDisposables);
         }
     }
 }

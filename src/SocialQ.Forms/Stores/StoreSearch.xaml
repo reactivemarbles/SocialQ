@@ -10,9 +10,10 @@
                        Title="Find a store"
                        x:Class="SocialQ.Forms.Stores.StoreSearch"
                        x:DataType="socialQ:StoreSearchViewModel"
-                       x:TypeArguments="socialQ:StoreSearchViewModel">
+                       x:TypeArguments="socialQ:StoreSearchViewModel"
+                       BackgroundColor="Transparent">
     <ContentPage.Content>
-        <Grid RowDefinitions="*,54,6*,*">
+        <Grid RowDefinitions="*,54,6*,*" BackgroundColor="Transparent">
             <SearchBar
                 Grid.Row="0"
                 x:Name="SearchBar"
@@ -20,21 +21,25 @@
                 Placeholder="{x:Static resources:Strings.StoreSearchPlaceholder}" />
             <CollectionView
                 Grid.Row="1"
-                x:Name="Categories">
+                x:Name="Categories"
+                BackgroundColor="Transparent">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout
                         Orientation="Horizontal"
                         SnapPointsType="MandatorySingle"
                         SnapPointsAlignment="Start"
-                        ItemSpacing="10" />
+                        ItemSpacing="8" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="system:String">
-                        <Button
-                            Text="{Binding .}"
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type socialQ:StoreSearchViewModel}}, Path=Category, Mode=OneTime}"
-                            CommandParameter="{Binding .}"
-                            Style="{StaticResource SmallPillButton}"/>
+                        <StackLayout HeightRequest="54">
+                            <Button
+                                HeightRequest="45"
+                                Text="{Binding .}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type socialQ:StoreSearchViewModel}}, Path=Category, Mode=OneTime}"
+                                CommandParameter="{Binding .}"
+                                Style="{StaticResource SmallPillButton}"/>
+                        </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -58,8 +63,7 @@
             <ActivityIndicator
                 Grid.Row="0"
                 Grid.RowSpan="3"
-                x:Name="Loading"
-                IsRunning="{Binding IsLoading}" />
+                x:Name="Loading" />
         </Grid>
     </ContentPage.Content>
 </forms:ContentPageBase>

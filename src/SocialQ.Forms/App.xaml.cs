@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using SocialQ.Splash;
+using Xamarin.Forms;
 
 namespace SocialQ.Forms
 {
@@ -8,7 +9,7 @@ namespace SocialQ.Forms
         {
             InitializeComponent();
             var _ = new SocialQStartup();
-            MainPage = SocialQStartup.NavigateToStart<StoreSearchViewModel>();
+            MainPage = SocialQStartup.NavigateToStart<SplashViewModel>();
         }
 
         protected override void OnStart()
