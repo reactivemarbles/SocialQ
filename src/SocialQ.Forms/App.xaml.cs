@@ -12,6 +12,11 @@ namespace SocialQ.Forms
             MainPage = SocialQStartup.NavigateToStart<SplashViewModel>();
         }
 
+        /// <summary>
+        /// Gets or sets the parent window or activity.
+        /// </summary>
+        public static object ParentWindow { get; set; }
+
         protected override void OnStart()
         {
         }

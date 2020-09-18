@@ -9,6 +9,7 @@ using Shiny;
 using SocialQ.Forms;
 using Splat;
 using UIKit;
+using Xamarin.Forms.Auth;
 
 namespace SocialQ.iOS
 {
@@ -56,5 +57,13 @@ namespace SocialQ.iOS
 
         public override void HandleEventsForBackgroundUrl(UIApplication application, string sessionIdentifier, Action completionHandler)
             => this.ShinyHandleEventsForBackgroundUrl(sessionIdentifier, completionHandler);
+        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+        {
+            var builder = PublicClientApplicationBuilder
+                .Create("ClientId")
+                .WithIosKeychainSecurityGroup("com.myapp.rules")
+                .Build();
+            return true;
+        }
     }
 }

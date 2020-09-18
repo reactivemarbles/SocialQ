@@ -9,6 +9,7 @@ using Android.Widget;
 using Android.OS;
 using Shiny;
 using SocialQ.Forms;
+using Xamarin.Forms.Auth;
 
 namespace SocialQ.Droid
 {
@@ -17,6 +18,7 @@ namespace SocialQ.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            App.ParentWindow = this;
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
@@ -41,6 +43,14 @@ namespace SocialQ.Droid
         {
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             this.ShinyRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        protected override void OnActivityResult(int requestCode, 
+            Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            AuthenticationContinuationHelper
+                .SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
         }
     }
 }

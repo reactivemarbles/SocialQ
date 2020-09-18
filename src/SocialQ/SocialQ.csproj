@@ -18,6 +18,7 @@
       <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
       <PackageReference Include="Splat.Serilog" Version="9.5.6" />
       <PackageReference Include="Sextant" Version="2.7.1" />
+      <PackageReference Include="Xamarin.Forms.Auth" Version="2.0.16" />
     </ItemGroup>
 
     <ItemGroup>
