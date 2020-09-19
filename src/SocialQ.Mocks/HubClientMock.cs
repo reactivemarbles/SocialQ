@@ -14,6 +14,7 @@ namespace SocialQ.Mocks
         public IObservable<T> Connect(string channel) =>
             Observable
                 .Interval(TimeSpan.FromSeconds(8))
+                .Where(x => Items.Count > 0)
                 .Select(x => Items[_random.Next(0, Items.Count)]);
 
         public IObservable<T> Invoke(string methodName) => Observable.Empty<T>();
