@@ -1,4 +1,4 @@
-namespace SocialQ
+namespace SocialQ.Stores
 {
     public class Coordinate
     {

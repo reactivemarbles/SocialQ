@@ -4,6 +4,7 @@ using ReactiveUI;
 using Sextant;
 using SocialQ.Profile;
 using SocialQ.Queue;
+using SocialQ.Stores;
 using Splat;
 
 namespace SocialQ

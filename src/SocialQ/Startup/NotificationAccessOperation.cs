@@ -2,15 +2,14 @@ using System;
 using System.Reactive;
 using System.Reactive.Linq;
 using Shiny.Notifications;
-using SocialQ.Splash;
 
 namespace SocialQ.Startup
 {
-    public class NotificationAccessTask : IStartupTask
+    public class NotificationAccessOperation : IStartupOperation
     {
         private readonly INotificationManager _notificationManager;
 
-        public NotificationAccessTask(INotificationManager notificationManager)
+        public NotificationAccessOperation(INotificationManager notificationManager)
         {
             _notificationManager = notificationManager;
         }

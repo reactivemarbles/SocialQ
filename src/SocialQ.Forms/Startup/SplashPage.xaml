@@ -2,7 +2,6 @@
 
 <forms:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       xmlns:splash="clr-namespace:SocialQ.Splash;assembly=SocialQ"
                        xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
                        xmlns:effects="clr-namespace:SocialQ.Forms.Effects;assembly=SocialQ.Forms"
                        xmlns:startup="clr-namespace:SocialQ.Startup;assembly=SocialQ"

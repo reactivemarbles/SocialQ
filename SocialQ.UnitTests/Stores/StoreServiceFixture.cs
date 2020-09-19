@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Reactive.Linq;
 using NSubstitute;
 using ReactiveUI.Testing;
+using SocialQ.Stores;
 
 namespace SocialQ.UnitTests.Stores
 {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reactive;
 using DynamicData;
+using SocialQ.Stores;
 
 namespace SocialQ.Queue
 {

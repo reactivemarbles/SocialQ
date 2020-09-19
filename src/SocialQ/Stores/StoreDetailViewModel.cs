@@ -9,7 +9,7 @@ using Sextant.Plugins.Popup;
 using SocialQ.Queue;
 using SocialQ.Resources;
 
-namespace SocialQ
+namespace SocialQ.Stores
 {
     public class StoreDetailViewModel : ViewModelBase
     {

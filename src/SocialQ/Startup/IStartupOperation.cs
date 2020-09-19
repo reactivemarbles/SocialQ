@@ -1,9 +1,9 @@
 using System;
 using System.Reactive;
 
-namespace SocialQ.Splash
+namespace SocialQ.Startup
 {
-    public interface IStartupTask
+    public interface IStartupOperation
     {
         IObservable<Unit> Start();
 

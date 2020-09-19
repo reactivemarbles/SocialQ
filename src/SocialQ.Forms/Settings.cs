@@ -1,6 +1,5 @@
 using System;
 using ReactiveUI;
-using SocialQ.Splash;
 
 namespace SocialQ.Forms
 {

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using SocialQ.Startup;
+using ReactiveUI;
 
-namespace SocialQ.Splash
+namespace SocialQ.Startup
 {
     public class AppStartup : IAppStartup
     {
-        private readonly IEnumerable<IStartupTask> _startupTasks;
+        private readonly IEnumerable<IStartupOperation> _startupTasks;
 
-        public AppStartup(IEnumerable<IStartupTask> startupTasks)
+        public AppStartup(IEnumerable<IStartupOperation> startupTasks)
         {
             _startupTasks = startupTasks;
         }
@@ -24,7 +24,7 @@ namespace SocialQ.Splash
 
                 foreach (var task in _startupTasks.Where(x => x.CanStart()))
                 {
-                    task.Start().Subscribe().DisposeWith(disposable);
+                    task.Start().ObserveOn(RxApp.MainThreadScheduler).Subscribe().DisposeWith(disposable);
                 }
 
                 observer.OnNext(Unit.Default);

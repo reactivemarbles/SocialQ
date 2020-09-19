@@ -13,8 +13,8 @@ using SocialQ.Forms.Startup;
 using SocialQ.Forms.Stores;
 using SocialQ.Profile;
 using SocialQ.Queue;
-using SocialQ.Splash;
 using SocialQ.Startup;
+using SocialQ.Stores;
 using Splat;
 using Splat.Microsoft.Extensions.DependencyInjection;
 using Xamarin.Forms;
@@ -50,8 +50,9 @@ namespace SocialQ.Forms
                 .AddSingleton<IDialogs, MaterialDialogs>()
                 .AddSingleton<ISettings, Settings>()
                 .AddSingleton<IAppStartup, AppStartup>()
-                .AddSingleton<IStartupTask, UserStartup>()
-                .AddTransient<IStartupTask, NotificationAccessTask>()
+                .AddSingleton<IStartupOperation, UserStartup>()
+                .AddTransient<IStartupOperation, NotificationAccessOperation>()
+                .AddTransient<IStartupOperation, DelayOperation>()
                 .UseMicrosoftDependencyResolver();
         }
 

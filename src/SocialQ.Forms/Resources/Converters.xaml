@@ -3,4 +3,5 @@
                     xmlns:converters="clr-namespace:SocialQ.Forms.Converters;assembly=SocialQ.Forms"
                     x:Class="SocialQ.Forms.Resources.Converters">
     <converters:StoreCategoryConverter x:Key="StoreCategoryConverter" />
+    <converters:DateTimeConverter x:Key="DateTimeConverter" />
 </ResourceDictionary>

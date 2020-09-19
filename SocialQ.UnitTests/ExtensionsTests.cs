@@ -2,6 +2,7 @@ using System;
 using System.Reactive.Subjects;
 using Akavache;
 using NSubstitute;
+using SocialQ.Stores;
 using Splat;
 using Xunit;
 

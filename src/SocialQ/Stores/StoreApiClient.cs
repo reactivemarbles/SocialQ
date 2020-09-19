@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Akavache;
 using Splat;
 
-namespace SocialQ
+namespace SocialQ.Stores
 {
     public class StoreApiClient : IStoreApiClient
     {

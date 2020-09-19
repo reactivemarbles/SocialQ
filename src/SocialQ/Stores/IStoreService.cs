@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Reactive;
 using DynamicData;
 
-namespace SocialQ
+namespace SocialQ.Stores
 {
     public interface IStoreService
     {

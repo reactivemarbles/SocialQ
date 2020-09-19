@@ -4,9 +4,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
                     xmlns:socialQ="clr-namespace:SocialQ;assembly=SocialQ"
+                    xmlns:stores="clr-namespace:SocialQ.Stores;assembly=SocialQ"
                     x:Class="SocialQ.Forms.StoreCard"
-                    x:DataType="socialQ:StoreCardViewModel"
-                    x:TypeArguments="socialQ:StoreCardViewModel">
+                    x:DataType="stores:StoreCardViewModel"
+                    x:TypeArguments="stores:StoreCardViewModel">
     <Grid
         RowSpacing="4"
         RowDefinitions="*,*,*"

@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using NSubstitute;
+using SocialQ.Stores;
 using Xunit;
 
 namespace SocialQ.UnitTests.Stores

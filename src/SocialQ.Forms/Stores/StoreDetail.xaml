@@ -6,16 +6,18 @@
                      xmlns:socialQ="clr-namespace:SocialQ;assembly=SocialQ"
                      xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                      xmlns:converters="clr-namespace:SocialQ.Forms.Converters;assembly=SocialQ.Forms"
+                     xmlns:stores="clr-namespace:SocialQ.Stores;assembly=SocialQ"
                      x:Class="SocialQ.Forms.Stores.StoreDetail"
-                     x:DataType="socialQ:StoreDetailViewModel"
-                     x:TypeArguments="socialQ:StoreDetailViewModel"
+                     x:DataType="stores:StoreDetailViewModel"
+                     x:TypeArguments="stores:StoreDetailViewModel"
                      HasSystemPadding="False"
                      Padding="48, 250">
     <ContentPage.Content>
         <forms:StoreCardView
-            CurrentTime="{Binding Store.CurrentWait}"
             StoreName="{Binding Store.Name}"
             StoreColor="{Binding Store.Category, Converter={StaticResource StoreCategoryConverter}}"
+            CurrentTime="{Binding Store.CurrentWait}"
+            CloseTime="{Binding Store.CloseTime, Converter={StaticResource DateTimeConverter}}"
             AddCommand="{Binding Add}"/>
     </ContentPage.Content>
 </forms:PopupPageBase>

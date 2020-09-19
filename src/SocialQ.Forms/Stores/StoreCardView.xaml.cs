@@ -9,11 +9,14 @@ namespace SocialQ.Forms
         public static readonly BindableProperty StoreNameProperty =
             BindableProperty.Create(nameof(StoreName), typeof(string), typeof(StoreCardView));
 
+        public static readonly BindableProperty StoreColorProperty =
+            BindableProperty.Create(nameof(StoreColor), typeof(Color), typeof(StoreCardView));
+
         public static readonly BindableProperty CurrentTimeProperty =
             BindableProperty.Create(nameof(CurrentTime), typeof(TimeSpan), typeof(StoreCardView));
 
-        public static readonly BindableProperty StoreColorProperty =
-            BindableProperty.Create(nameof(StoreColor), typeof(Color), typeof(StoreCardView));
+        public static readonly BindableProperty CloseTimeProperty =
+            BindableProperty.Create(nameof(CloseTime), typeof(TimeSpan), typeof(StoreCardView));
 
         public static readonly BindableProperty AddCommandProperty =
             BindableProperty.Create(nameof(AddCommand), typeof(ICommand), typeof(StoreCardView));
@@ -24,16 +27,22 @@ namespace SocialQ.Forms
             set => SetValue(StoreNameProperty, value);
         }
 
+        public Color StoreColor
+        {
+            get => (Color) GetValue(StoreColorProperty);
+            set => SetValue(StoreColorProperty, value);
+        }
+
         public TimeSpan CurrentTime
         {
             get => (TimeSpan) GetValue(CurrentTimeProperty);
             set => SetValue(CurrentTimeProperty, value);
         }
 
-        public Color StoreColor
+        public TimeSpan CloseTime
         {
-            get => (Color) GetValue(StoreColorProperty);
-            set => SetValue(StoreColorProperty, value);
+            get => (TimeSpan) GetValue(CloseTimeProperty);
+            set => SetValue(CloseTimeProperty, value);
         }
 
         public ICommand AddCommand

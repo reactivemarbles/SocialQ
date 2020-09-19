@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SocialQ
+namespace SocialQ.Stores
 {
     public interface IStoreApiClient
     {

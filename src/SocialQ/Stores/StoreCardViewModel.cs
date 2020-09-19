@@ -1,7 +1,7 @@
 using System;
 using ReactiveUI;
 
-namespace SocialQ
+namespace SocialQ.Stores
 {
     public class StoreCardViewModel : ReactiveObject
     {

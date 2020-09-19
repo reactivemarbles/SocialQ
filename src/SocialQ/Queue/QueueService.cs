@@ -4,6 +4,7 @@ using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using DynamicData;
+using SocialQ.Stores;
 
 namespace SocialQ.Queue
 {

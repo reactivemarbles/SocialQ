@@ -7,10 +7,11 @@
                        xmlns:socialQ="clr-namespace:SocialQ;assembly=SocialQ"
                        xmlns:system="clr-namespace:System;assembly=netstandard"
                        xmlns:resources="clr-namespace:SocialQ.Resources;assembly=SocialQ.Resources"
+                       xmlns:stores1="clr-namespace:SocialQ.Stores;assembly=SocialQ"
                        Title="Find a store"
                        x:Class="SocialQ.Forms.Stores.StoreSearch"
-                       x:DataType="socialQ:StoreSearchViewModel"
-                       x:TypeArguments="socialQ:StoreSearchViewModel"
+                       x:DataType="stores1:StoreSearchViewModel"
+                       x:TypeArguments="stores1:StoreSearchViewModel"
                        BackgroundColor="Transparent">
     <ContentPage.Content>
         <Grid RowDefinitions="*,54,6*,*" BackgroundColor="Transparent">
@@ -36,7 +37,7 @@
                             <Button
                                 HeightRequest="45"
                                 Text="{Binding .}"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type socialQ:StoreSearchViewModel}}, Path=Category, Mode=OneTime}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type stores1:StoreSearchViewModel}}, Path=Category, Mode=OneTime}"
                                 CommandParameter="{Binding .}"
                                 Style="{StaticResource SmallPillButton}"/>
                         </StackLayout>

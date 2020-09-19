@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Reactive;
-using System.Reactive.Linq;
 using DynamicData;
 
-namespace SocialQ
+namespace SocialQ.Stores
 {
     public class StoreService : IStoreService
     {

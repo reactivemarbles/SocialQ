@@ -6,14 +6,13 @@ using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Reactive.Threading.Tasks;
 using DynamicData;
 using ReactiveUI;
 using Sextant;
 using Sextant.Plugins.Popup;
 using Shiny.Notifications;
 
-namespace SocialQ
+namespace SocialQ.Stores
 {
     public class StoreSearchViewModel : ViewModelBase
     {

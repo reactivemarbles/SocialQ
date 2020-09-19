@@ -2,9 +2,9 @@ using System;
 using System.Reactive;
 using System.Reactive.Linq;
 
-namespace SocialQ.Splash
+namespace SocialQ.Startup
 {
-    public class UserStartup : IStartupTask
+    public class UserStartup : IStartupOperation
     {
         private readonly ISettings _settings;
 

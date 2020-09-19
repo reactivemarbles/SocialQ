@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Refit;
 
-namespace SocialQ
+namespace SocialQ.Stores
 {
     public interface IStoreApiContract
     {

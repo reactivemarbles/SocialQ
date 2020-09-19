@@ -3,6 +3,7 @@ using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveUI;
+using SocialQ.Stores;
 using Xamarin.Forms;
 
 namespace SocialQ.Forms.Stores

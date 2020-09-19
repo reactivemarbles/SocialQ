@@ -1,5 +1,4 @@
-﻿using SocialQ.Splash;
-using SocialQ.Startup;
+﻿using SocialQ.Startup;
 using Xamarin.Forms;
 
 namespace SocialQ.Forms

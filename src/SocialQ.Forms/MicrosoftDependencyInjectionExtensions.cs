@@ -10,6 +10,7 @@ using Sextant.XamForms;
 using SocialQ.Mocks.Queue;
 using SocialQ.Mocks.Stores;
 using SocialQ.Queue;
+using SocialQ.Stores;
 using Splat;
 
 namespace SocialQ.Forms
