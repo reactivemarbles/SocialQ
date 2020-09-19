@@ -4,14 +4,23 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:splash="clr-namespace:SocialQ.Splash;assembly=SocialQ"
                        xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
+                       xmlns:effects="clr-namespace:SocialQ.Forms.Effects;assembly=SocialQ.Forms"
+                       xmlns:startup="clr-namespace:SocialQ.Startup;assembly=SocialQ"
                        x:Class="SocialQ.Forms.Startup.SplashPage"
-                       x:DataType="splash:SplashViewModel"
-                       x:TypeArguments="splash:SplashViewModel">
+                       x:DataType="startup:SplashViewModel"
+                       x:TypeArguments="startup:SplashViewModel">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello, world!"
+            <Label Text="SocialQ"
+                   FontSize="Large"
                    VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+                   HorizontalOptions="CenterAndExpand">
+                <Label.Effects>
+                    <effects:ShadowEffect Radius="5">
+                        <effects:ShadowEffect.Color>#CCCCCC</effects:ShadowEffect.Color>
+                    </effects:ShadowEffect>
+                </Label.Effects>
+            </Label>
             <ActivityIndicator 
                 x:Name="Loading" />
         </StackLayout>

@@ -2,13 +2,12 @@ using System;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Sextant;
 using Sextant.Plugins.Popup;
 using SocialQ.Queue;
-using Splat;
+using SocialQ.Resources;
 
 namespace SocialQ
 {
@@ -17,13 +16,20 @@ namespace SocialQ
         private readonly IPopupViewStackService _popupViewStackService;
         private readonly IStoreService _storeService;
         private readonly IQueueService _queueService;
+        private readonly IDialogs _dialogs;
 
-        public StoreDetailViewModel(IParameterViewStackService parameterViewStackService, IPopupViewStackService popupViewStackService, IStoreService storeService, IQueueService queueService)
+        public StoreDetailViewModel(
+            IParameterViewStackService parameterViewStackService,
+            IPopupViewStackService popupViewStackService,
+            IStoreService storeService,
+            IQueueService queueService,
+            IDialogs dialogs)
             : base(parameterViewStackService)
         {
             _popupViewStackService = popupViewStackService;
             _storeService = storeService;
             _queueService = queueService;
+            _dialogs = dialogs;
 
 
             var getStore =
@@ -64,6 +70,8 @@ namespace SocialQ
             _queueService
                 .EnQueue(Guid.Empty, StoreId)
                 .Select(x => _popupViewStackService.PopPopup())
+                .Switch()
+                .Select(x => _dialogs.Alert(string.Format(Strings.AddedToQueue, Store.Name)))
                 .Switch();
 
         private IObservable<Unit> ExecuteGetStore(Guid arg) =>

@@ -5,11 +5,11 @@
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="PrimaryButtonCommonStates">
-                    <!-- <VisualState Name="Pressed"> -->
-                    <!--     <VisualState.Setters> -->
-                    <!--         <Setter Property="Style" Value="{DynamicResource PrimaryButtonPressed}" /> -->
-                    <!--     </VisualState.Setters> -->
-                    <!-- </VisualState> -->
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Style" Value="{DynamicResource PrimaryButtonPressed}" />
+                        </VisualState.Setters>
+                    </VisualState>
                     <VisualState Name="Normal">
                         <VisualState.Setters>
                             <Setter Property="Style" Value="{DynamicResource PrimaryButtonEnabled}" />
@@ -32,18 +32,18 @@
         <Setter Property="Margin" Value="12,0,12, 36" />
     </Style>
     <Style x:Key="PrimaryButtonDisabled" TargetType="Button" BaseResourceKey="PrimaryButtonStyle">
-        <Setter Property="BackgroundColor" Value="IndianRed" />
-        <Setter Property="TextColor" Value="SlateGray" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryButtonDisabledBackground}" />
+        <Setter Property="TextColor"  Value="{DynamicResource PrimaryButtonDisabledForeground}" />
     </Style>
     <Style x:Key="PrimaryButtonPressed" TargetType="Button" BaseResourceKey="PrimaryButtonStyle">
-        <Setter Property="TextColor" Value="Crimson" />
-        <Setter Property="BackgroundColor" Value="WhiteSmoke" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryButtonActiveBackground}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryButtonActiveForeground}" />
         <Setter Property="BorderWidth" Value="3" />
-        <Setter Property="BorderColor" Value="Crimson" />
+        <Setter Property="BorderColor" Value="{DynamicResource PrimaryButtonActiveBackground}" />
     </Style>
     <Style x:Key="PrimaryButtonEnabled" TargetType="Button" BaseResourceKey="PrimaryButtonStyle">
-        <Setter Property="BackgroundColor" Value="Crimson" />
-        <Setter Property="TextColor" Value="WhiteSmoke" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryButtonActiveBackground}" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryButtonActiveForeground}" />
     </Style>
     <Style x:Key="SecondaryButton" TargetType="Button">
         <Setter Property="TextColor" Value="Crimson" />

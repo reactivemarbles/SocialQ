@@ -5,6 +5,7 @@ using ReactiveUI;
 using Serilog;
 using Sextant;
 using Shiny;
+using SocialQ.Forms.Dialogs;
 using SocialQ.Forms.Queue;
 using SocialQ.Forms.Startup;
 using SocialQ.Forms.Stores;
@@ -25,7 +26,7 @@ namespace SocialQ.Forms
             RxApp.DefaultExceptionHandler = new SocialQExceptionHandler();
             BlobCache.ApplicationName = $"{nameof(SocialQ)}";
 
-            services.UseNotifications(); // set true
+            services.UseNotifications();
             services
                 .AddSerilog(() => new LoggerConfiguration())
                 .AddSextant()
@@ -39,9 +40,11 @@ namespace SocialQ.Forms
                 .AddApiClients()
                 .AddDataServices()
                 .AddSingleton(SignalRParameters.Client)
+                .AddSingleton<IDialogs, MaterialDialogs>()
                 .AddSingleton<ISettings, Settings>()
                 .AddSingleton<IAppStartup, AppStartup>()
                 .AddSingleton<IStartupTask, UserStartup>()
+                .AddTransient<IStartupTask, NotificationAccessTask>()
                 .UseMicrosoftDependencyResolver();
         }
 

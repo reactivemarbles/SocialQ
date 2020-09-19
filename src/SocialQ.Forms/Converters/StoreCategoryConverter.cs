@@ -27,7 +27,7 @@ namespace SocialQ.Forms.Converters
                     case StoreCategory.Gym:
                         return Color.Goldenrod;
                     case StoreCategory.Electronics:
-                        return Color.CornflowerBlue;
+                        return Color.DodgerBlue;
                     default:
                         return Color.CornflowerBlue;
                 }

@@ -33,6 +33,7 @@ namespace SocialQ.iOS
             Rg.Plugins.Popup.Popup.Init();
 
             global::Xamarin.Forms.Forms.Init();
+            XF.Material.iOS.Material.Init();
             Locator.CurrentMutable.RegisterLazySingleton<IPopupNavigation>(() => PopupNavigation.Instance);
 
             LoadApplication(new App());

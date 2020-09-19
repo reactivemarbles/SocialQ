@@ -15,13 +15,18 @@ namespace SocialQ.Mocks.Stores
         public List<StoreDto> Items { get; set; }
 
         public IObservable<StoreDto> GetStore(Guid storeId, FunctionParameters parameters) =>
-            Observable.Return(Items.FirstOrDefault(x => x.Id == storeId));
+            Observable
+                .Return(Items.FirstOrDefault(x => x.Id == storeId))
+                .Delay(TimeSpan.FromSeconds(1));
 
         public IObservable<IEnumerable<StoreDto>> GetStores(FunctionParameters parameters) =>
-            Observable.Return(Items)
-                .Delay(TimeSpan.FromSeconds(3));
+            Observable
+                .Return(Items)
+                .Delay(TimeSpan.FromSeconds(5));
 
         public IObservable<IEnumerable<string>> GetMetadata(FunctionParameters parameters) =>
-            Observable.Return(Items.Select(x => x.Name).Distinct());
+            Observable
+                .Return(Items.Select(x => x.Name).Distinct())
+                .Delay(TimeSpan.FromSeconds(3));
     }
 }

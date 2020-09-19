@@ -35,14 +35,6 @@ namespace SocialQ.Forms.Stores
                 .BindTo(this, x => x.Categories.ItemsSource)
                 .DisposeWith(PageDisposables);
 
-            this.WhenAnyObservable(x => x.ViewModel.Search.IsExecuting,
-                    x => x.ViewModel.InitializeData.IsExecuting,
-                    x => x.ViewModel.Details.IsExecuting,
-                    x => x.ViewModel.Category.IsExecuting,
-                    (search, initialize, details, category) => search || initialize || details || category)
-                .Subscribe(executing => Loading.IsRunning = executing)
-                .DisposeWith(PageDisposables);
-
             SearchBar
                 .Events()
                 .TextChanged

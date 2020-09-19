@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.Reactive.Concurrency;
+using ReactiveUI;
 using Splat;
 
 namespace SocialQ.Forms
@@ -15,7 +17,6 @@ namespace SocialQ.Forms
             }
 
             this.Log().Error(value, "Unhandled exception");
-            ////RxApp.MainThreadScheduler.Schedule(() => { throw value; });
         }
 
         /// <inheritdoc />
@@ -27,7 +28,8 @@ namespace SocialQ.Forms
             }
 
             this.Log().Error(error, "Unhandled exception");
-            ////RxApp.MainThreadScheduler.Schedule(() => { throw error; });
+
+            RxApp.MainThreadScheduler.Schedule(() => throw error);
         }
 
         /// <inheritdoc />
@@ -37,6 +39,8 @@ namespace SocialQ.Forms
             {
                 Debugger.Break();
             }
+
+            RxApp.MainThreadScheduler.Schedule(() => this.Log()?.Info($"The {nameof(SocialQExceptionHandler)} has completed!"));
         }
     }
 }

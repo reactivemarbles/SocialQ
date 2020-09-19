@@ -1,4 +1,5 @@
 ﻿using SocialQ.Splash;
+using SocialQ.Startup;
 using Xamarin.Forms;
 
 namespace SocialQ.Forms
@@ -8,6 +9,7 @@ namespace SocialQ.Forms
         public App()
         {
             InitializeComponent();
+            XF.Material.Forms.Material.Init(this);
             var _ = new SocialQStartup();
             MainPage = SocialQStartup.NavigateToStart<SplashViewModel>();
         }

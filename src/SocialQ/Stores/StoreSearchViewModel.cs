@@ -6,10 +6,12 @@ using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.Reactive.Threading.Tasks;
 using DynamicData;
 using ReactiveUI;
 using Sextant;
 using Sextant.Plugins.Popup;
+using Shiny.Notifications;
 
 namespace SocialQ
 {
@@ -18,16 +20,22 @@ namespace SocialQ
         private readonly BehaviorSubject<Func<StoreDto, bool>> _searchFunction = new BehaviorSubject<Func<StoreDto, bool>>(dto => false);
         private readonly IPopupViewStackService _popupViewStackService;
         private readonly IStoreService _storeService;
+        private readonly INotificationManager _notificationManager;
         private readonly ObservableAsPropertyHelper<bool> _isLoading;
         private readonly ReadOnlyObservableCollection<StoreCardViewModel> _stores;
-        private ReadOnlyObservableCollection<string> _storeNames;
+        private readonly ReadOnlyObservableCollection<string> _storeNames;
         private string _searchText;
 
-        public StoreSearchViewModel(IParameterViewStackService parameterViewStackService, IPopupViewStackService popupViewStackService, IStoreService storeService)
+        public StoreSearchViewModel(
+            IParameterViewStackService parameterViewStackService,
+            IPopupViewStackService popupViewStackService,
+            IStoreService storeService,
+            INotificationManager notificationManager)
             : base(parameterViewStackService)
         {
             _popupViewStackService = popupViewStackService;
             _storeService = storeService;
+            _notificationManager = notificationManager;
 
             _searchFunction.DisposeWith(Subscriptions);
 
@@ -52,11 +60,12 @@ namespace SocialQ
                 .DisposeWith(Subscriptions);
 
             var isLoading =
-                this.WhenAnyObservable(
-                        x => x.Search.IsExecuting,
-                        x => x.InitializeData.IsExecuting,
-                        x => x.Category.IsExecuting,
-                        (search, initialize, category) => search || initialize || category);
+                this.WhenAnyObservable(x => x.Search.IsExecuting,
+                    x => x.InitializeData.IsExecuting,
+                    x => x.Details.IsExecuting,
+                    x => x.Category.IsExecuting,
+                    (search, initialize, details, category) =>
+                        search || initialize || details || category);
 
             isLoading
                 .ToProperty(this, nameof(IsLoading), out _isLoading, deferSubscription: true)
@@ -87,6 +96,8 @@ namespace SocialQ
         public bool IsLoading => _isLoading.Value;
 
         public ReadOnlyObservableCollection<StoreCardViewModel> Stores => _stores;
+
+        public ReadOnlyObservableCollection<string> StoreNames => _storeNames;
 
         public IEnumerable<string> StoreCategories => StoreCategoryExtensions.ListEnumeration<StoreCategory>().Select(x=>x.ToString());
 
