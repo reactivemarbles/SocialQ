@@ -30,6 +30,7 @@
     <ProjectReference Include="..\..\Sextant\src\Sextant.XamForms\Sextant.XamForms.csproj" />
     <ProjectReference Include="..\..\Sextant\src\Sextant.Plugins.Popup\Sextant.Plugins.Popup.csproj" />
     <ProjectReference Include="..\SocialQ.Mocks\SocialQ.Mocks.csproj" />
+    <ProjectReference Include="..\SocialQ.Resources\SocialQ.Resources.csproj" />
     <ProjectReference Include="..\SocialQ\SocialQ.csproj" />
   </ItemGroup>
 
