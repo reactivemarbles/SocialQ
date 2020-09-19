@@ -7,8 +7,16 @@
                     x:Class="SocialQ.Forms.StoreCard"
                     x:DataType="socialQ:StoreCardViewModel"
                     x:TypeArguments="socialQ:StoreCardViewModel">
-    <Grid RowSpacing="4" RowDefinitions="Auto,Auto" ColumnDefinitions="5, Auto">
-        <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BackgroundColor="BlueViolet" />
-        <Label Grid.Row="0" Grid.Column="1" x:Name="StoreName" />
+    <Grid
+        RowSpacing="4"
+        RowDefinitions="*,*,*"
+        ColumnDefinitions="5,*, *"
+        Margin="5"
+        BackgroundColor="{StaticResource StoreCardBackground}"
+        HeightRequest="100">
+        <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" BackgroundColor="{StaticResource VerticalLineSeparator}" />
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="StoreName" FontSize="Large" Margin="16,0,0,0"/>
+        <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" x:Name="StoreOpenTime" FontSize="Small" />
+        <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" x:Name="StoreCloseTime" FontSize="Small" />
     </Grid>
 </forms:ViewCellBase>

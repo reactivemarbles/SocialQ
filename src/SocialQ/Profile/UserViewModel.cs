@@ -27,6 +27,6 @@ namespace SocialQ.Profile
         public string UserName => _userName.Value;
 
         private IObservable<Unit> ExecuteSignUp() => 
-            ViewStackService.PushModal<SignUpViewModel>();
+            ViewStackService.PushModal<SignUpViewModel>(withNavigationPage: true);
     }
 }

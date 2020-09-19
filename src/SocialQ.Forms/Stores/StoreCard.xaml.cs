@@ -11,6 +11,12 @@ namespace SocialQ.Forms
 
             this.OneWayBind(ViewModel, x => x.Name, x => x.StoreName.Text)
                 .DisposeWith(ViewCellDisposables);
+
+            this.OneWayBind(ViewModel, x => x.OpeningTime, x => x.StoreOpenTime.Text, time => $"Opening Time: {time:hh:mm}")
+                .DisposeWith(ViewCellDisposables);
+
+            this.OneWayBind(ViewModel, x => x.CloseTime, x => x.StoreCloseTime.Text, time => $"Closing Time: {time:hh:mm}")
+                .DisposeWith(ViewCellDisposables);
         }
     }
 }

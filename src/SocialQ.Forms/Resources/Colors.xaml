@@ -12,8 +12,10 @@
     <Color x:Key="LogoTextColor">WhiteSmoke</Color>
     <Color x:Key="NavigationPrimary">#2196F3</Color>
     <Color x:Key="NavigationSecondary">#0414F2</Color>
-    
+    <Color x:Key="StoreCardBackground">#1D84B5</Color>
+    <Color x:Key="PillButtonTextColor">#1D84B5</Color>
     <Color x:Key="Gray">#555555</Color>
     <Color x:Key="LightGray">#bebebe</Color>
+    <Color x:Key="VerticalLineSeparator">#CCCCCC</Color>
     <x:String x:Key="RoundLogo">https://raw.githubusercontent.com/reactiveui/styleguide/master/logo/circle.png</x:String>
 </ResourceDictionary>
