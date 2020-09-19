@@ -10,8 +10,8 @@ namespace SocialQ.Mocks.Queue
         public IObservable<QueuedStoreDto> Enqueue(EnqueueRequest enqueueRequest, FunctionParameters parameters) =>
             Observable.Return(new QueuedStoreDto
             {
-                Store = StoreDto.Default,
-                User = new UserDto(),
+                Store = enqueueRequest.Store,
+                User = new UserDto { Id = enqueueRequest.UserId },
                 RemainingQueueTime = DateTimeOffset.Now.AddHours(1.5)
             });
     }

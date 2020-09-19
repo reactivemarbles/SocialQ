@@ -16,7 +16,7 @@ namespace SocialQ
 
         public string TabTitle { get; }
 
-        public FileImageSource TabIcon { get; }
+        public string TabIcon { get; }
 
         public ViewModelBase ViewModel { get; private set; }
     }

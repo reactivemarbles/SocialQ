@@ -68,5 +68,53 @@ namespace SocialQ.Resources {
                 return ResourceManager.GetString("AddedToQueueTiitle", resourceCulture);
             }
         }
+        
+        public static string ApplicationName {
+            get {
+                return ResourceManager.GetString("ApplicationName", resourceCulture);
+            }
+        }
+        
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        public static string SignUp {
+            get {
+                return ResourceManager.GetString("SignUp", resourceCulture);
+            }
+        }
+        
+        public static string UnderConstruction {
+            get {
+                return ResourceManager.GetString("UnderConstruction", resourceCulture);
+            }
+        }
+        
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        public static string ContinueWithMicrosoft {
+            get {
+                return ResourceManager.GetString("ContinueWithMicrosoft", resourceCulture);
+            }
+        }
+        
+        public static string ContinueWithGoogle {
+            get {
+                return ResourceManager.GetString("ContinueWithGoogle", resourceCulture);
+            }
+        }
+        
+        public static string ContinueWithApple {
+            get {
+                return ResourceManager.GetString("ContinueWithApple", resourceCulture);
+            }
+        }
     }
 }

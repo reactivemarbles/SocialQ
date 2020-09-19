@@ -34,7 +34,7 @@ namespace SocialQ.Forms.Menu
             var model = viewModelFunc(viewStackService);
 
             navigationView.Title = model.TabTitle;
-            navigationView.Icon = model.TabIcon;
+            navigationView.IconImageSource = FileImageSource.FromFile(model.TabIcon);
 
             navigationView.PushPage(model.ViewModel, null, true, false).Subscribe();
             return navigationView;

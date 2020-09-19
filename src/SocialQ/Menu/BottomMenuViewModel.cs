@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using ReactiveUI;
 using Sextant;
+using SocialQ.Profile;
 using SocialQ.Queue;
 using Splat;
 
@@ -18,7 +19,7 @@ namespace SocialQ
             {
                 service => new TabViewModel("Search", "", service, () => CreateMenuItem<StoreSearchViewModel>(service)),
                 service => new TabViewModel("Queue", "", service, () => CreateMenuItem<QueuesViewModel>(service)),
-                service => new TabViewModel("Me", "", service, () => CreateMenuItem<QueuesViewModel>(service))
+                service => new TabViewModel("Me", "", service, () => CreateMenuItem<UserViewModel>(service))
             };
         }
 

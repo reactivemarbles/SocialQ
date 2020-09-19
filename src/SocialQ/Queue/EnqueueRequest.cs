@@ -6,6 +6,6 @@ namespace SocialQ.Queue
     {
         public Guid UserId { get; set; }
 
-        public Guid StoreId { get; set; }
+        public StoreDto Store { get; set; }
     }
 }

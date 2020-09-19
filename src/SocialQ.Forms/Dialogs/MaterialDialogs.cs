@@ -4,7 +4,9 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using ReactiveUI;
+using Xamarin.Forms;
 using XF.Material.Forms.UI.Dialogs;
+using XF.Material.Forms.UI.Dialogs.Configurations;
 
 namespace SocialQ.Forms.Dialogs
 {
@@ -14,7 +16,6 @@ namespace SocialQ.Forms.Dialogs
             Observable
                 .FromAsync(() => MaterialDialog.Instance.AlertAsync(message, title), RxApp.MainThreadScheduler)
                 .SubscribeOn(RxApp.MainThreadScheduler);
-
 
         public IObservable<bool> Confirm(string message, string title = "Confirm", string okText = "OK", string cancelText = "Cancel") =>
             Observable
@@ -54,7 +55,7 @@ namespace SocialQ.Forms.Dialogs
 
         public IObservable<Unit> Snackbar(string message) =>
             Observable
-                .FromAsync(() => MaterialDialog.Instance.SnackbarAsync(message), RxApp.MainThreadScheduler)
+                .FromAsync(() => MaterialDialog.Instance.SnackbarAsync(message, configuration: new MaterialSnackbarConfiguration { Margin = new Thickness(0,0,0,625)}), RxApp.MainThreadScheduler)
                 .SubscribeOn(RxApp.MainThreadScheduler);
     }
 }

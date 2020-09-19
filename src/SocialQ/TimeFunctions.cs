@@ -4,7 +4,7 @@ using System.Reactive.Linq;
 
 namespace SocialQ
 {
-    public static class TimerFunctions
+    public static class TimeFunctions
     {
         private static readonly TimeSpan RefreshInterval = TimeSpan.FromSeconds(1);
 

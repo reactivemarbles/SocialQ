@@ -68,10 +68,10 @@ namespace SocialQ
 
         private IObservable<Unit> ExecuteAdd() =>
             _queueService
-                .EnQueue(Guid.Empty, StoreId)
+                .EnQueue(Guid.Empty, Store)
                 .Select(x => _popupViewStackService.PopPopup())
                 .Switch()
-                .Select(x => _dialogs.Alert(string.Format(Strings.AddedToQueue, Store.Name)))
+                .Select(x => _dialogs.Snackbar(string.Format(Strings.AddedToQueue, Store.Name)))
                 .Switch();
 
         private IObservable<Unit> ExecuteGetStore(Guid arg) =>

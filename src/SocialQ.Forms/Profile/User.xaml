@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<forms:ContentPageBase x:TypeArguments="profile:UserViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
+                       xmlns:profile="clr-namespace:SocialQ.Profile;assembly=SocialQ"
+                       xmlns:resources="clr-namespace:SocialQ.Resources;assembly=SocialQ.Resources"
+                       x:Class="SocialQ.Forms.Profile.User">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{x:Static resources:Strings.UnderConstruction}"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</forms:ContentPageBase>

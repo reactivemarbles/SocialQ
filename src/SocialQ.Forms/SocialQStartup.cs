@@ -7,9 +7,11 @@ using Sextant;
 using Shiny;
 using SocialQ.Forms.Dialogs;
 using SocialQ.Forms.Menu;
+using SocialQ.Forms.Profile;
 using SocialQ.Forms.Queue;
 using SocialQ.Forms.Startup;
 using SocialQ.Forms.Stores;
+using SocialQ.Profile;
 using SocialQ.Queue;
 using SocialQ.Splash;
 using SocialQ.Startup;
@@ -35,6 +37,8 @@ namespace SocialQ.Forms
                 .RegisterForNavigation<MainPage, MainViewModel>()
                 .RegisterForNavigation<BottomMenu, BottomMenuViewModel>()
                 .RegisterForNavigation<Tabs, TabViewModel>()
+                .RegisterForNavigation<User, UserViewModel>()
+                .RegisterForNavigation<SignUp, SignUpViewModel>()
                 .RegisterForNavigation<Queues, QueuesViewModel>()
                 .RegisterForNavigation<SplashPage, SplashViewModel>()
                 .RegisterForNavigation<StoreSearch, StoreSearchViewModel>()

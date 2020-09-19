@@ -30,4 +30,28 @@
     <data name="AddedToQueueTiitle" xml:space="preserve">
         <value>Queued</value>
     </data>
+    <data name="ApplicationName" xml:space="preserve">
+        <value>SocialQ</value>
+    </data>
+    <data name="Login" xml:space="preserve">
+        <value>Login</value>
+    </data>
+    <data name="SignUp" xml:space="preserve">
+        <value>Sign Up</value>
+    </data>
+    <data name="UnderConstruction" xml:space="preserve">
+        <value>Under Construction</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="ContinueWithMicrosoft" xml:space="preserve">
+        <value>Continue With Microsoft</value>
+    </data>
+    <data name="ContinueWithGoogle" xml:space="preserve">
+        <value>Continue With Google</value>
+    </data>
+    <data name="ContinueWithApple" xml:space="preserve">
+        <value>Continue With Apple</value>
+    </data>
 </root>

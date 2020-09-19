@@ -42,5 +42,9 @@
       <DependentUpon>StoreCardView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Profile\SignUp.xaml.cs">
+      <DependentUpon>SignUp.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

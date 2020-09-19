@@ -22,5 +22,15 @@ namespace SocialQ.Forms
                 this.RaisePropertyChanged();
             }
         }
+
+        public string UserName
+        {
+            get => _settings.Get( nameof(UserName), string.Empty);
+            set
+            {
+                _settings.SetValue(nameof(UserName), value);
+                this.RaisePropertyChanged();
+            }
+        }
     }
 }
