@@ -20,7 +20,7 @@ namespace SocialQ
 
         protected CompositeDisposable Subscriptions { get; } = new CompositeDisposable();
 
-        protected IParameterViewStackService ViewStackService { get; }
+        protected IParameterViewStackService ViewStackService { get; private set; }
 
         protected virtual IObservable<Unit> WhenNavigatedTo(INavigationParameter parameter) => Observable.Empty<Unit>();
 
@@ -42,6 +42,11 @@ namespace SocialQ
         void IDestructible.Destroy()
         {
             Destroy();
+        }
+
+        public void SetNavigationService(IParameterViewStackService viewStackService)
+        {
+            ViewStackService = viewStackService;
         }
     }
 }

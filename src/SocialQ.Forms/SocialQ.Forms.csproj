@@ -17,6 +17,7 @@
     <PackageReference Include="Pharmacist.MsBuild" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="ReactiveUI.XamForms" Version="11.5.6" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.4" />
+    <PackageReference Include="Serilog.Sinks.AppCenter.Crash" Version="1.2.1" />
     <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
     <PackageReference Include="SkiaSharp" Version="2.80.1" />
     <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="9.5.6" />

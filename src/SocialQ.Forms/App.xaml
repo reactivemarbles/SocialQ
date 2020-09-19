@@ -3,7 +3,6 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:SocialQ.Forms.Resources;assembly=SocialQ.Forms"
-             xmlns:converters="clr-namespace:SocialQ.Forms.Converters;assembly=SocialQ.Forms"
              x:Class="SocialQ.Forms.App">
     <Application.Resources>
         <ResourceDictionary>

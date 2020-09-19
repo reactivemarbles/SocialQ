@@ -43,6 +43,6 @@ namespace SocialQ.Startup
         private IObservable<Unit> ExecuteInitialize() =>
             Observable.Create<Unit>(observer => _appStartup.Startup().Subscribe(observer));
 
-        private IObservable<Unit> ExecuteNavigate() => ViewStackService.PushPage<StoreSearchViewModel>(resetStack: true);
+        private IObservable<Unit> ExecuteNavigate() => ViewStackService.PushPage(new BottomMenuViewModel(ViewStackService), resetStack: true);
     }
 }

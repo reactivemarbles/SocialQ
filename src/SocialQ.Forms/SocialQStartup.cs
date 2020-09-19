@@ -6,6 +6,7 @@ using Serilog;
 using Sextant;
 using Shiny;
 using SocialQ.Forms.Dialogs;
+using SocialQ.Forms.Menu;
 using SocialQ.Forms.Queue;
 using SocialQ.Forms.Startup;
 using SocialQ.Forms.Stores;
@@ -28,10 +29,12 @@ namespace SocialQ.Forms
 
             services.UseNotifications();
             services
-                .AddSerilog(() => new LoggerConfiguration())
+                .AddSerilog(() => new LoggerConfiguration().WriteTo.AppCenterCrashes())
                 .AddSextant()
                 .AddAkavache()
                 .RegisterForNavigation<MainPage, MainViewModel>()
+                .RegisterForNavigation<BottomMenu, BottomMenuViewModel>()
+                .RegisterForNavigation<Tabs, TabViewModel>()
                 .RegisterForNavigation<Queues, QueuesViewModel>()
                 .RegisterForNavigation<SplashPage, SplashViewModel>()
                 .RegisterForNavigation<StoreSearch, StoreSearchViewModel>()

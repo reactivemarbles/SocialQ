@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<forms:ContentPageBase x:TypeArguments="socialQ:TabViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
+                     xmlns:socialQ="clr-namespace:SocialQ;assembly=SocialQ"
+                     mc:Ignorable="d"
+                     x:Class="SocialQ.Forms.Menu.Tabs">
+
+</forms:ContentPageBase>

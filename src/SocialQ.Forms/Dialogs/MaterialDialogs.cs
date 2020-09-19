@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 using ReactiveUI;
 using XF.Material.Forms.UI.Dialogs;
 
@@ -23,12 +22,10 @@ namespace SocialQ.Forms.Dialogs
                 .Select(x => x ?? false)
                 .SubscribeOn(RxApp.MainThreadScheduler);
 
-
         public IObservable<string> Input(string message, string? title = null) =>
             Observable
                 .FromAsync(() => MaterialDialog.Instance.InputAsync(title, message), RxApp.MainThreadScheduler)
                 .SubscribeOn(RxApp.MainThreadScheduler);
-
 
         public IObservable<Unit> ActionSheet(string title, bool allowCancel, params (string Key, Action Action)[] actions) =>
             Observable.Create<Unit>(observer => 

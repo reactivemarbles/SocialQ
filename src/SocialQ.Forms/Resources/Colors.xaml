@@ -10,6 +10,10 @@
     <Color x:Key="SecondaryButtonDisabledBackground">Crimson</Color>
     <Color x:Key="SecondaryButtonDisabledForeground">WhiteSmoke</Color>
     <Color x:Key="LogoTextColor">WhiteSmoke</Color>
+    <Color x:Key="NavigationPrimary">#2196F3</Color>
+    <Color x:Key="NavigationSecondary">#0414F2</Color>
     
+    <Color x:Key="Gray">#555555</Color>
+    <Color x:Key="LightGray">#bebebe</Color>
     <x:String x:Key="RoundLogo">https://raw.githubusercontent.com/reactiveui/styleguide/master/logo/circle.png</x:String>
 </ResourceDictionary>

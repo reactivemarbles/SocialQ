@@ -71,4 +71,17 @@
         <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
         <Setter Property="VerticalOptions" Value="CenterAndExpand" />
     </Style>
+    
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationPrimary}" />
+    </Style>
+    <Style x:Key="LargeLabelFontSize" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+    </Style>
+    <Style x:Key="MediumLabelFontSize" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+    </Style>
+    <Style x:Key="SmallLabelFontSize" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+    </Style>
 </ResourceDictionary>
