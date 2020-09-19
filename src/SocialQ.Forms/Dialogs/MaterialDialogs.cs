@@ -9,7 +9,6 @@ using XF.Material.Forms.UI.Dialogs;
 
 namespace SocialQ.Forms.Dialogs
 {
-
     public class MaterialDialogs : IDialogs
     {
         public IObservable<Unit> Alert(string message, string title = "Confirm") =>
@@ -26,7 +25,9 @@ namespace SocialQ.Forms.Dialogs
 
 
         public IObservable<string> Input(string message, string? title = null) =>
-            Observable.FromAsync(() => MaterialDialog.Instance.InputAsync(title, message), RxApp.MainThreadScheduler).ObserveOn(RxApp.MainThreadScheduler);
+            Observable
+                .FromAsync(() => MaterialDialog.Instance.InputAsync(title, message), RxApp.MainThreadScheduler)
+                .SubscribeOn(RxApp.MainThreadScheduler);
 
 
         public IObservable<Unit> ActionSheet(string title, bool allowCancel, params (string Key, Action Action)[] actions) =>
@@ -39,19 +40,24 @@ namespace SocialQ.Forms.Dialogs
                 return ActionSheet(title, dict, allowCancel).Subscribe(observer);
             });
 
-        public IObservable<Unit> ActionSheet(string title, IDictionary<string, Action> actions, bool allowCancel = false) =>
-            Observable.FromAsync(async () =>
-            {
+        public IObservable<Unit> ActionSheet(string title, IDictionary<string, Action> actions,
+            bool allowCancel = false) =>
+            Observable
+                .FromAsync(async () =>
+                {
 
-                var task = allowCancel
-                    ? await MaterialDialog.Instance.SelectChoiceAsync(title, actions.Keys.ToList())
-                    : await MaterialDialog.Instance.SelectActionAsync(title, actions.Keys.ToList());
+                    var task = allowCancel
+                        ? await MaterialDialog.Instance.SelectChoiceAsync(title, actions.Keys.ToList())
+                        : await MaterialDialog.Instance.SelectActionAsync(title, actions.Keys.ToList());
 
-                if (task >= 0)
-                    actions.Values.ElementAt(task).Invoke();
-            }, RxApp.MainThreadScheduler);
+                    if (task >= 0)
+                        actions.Values.ElementAt(task).Invoke();
+                }, RxApp.MainThreadScheduler)
+                .SubscribeOn(RxApp.MainThreadScheduler);
 
         public IObservable<Unit> Snackbar(string message) =>
-            Observable.FromAsync(() => MaterialDialog.Instance.SnackbarAsync(message), RxApp.MainThreadScheduler);
+            Observable
+                .FromAsync(() => MaterialDialog.Instance.SnackbarAsync(message), RxApp.MainThreadScheduler)
+                .SubscribeOn(RxApp.MainThreadScheduler);
     }
 }

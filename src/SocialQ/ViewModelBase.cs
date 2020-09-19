@@ -22,14 +22,15 @@ namespace SocialQ
 
         protected IParameterViewStackService ViewStackService { get; }
 
-        protected virtual IObservable<Unit> WhenNavigatedTo(INavigationParameter parameter) => Observable.Return(Unit.Default);
+        protected virtual IObservable<Unit> WhenNavigatedTo(INavigationParameter parameter) => Observable.Empty<Unit>();
 
-        protected virtual IObservable<Unit> WhenNavigatedFrom(INavigationParameter parameter) => Observable.Return(Unit.Default);
+        protected virtual IObservable<Unit> WhenNavigatedFrom(INavigationParameter parameter) => Observable.Empty<Unit>();
 
-        protected virtual IObservable<Unit> WhenNavigatingTo(INavigationParameter parameter) => Observable.Return(Unit.Default);
+        protected virtual IObservable<Unit> WhenNavigatingTo(INavigationParameter parameter) => Observable.Empty<Unit>();
 
         protected virtual void Destroy()
         {
+            Subscriptions.Dispose();
         }
 
         IObservable<Unit> INavigated.WhenNavigatedTo(INavigationParameter parameter) => WhenNavigatedTo(parameter);

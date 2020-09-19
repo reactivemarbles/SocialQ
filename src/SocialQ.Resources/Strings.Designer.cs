@@ -62,5 +62,11 @@ namespace SocialQ.Resources {
                 return ResourceManager.GetString("AddedToQueue", resourceCulture);
             }
         }
+        
+        public static string AddedToQueueTiitle {
+            get {
+                return ResourceManager.GetString("AddedToQueueTiitle", resourceCulture);
+            }
+        }
     }
 }

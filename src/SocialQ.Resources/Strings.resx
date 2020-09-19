@@ -27,4 +27,7 @@
     <data name="AddedToQueue" xml:space="preserve">
         <value>{0} added to the Q.</value>
     </data>
+    <data name="AddedToQueueTiitle" xml:space="preserve">
+        <value>Queued</value>
+    </data>
 </root>
