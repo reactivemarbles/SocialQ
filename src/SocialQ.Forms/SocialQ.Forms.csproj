@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="akavache" Version="6.10.20" />
+    <PackageReference Include="AuroraControls.Core" Version="1.2020.520.2" />
     <PackageReference Include="Pharmacist.Common" Version="1.*" />
     <PackageReference Include="Pharmacist.MsBuild" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="ReactiveUI.XamForms" Version="11.5.6" />

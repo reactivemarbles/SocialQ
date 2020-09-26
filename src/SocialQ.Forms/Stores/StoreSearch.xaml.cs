@@ -17,7 +17,7 @@ namespace SocialQ.Forms.Stores
             this.OneWayBind(ViewModel, x => x.IsLoading, x => x.Loading.IsRunning)
                 .DisposeWith(PageDisposables);
 
-            this.BindCommand(ViewModel, x => x.Search, x => x.Search, x => x.SearchText, nameof(Search.Clicked) )
+            this.BindCommand(ViewModel, x => x.Search, x => x.Search, x => x.SearchText, nameof(Search.Touch))
                 .DisposeWith(PageDisposables);
 
             this.WhenAnyValue(x => x.ViewModel)
