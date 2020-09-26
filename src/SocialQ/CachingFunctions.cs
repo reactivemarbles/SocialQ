@@ -70,7 +70,7 @@ namespace SocialQ
             bool forceUpdate = false,
             TimeSpan expiration = default)
         {
-            expiration = expiration == TimeSpan.Zero ? Constants.DefaultCacheExpirationTimeOut : expiration;
+            expiration = expiration == TimeSpan.Zero ? TimeSpans.DefaultCacheExpirationTimeOut : expiration;
 
             if (forceUpdate)
             {
@@ -93,7 +93,7 @@ namespace SocialQ
             return blobCache
                 .GetOrFetchObject(
                     cacheKey,
-                    () => source.Timeout(Constants.DefaultRequestTimeout), DateTimeOffset.Now.Add(expiration));
+                    () => source.Timeout(TimeSpans.DefaultRequestTimeout), DateTimeOffset.Now.Add(expiration));
         }
     }
 }

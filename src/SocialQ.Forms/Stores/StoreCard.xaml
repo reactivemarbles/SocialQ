@@ -3,21 +3,26 @@
 <forms:ViewCellBase xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:forms="clr-namespace:SocialQ.Forms;assembly=SocialQ.Forms"
-                    xmlns:socialQ="clr-namespace:SocialQ;assembly=SocialQ"
                     xmlns:stores="clr-namespace:SocialQ.Stores;assembly=SocialQ"
+                    xmlns:auroraControls="http://eightbot.com/aurora"
                     x:Class="SocialQ.Forms.StoreCard"
                     x:DataType="stores:StoreCardViewModel"
                     x:TypeArguments="stores:StoreCardViewModel">
-    <Grid
-        RowSpacing="4"
-        RowDefinitions="*,*,*"
-        ColumnDefinitions="5,*, *"
+    <auroraControls:CardViewLayout
         Margin="5"
-        BackgroundColor="{StaticResource StoreCardBackground}"
-        HeightRequest="100">
-        <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" BackgroundColor="{StaticResource VerticalLineSeparator}" />
-        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="StoreName" FontSize="Large" Margin="16,0,0,0"/>
-        <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" x:Name="StoreOpenTime" FontSize="Small" />
-        <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" x:Name="StoreCloseTime" FontSize="Small" />
-    </Grid>
+        Elevation="1"
+        CornerRadius="5"
+        BackgroundColor="{StaticResource StoreCardBackground}">
+        <auroraControls:CardViewLayout.Content>
+            <Grid
+                RowSpacing="4"
+                RowDefinitions="*,*,*"
+                ColumnDefinitions="*,*"
+                HeightRequest="100">
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="StoreName" FontSize="Large" Margin="16,0,0,0"/>
+                <Label Grid.Row="1" Grid.Column="1" x:Name="StoreOpenTime" FontSize="Small" />
+                <Label Grid.Row="2" Grid.Column="1" x:Name="StoreCloseTime" FontSize="Small" />
+            </Grid>
+        </auroraControls:CardViewLayout.Content>
+    </auroraControls:CardViewLayout>
 </forms:ViewCellBase>

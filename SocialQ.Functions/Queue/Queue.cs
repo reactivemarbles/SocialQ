@@ -40,7 +40,6 @@ namespace SocialQ.Functions.Queue
             }
         }
 
-        
         [FunctionName("AddStore")]
         public async Task<IActionResult> AddStore(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = "queues/")]

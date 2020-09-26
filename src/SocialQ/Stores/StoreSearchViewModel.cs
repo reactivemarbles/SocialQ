@@ -16,7 +16,7 @@ namespace SocialQ.Stores
 {
     public class StoreSearchViewModel : ViewModelBase
     {
-        private readonly BehaviorSubject<Func<StoreDto, bool>> _searchFunction = new BehaviorSubject<Func<StoreDto, bool>>(dto => false);
+        private readonly BehaviorSubject<Func<StoreDto, bool>> _filterFunction = new BehaviorSubject<Func<StoreDto, bool>>(dto => false);
         private readonly IPopupViewStackService _popupViewStackService;
         private readonly IStoreService _storeService;
         private readonly INotificationManager _notificationManager;
@@ -36,13 +36,13 @@ namespace SocialQ.Stores
             _storeService = storeService;
             _notificationManager = notificationManager;
 
-            _searchFunction.DisposeWith(Subscriptions);
+            _filterFunction.DisposeWith(Subscriptions);
 
             _storeService
                 .Stores
                 .Connect()
                 .RefCount()
-                .Filter(_searchFunction.AsObservable())
+                .Filter(_filterFunction.AsObservable())
                 .Transform(x => new StoreCardViewModel(x))
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _stores)
@@ -72,7 +72,7 @@ namespace SocialQ.Stores
 
             var canExecute = isLoading.Select(x => !x).StartWith(true);
 
-            Search = ReactiveCommand.CreateFromObservable<string, Unit>(ExecuteSearch, canExecute);
+            Search = ReactiveCommand.CreateFromObservable(ExecuteSearch, canExecute);
             Details = ReactiveCommand.CreateFromObservable<StoreCardViewModel, Unit>(ExecuteDetails);
             InitializeData = ReactiveCommand.CreateFromObservable(ExecuteInitializeData);
             Category = ReactiveCommand.CreateFromObservable<string, Unit>(ExecuteCategory, canExecute);
@@ -82,7 +82,7 @@ namespace SocialQ.Stores
 
         public ReactiveCommand<Unit, Unit> InitializeData { get; }
 
-        public ReactiveCommand<string, Unit> Search { get; }
+        public ReactiveCommand<Unit, Unit> Search { get; }
 
         public ReactiveCommand<StoreCardViewModel, Unit> Details { get; set; }
 
@@ -125,7 +125,7 @@ namespace SocialQ.Stores
             _popupViewStackService
                 .PushPopup<StoreDetailViewModel>(new NavigationParameter {{WellKnownNavigationParameters.Id, arg.Id}});
 
-        private IObservable<Unit> ExecuteSearch(string searchText) =>
+        private IObservable<Unit> ExecuteSearch() =>
             Observable
                 .Create<Unit>(observer =>
                 {
@@ -140,7 +140,7 @@ namespace SocialQ.Stores
                             return dto.Name.ToLower().Contains(term.ToLower());
                         };
 
-                    _searchFunction.OnNext(Search(searchText));
+                    _filterFunction.OnNext(Search(SearchText));
 
                     return _storeService
                         .GetStores(false)
@@ -163,7 +163,7 @@ namespace SocialQ.Stores
                             return dto.Category.ToString().ToLower().Contains(term.ToLower());
                         };
 
-                    _searchFunction.OnNext(Filter(category));
+                    _filterFunction.OnNext(Filter(category));
 
                     return _storeService
                         .GetStoreMetadata(false)

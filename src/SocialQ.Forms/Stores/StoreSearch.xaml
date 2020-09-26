@@ -59,6 +59,7 @@
                 x:Name="Search"
                 Text="Search"
                 VerticalOptions="EndAndExpand"
+                Command="{Binding Search}"
                 Ripples="True"
                 Style="{StaticResource PrimaryPillButton}" />
             <ActivityIndicator

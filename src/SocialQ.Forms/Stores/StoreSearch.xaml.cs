@@ -17,8 +17,8 @@ namespace SocialQ.Forms.Stores
             this.OneWayBind(ViewModel, x => x.IsLoading, x => x.Loading.IsRunning)
                 .DisposeWith(PageDisposables);
 
-            this.BindCommand(ViewModel, x => x.Search, x => x.Search, x => x.SearchText, nameof(Search.Touch))
-                .DisposeWith(PageDisposables);
+            // this.BindCommand(ViewModel, x => x.Search, x => x.Search, x => x.SearchText, nameof(Search.Touch))
+            //     .DisposeWith(PageDisposables);
 
             this.WhenAnyValue(x => x.ViewModel)
                 .Where(x => x != null)
@@ -39,7 +39,7 @@ namespace SocialQ.Forms.Stores
             SearchBar
                 .Events()
                 .TextChanged
-                .Throttle(TimeSpan.FromMilliseconds(250), RxApp.TaskpoolScheduler)
+                .Throttle(TimeSpans.DefaultTextChanged, RxApp.TaskpoolScheduler)
                 .Where(x => x?.OldTextValue?.Length > 0 && x.NewTextValue?.Length == 0)
                 .Select(x => x.NewTextValue)
                 .ObserveOn(RxApp.MainThreadScheduler)
