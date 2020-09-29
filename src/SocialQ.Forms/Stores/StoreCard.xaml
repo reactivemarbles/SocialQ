@@ -15,13 +15,22 @@
         BackgroundColor="{StaticResource StoreCardBackground}">
         <auroraControls:CardViewLayout.Content>
             <Grid
+                x:Name="Grid"
                 RowSpacing="4"
                 RowDefinitions="*,*,*"
-                ColumnDefinitions="*,*"
+                ColumnDefinitions="3*,3*,*"
                 HeightRequest="100">
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="StoreName" FontSize="Large" Margin="16,0,0,0"/>
-                <Label Grid.Row="1" Grid.Column="1" x:Name="StoreOpenTime" FontSize="Small" />
-                <Label Grid.Row="2" Grid.Column="1" x:Name="StoreCloseTime" FontSize="Small" />
+                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{StaticResource LandmarkIcon}" FontFamily="FA-S" FontSize="Large" Margin="16,0,0,0"/>
+                <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="StoreOpenTime" FontSize="Small" />
+                <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Name="StoreCloseTime" FontSize="Small" />
+                <Button
+                    Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Grid.Column="2"
+                    Text="{StaticResource PlusIcon}"
+                    TextColor="White"
+                    FontFamily="FA-S" />
             </Grid>
         </auroraControls:CardViewLayout.Content>
     </auroraControls:CardViewLayout>

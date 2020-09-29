@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SocialQ.Forms.Resources.FontAwesome">
+
+    <x:String x:Key="PauseIcon">&#xf04c;</x:String>
+    <x:String x:Key="PlusIcon">&#xf067;</x:String>
+    <x:String x:Key="RemoveIcon">&#xf068;</x:String>
+    <x:String x:Key="LandmarkIcon">&#xf66f;</x:String>
+</ResourceDictionary>

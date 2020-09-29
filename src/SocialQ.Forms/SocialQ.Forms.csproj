@@ -47,5 +47,8 @@
       <DependentUpon>SignUp.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="..\SocialQ.Resources\fa-brands-400.ttf" Link="Resources\fa-brands-400.ttf" CopyToOutputDirectory="PreserveNewest" />
+    <EmbeddedResource Include="..\SocialQ.Resources\fa-regular-400.ttf" Link="Resources\fa-regular-400.ttf" CopyToOutputDirectory="PreserveNewest" />
+    <EmbeddedResource Include="..\SocialQ.Resources\fa-solid-900.ttf" Link="Resources\fa-solid-900.ttf" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

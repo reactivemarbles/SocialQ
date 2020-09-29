@@ -7,14 +7,13 @@ using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using Akavache;
 using DynamicData;
-using DynamicData.Annotations;
 using Splat;
 
 namespace SocialQ
 {
     public static class CachingFunctions
     {
-        // <summary>
+        /// <summary>
         /// Places the contents of a cached IChangeSet into a Akavache data store.
         /// This means it will only retrieve values if the cache has expired.
         /// </summary>

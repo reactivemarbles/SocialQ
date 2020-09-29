@@ -19,4 +19,9 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+        <EmbeddedResource Include="fa-solid-900.ttf" />
+        <EmbeddedResource Include="fa-regular-400.ttf" />
+        <EmbeddedResource Include="fa-brands-400.ttf" />
+    </ItemGroup>
 </Project>
