@@ -13,7 +13,7 @@
       <PackageReference Include="ReactiveUI" Version="11.5.35" />
       <PackageReference Include="ReactiveUI.Fody" Version="11.5.6" />
       <PackageReference Include="refit" Version="5.1.67" />
-      <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.4" />
+      <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.6" />
       <PackageReference Include="Shiny.Core" Version="1.2.0.1755" />
       <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
       <PackageReference Include="Splat.Serilog" Version="9.5.6" />
