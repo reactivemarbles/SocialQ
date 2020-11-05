@@ -13,17 +13,17 @@ namespace SocialQ.Avalonia
         {
             // Configure ReactiveUI suspension management.
             var suspension = new AutoSuspendHelper(ApplicationLifetime);
-            RxApp.SuspensionHost.CreateNewAppState = () => new MainState();
-            RxApp.SuspensionHost.SetupDefaultSuspendResume(new NewtonsoftJsonSuspensionDriver("appstate.json"));
+            // RxApp.SuspensionHost.CreateNewAppState = () => new MainState();
+            // RxApp.SuspensionHost.SetupDefaultSuspendResume(new NewtonsoftJsonSuspensionDriver("appstate.json"));
             suspension.OnFrameworkInitializationCompleted();
             base.OnFrameworkInitializationCompleted();
 
             // Configure app dependencies.
             var window = new MainView();
-            var styles = new AvaloniaStyleManager(window);
+            // var styles = new AvaloniaStyleManager(window);
 
             Akavache.BlobCache.ApplicationName = "SocialQ";
-            window.SwitchThemeButton.Click += (sender, args) => styles.UseNextTheme();
+            // window.SwitchThemeButton.Click += (sender, args) => styles.UseNextTheme();
             window.DataContext = new MainViewModel();
             // window.DataContext = new MainViewModel(
             //     RxApp.SuspensionHost.GetAppState<MainState>(),

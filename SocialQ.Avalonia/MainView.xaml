@@ -66,7 +66,7 @@
                      Items="{Binding Providers, Mode=OneWay}"
                      Background="Transparent">
                 <ListBox.ItemTemplate>
-                    <DataTemplate DataType="interfaces:IProviderViewModel">
+                    <DataTemplate>
                         <Grid ColumnDefinitions="Auto, *">
                             <DrawingPresenter Grid.Column="0"
                                               Opacity="0.5"
@@ -117,9 +117,9 @@
                     <CrossFade Duration="0.75" />
                 </Carousel.PageTransition>
                 <Carousel.DataTemplates>
-                    <DataTemplate DataType="interfaces:IProviderViewModel">
-                        <views:ProviderView DataContext="{Binding}" />
-                    </DataTemplate>
+                    <!-- <DataTemplate DataType="interfaces:IProviderViewModel"> -->
+                    <!--     <views:ProviderView DataContext="{Binding}" /> -->
+                    <!-- </DataTemplate> -->
                 </Carousel.DataTemplates>
             </Carousel>
             <Grid IsVisible="{Binding WelcomeScreenVisible, Mode=OneWay}"
