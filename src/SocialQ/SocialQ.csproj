@@ -7,23 +7,23 @@
 
     <ItemGroup>
       <PackageReference Include="akavache" Version="6.10.20" />
-      <PackageReference Include="DynamicData" Version="6.16.6" />
+      <PackageReference Include="DynamicData" Version="6.17.14" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
       <PackageReference Include="LanguageExt.Core" Version="3.4.15" />
-      <PackageReference Include="ReactiveUI" Version="11.5.35" />
-      <PackageReference Include="ReactiveUI.Fody" Version="11.5.6" />
+      <PackageReference Include="ReactiveMarbles.PropertyChanged" Version="1.2.1" />
+      <PackageReference Include="ReactiveUI" Version="12.1.5" />
+      <PackageReference Include="ReactiveUI.Fody" Version="12.1.5" />
       <PackageReference Include="refit" Version="5.1.67" />
-      <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.4" />
+      <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.6" />
+      <PackageReference Include="Sextant.Plugins.Popup" Version="2.8.1" />
       <PackageReference Include="Shiny.Core" Version="1.2.0.1755" />
       <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
       <PackageReference Include="Splat.Serilog" Version="9.5.6" />
-      <PackageReference Include="Sextant" Version="2.7.1" />
+      <PackageReference Include="Xamarin.Forms" Version="4.7.0.1351" />
       <PackageReference Include="Xamarin.Forms.Auth" Version="2.0.16" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Sextant\src\Sextant.Plugins.Popup\Sextant.Plugins.Popup.csproj" />
-      <ProjectReference Include="..\..\Sextant\src\Sextant\Sextant.csproj" />
       <ProjectReference Include="..\SocialQ.Resources\SocialQ.Resources.csproj" />
     </ItemGroup>
 

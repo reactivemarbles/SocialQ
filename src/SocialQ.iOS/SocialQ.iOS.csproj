@@ -124,17 +124,14 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Sextant" Version="2.8.1" />
     <PackageReference Include="Shiny.Core" Version="1.2.0.1755" />
     <PackageReference Include="SkiaSharp" Version="2.80.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1239" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1351" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.Forms.Auth" Version="2.0.16" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Sextant\src\Sextant\Sextant.csproj">
-      <Project>{92da0fd4-ff3d-4d09-a3b2-d52b5007414e}</Project>
-      <Name>Sextant</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SocialQ.Forms\SocialQ.Forms.csproj">
       <Project>{377248cf-4643-47c7-9e72-ea20c540e842}</Project>
       <Name>SocialQ.Forms</Name>

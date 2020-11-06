@@ -1,11 +1,7 @@
 using System;
-using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
-using System.Threading.Channels;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace SocialQ

@@ -4,6 +4,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveUI;
 using Sextant;
+using Sextant.Plugins.Popup;
 
 namespace SocialQ.Startup
 {
@@ -12,8 +13,8 @@ namespace SocialQ.Startup
         private readonly IAppStartup _appStartup;
         private readonly ObservableAsPropertyHelper<bool> _loading;
 
-        public SplashViewModel(IParameterViewStackService parameterViewStackService, IAppStartup appStartup)
-            : base(parameterViewStackService)
+        public SplashViewModel(IPopupViewStackService popupViewStackService, IAppStartup appStartup)
+            : base(popupViewStackService)
         {
             _appStartup = appStartup;
             Initialize = ReactiveCommand.CreateFromObservable(ExecuteInitialize);

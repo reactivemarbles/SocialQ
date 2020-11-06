@@ -1,5 +1,4 @@
 using System;
-using System.Reactive;
 using Akavache;
 
 namespace SocialQ.Queue

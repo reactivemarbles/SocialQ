@@ -2,25 +2,24 @@ using System;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 using ReactiveUI;
 using Sextant;
-using Splat;
+using Sextant.Plugins.Popup;
 
 namespace SocialQ
 {
     public abstract class ViewModelBase : ReactiveObject, INavigable, IDestructible
     {
-        protected ViewModelBase(IParameterViewStackService parameterViewStackService)
+        protected ViewModelBase(IPopupViewStackService popupViewStackService)
         {
-            ViewStackService = parameterViewStackService;
+            ViewStackService = popupViewStackService;
         }
 
         public string Id { get; }
 
         protected CompositeDisposable Subscriptions { get; } = new CompositeDisposable();
 
-        protected IParameterViewStackService ViewStackService { get; private set; }
+        protected IPopupViewStackService ViewStackService { get; private set; }
 
         protected virtual IObservable<Unit> WhenNavigatedTo(INavigationParameter parameter) => Observable.Empty<Unit>();
 
@@ -44,7 +43,7 @@ namespace SocialQ
             Destroy();
         }
 
-        public void SetNavigationService(IParameterViewStackService viewStackService)
+        public void SetNavigationService(IPopupViewStackService viewStackService)
         {
             ViewStackService = viewStackService;
         }

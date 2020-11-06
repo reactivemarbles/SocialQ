@@ -29,7 +29,6 @@ namespace SocialQ.Forms
         public static IServiceCollection AddSextant(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddSingleton<IView>(provider => new NavigationView(RxApp.TaskpoolScheduler, RxApp.MainThreadScheduler, provider.GetService<IViewLocator>()));
-            serviceCollection.AddSingleton<IParameterViewStackService, PopupViewStackService>();
             serviceCollection.AddSingleton<IPopupViewStackService, PopupViewStackService>();
             serviceCollection.AddSingleton<IViewModelFactory, DefaultViewModelFactory>();
             return serviceCollection;

@@ -1,6 +1,5 @@
 using System.Reactive.Disposables;
 using ReactiveUI;
-using Xamarin.Forms.Markup;
 
 namespace SocialQ.Forms.Profile
 {

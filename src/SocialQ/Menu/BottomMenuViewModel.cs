@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using ReactiveUI;
 using Sextant;
+using Sextant.Plugins.Popup;
 using SocialQ.Profile;
 using SocialQ.Queue;
 using SocialQ.Stores;
@@ -11,12 +12,12 @@ namespace SocialQ
 {
     public class BottomMenuViewModel : ViewModelBase
     {
-        private List<Func<IParameterViewStackService, TabViewModel>> _tabViewModels;
+        private List<Func<IPopupViewStackService, TabViewModel>> _tabViewModels;
 
-        public BottomMenuViewModel(IParameterViewStackService parameterViewStackService)
-            : base(parameterViewStackService)
+        public BottomMenuViewModel(IPopupViewStackService popupViewStackService)
+            : base(popupViewStackService)
         {
-            TabViewModels = new List<Func<IParameterViewStackService, TabViewModel>>
+            TabViewModels = new List<Func<IPopupViewStackService, TabViewModel>>
             {
                 service => new TabViewModel("Search", "", service, () => CreateMenuItem<StoreSearchViewModel>(service)),
                 service => new TabViewModel("Queue", "", service, () => CreateMenuItem<QueuesViewModel>(service)),
@@ -24,7 +25,7 @@ namespace SocialQ
             };
         }
 
-        private static ViewModelBase CreateMenuItem<TViewModel>(IParameterViewStackService service)
+        private static ViewModelBase CreateMenuItem<TViewModel>(IPopupViewStackService service)
             where TViewModel : ViewModelBase
         {
             var viewmodel = Locator.Current.GetService<TViewModel>();
@@ -32,7 +33,7 @@ namespace SocialQ
             return viewmodel;
         }
 
-        public List<Func<IParameterViewStackService, TabViewModel>> TabViewModels
+        public List<Func<IPopupViewStackService, TabViewModel>> TabViewModels
         {
             get => _tabViewModels;
             set => this.RaiseAndSetIfChanged(ref _tabViewModels, value);

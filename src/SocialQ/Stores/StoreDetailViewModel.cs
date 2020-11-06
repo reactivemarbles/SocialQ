@@ -19,12 +19,11 @@ namespace SocialQ.Stores
         private readonly IDialogs _dialogs;
 
         public StoreDetailViewModel(
-            IParameterViewStackService parameterViewStackService,
             IPopupViewStackService popupViewStackService,
             IStoreService storeService,
             IQueueService queueService,
             IDialogs dialogs)
-            : base(parameterViewStackService)
+            : base(popupViewStackService)
         {
             _popupViewStackService = popupViewStackService;
             _storeService = storeService;

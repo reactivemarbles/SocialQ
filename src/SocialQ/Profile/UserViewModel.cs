@@ -1,9 +1,9 @@
 using System;
 using System.Reactive;
 using System.Reactive.Disposables;
-using System.Reactive.Linq;
 using ReactiveUI;
 using Sextant;
+using Sextant.Plugins.Popup;
 
 namespace SocialQ.Profile
 {
@@ -11,8 +11,8 @@ namespace SocialQ.Profile
     {
         private readonly ObservableAsPropertyHelper<string> _userName;
 
-        public UserViewModel(IParameterViewStackService parameterViewStackService, ISettings settings)
-            : base(parameterViewStackService)
+        public UserViewModel(IPopupViewStackService popupViewStackService, ISettings settings)
+            : base(popupViewStackService)
         {
             settings
                 .WhenAnyValue(x => x.UserName)

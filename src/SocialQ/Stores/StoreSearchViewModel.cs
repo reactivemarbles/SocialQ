@@ -26,11 +26,10 @@ namespace SocialQ.Stores
         private string _searchText;
 
         public StoreSearchViewModel(
-            IParameterViewStackService parameterViewStackService,
             IPopupViewStackService popupViewStackService,
             IStoreService storeService,
             INotificationManager notificationManager)
-            : base(parameterViewStackService)
+            : base(popupViewStackService)
         {
             _popupViewStackService = popupViewStackService;
             _storeService = storeService;

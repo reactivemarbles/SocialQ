@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using Serilog;
 using Sextant;
+using Sextant.Plugins.Popup;
 using Shiny;
 using SocialQ.Forms.Dialogs;
 using SocialQ.Forms.Menu;
@@ -59,7 +60,7 @@ namespace SocialQ.Forms
         public static Page NavigateToStart<T>()
             where T : IViewModel
         {
-           Locator.Current.GetService<IParameterViewStackService>().PushPage<T>(resetStack: true, animate: false).Subscribe();
+           Locator.Current.GetService<IPopupViewStackService>().PushPage<T>(resetStack: true, animate: false).Subscribe();
             return (NavigationPage) Locator.Current.GetService<IView>();
         }
     }

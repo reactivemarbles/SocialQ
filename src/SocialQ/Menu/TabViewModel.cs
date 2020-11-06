@@ -1,12 +1,12 @@
 using System;
 using Sextant;
-using Xamarin.Forms;
+using Sextant.Plugins.Popup;
 
 namespace SocialQ
 {
     public class TabViewModel : ViewModelBase
     {
-        public TabViewModel(string tabTitle, string tabIcon, IParameterViewStackService stackService, Func<ViewModelBase> pageCreate)
+        public TabViewModel(string tabTitle, string tabIcon, IPopupViewStackService stackService, Func<ViewModelBase> pageCreate)
             : base(stackService)
         {
             TabIcon = tabIcon;

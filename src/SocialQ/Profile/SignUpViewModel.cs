@@ -2,13 +2,14 @@ using System;
 using System.Reactive;
 using ReactiveUI;
 using Sextant;
+using Sextant.Plugins.Popup;
 
 namespace SocialQ.Profile
 {
     public class SignUpViewModel : ViewModelBase
     {
-        public SignUpViewModel(IParameterViewStackService parameterViewStackService)
-            : base(parameterViewStackService)
+        public SignUpViewModel(IPopupViewStackService popupViewStackService)
+            : base(popupViewStackService)
         {
             Cancel = ReactiveCommand.CreateFromObservable(ExecuteCancel);
         }

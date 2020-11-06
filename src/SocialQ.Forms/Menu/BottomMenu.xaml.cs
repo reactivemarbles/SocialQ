@@ -1,7 +1,9 @@
 using System;
 using ReactiveUI;
 using ReactiveUI.XamForms;
+using Rg.Plugins.Popup.Services;
 using Sextant;
+using Sextant.Plugins.Popup;
 using Sextant.XamForms;
 using Splat;
 using Xamarin.Forms;
@@ -23,18 +25,18 @@ namespace SocialQ.Forms.Menu
             this.WhenActivated(disposables => { ViewModel.TabViewModels.ForEach(x => Children.Add(CreateTab(x))); });
         }
 
-        private Page CreateTab(Func<IParameterViewStackService, TabViewModel> viewModelFunc)
+        private Page CreateTab(Func<IPopupViewStackService, TabViewModel> viewModelFunc)
         {
             var bgScheduler = RxApp.TaskpoolScheduler;
             var mScheduler = RxApp.MainThreadScheduler;
             var vLocator = Locator.Current.GetService<IViewLocator>();
 
             var navigationView = new NavigationView(mScheduler, bgScheduler, vLocator);
-            var viewStackService = new ParameterViewStackService(navigationView, ViewModelFactory.Current);
+            var viewStackService = new PopupViewStackService(navigationView, PopupNavigation.Instance, vLocator, ViewModelFactory.Current);
             var model = viewModelFunc(viewStackService);
 
             navigationView.Title = model.TabTitle;
-            navigationView.IconImageSource = FileImageSource.FromFile(model.TabIcon);
+            navigationView.IconImageSource = ImageSource.FromFile(model.TabIcon);
 
             navigationView.PushPage(model.ViewModel, null, true, false).Subscribe();
             return navigationView;

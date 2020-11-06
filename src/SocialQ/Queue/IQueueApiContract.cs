@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Reactive;
 using Refit;
 
 namespace SocialQ.Queue

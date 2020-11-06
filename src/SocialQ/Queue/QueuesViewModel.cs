@@ -7,6 +7,7 @@ using DynamicData;
 using DynamicData.Binding;
 using ReactiveUI;
 using Sextant;
+using Sextant.Plugins.Popup;
 
 namespace SocialQ.Queue
 {
@@ -15,8 +16,8 @@ namespace SocialQ.Queue
         private readonly IQueueService _queueService;
         private readonly ReadOnlyObservableCollection<QueuedItemViewModel> _queue;
 
-        public QueuesViewModel(IParameterViewStackService parameterViewStackService, IQueueService queueService)
-            : base(parameterViewStackService)
+        public QueuesViewModel(IPopupViewStackService popupViewStackService, IQueueService queueService)
+            : base(popupViewStackService)
         {
             _queueService = queueService;
 

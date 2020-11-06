@@ -16,37 +16,29 @@
     <PackageReference Include="AuroraControls.Core" Version="1.2020.520.2" />
     <PackageReference Include="Pharmacist.Common" Version="1.*" />
     <PackageReference Include="Pharmacist.MsBuild" Version="1.*" PrivateAssets="all" />
-    <PackageReference Include="ReactiveUI.XamForms" Version="11.5.6" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.4" />
+    <PackageReference Include="ReactiveUI.XamForms" Version="12.1.5" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.6" />
+    <PackageReference Include="Sextant.Plugins.Popup" Version="2.8.1" />
+    <PackageReference Include="Sextant.XamForms" Version="2.8.1" />
     <PackageReference Include="Serilog.Sinks.AppCenter.Crash" Version="1.2.1" />
     <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
     <PackageReference Include="SkiaSharp" Version="2.80.1" />
     <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="9.5.6" />
     <PackageReference Include="Splat.Serilog" Version="9.5.6" />
     <PackageReference Include="System.Reactive" Version="4.4.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1239" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1351" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.1.0.714" />
     <PackageReference Include="XF.Material" Version="1.7.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Sextant\src\Sextant.XamForms\Sextant.XamForms.csproj" />
-    <ProjectReference Include="..\..\Sextant\src\Sextant.Plugins.Popup\Sextant.Plugins.Popup.csproj" />
     <ProjectReference Include="..\SocialQ.Mocks\SocialQ.Mocks.csproj" />
     <ProjectReference Include="..\SocialQ.Resources\SocialQ.Resources.csproj" />
     <ProjectReference Include="..\SocialQ\SocialQ.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Stores\StoreCardView.xaml.cs">
-      <DependentUpon>StoreCardView.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Profile\SignUp.xaml.cs">
-      <DependentUpon>SignUp.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <EmbeddedResource Include="..\SocialQ.Resources\fa-brands-400.ttf" Link="Resources\fa-brands-400.ttf" CopyToOutputDirectory="PreserveNewest" />
     <EmbeddedResource Include="..\SocialQ.Resources\fa-regular-400.ttf" Link="Resources\fa-regular-400.ttf" CopyToOutputDirectory="PreserveNewest" />
     <EmbeddedResource Include="..\SocialQ.Resources\fa-solid-900.ttf" Link="Resources\fa-solid-900.ttf" CopyToOutputDirectory="PreserveNewest" />

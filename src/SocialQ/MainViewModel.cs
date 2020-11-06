@@ -1,22 +1,23 @@
 using Akavache;
 using Sextant;
+using Sextant.Plugins.Popup;
 using Shiny.Notifications;
 
 namespace SocialQ
 {
     public class MainViewModel : ViewModelBase
     {
-        private readonly IParameterViewStackService _parameterViewStackService;
+        private readonly IPopupViewStackService _popupViewStackService;
         private readonly INotificationManager _notificationManager;
         private readonly IBlobCache _blobCache;
 
         public MainViewModel(
-            IParameterViewStackService parameterViewStackService,
+            IPopupViewStackService popupViewStackService,
             INotificationManager notificationManager,
             IBlobCache blobCache)
-            : base(parameterViewStackService)
+            : base(popupViewStackService)
         {
-            _parameterViewStackService = parameterViewStackService;
+            _popupViewStackService = popupViewStackService;
             _notificationManager = notificationManager;
             _blobCache = blobCache;
         }
