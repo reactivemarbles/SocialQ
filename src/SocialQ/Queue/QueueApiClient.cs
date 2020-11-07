@@ -20,9 +20,9 @@ namespace SocialQ.Queue
 
         public IBlobCache BlobCache { get; }
 
-        public IObservable<QueuedStoreDto> Enqueue(EnqueueRequest dto) =>
+        public IObservable<QueuedStoreDto> Enqueue(EnqueueRequest request) =>
             _apiContract
-                .Enqueue(dto, FunctionParameters.Default);
+                .Enqueue(request, FunctionParameters.Default);
 
         public IObservable<QueuedStoreDto> GetQueue(Guid userId, bool forceUpdate = false) =>
             _hubClient

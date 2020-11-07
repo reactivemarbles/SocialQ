@@ -1,6 +1,8 @@
 using System;
 using System.Reactive;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using ReactiveMarbles.PropertyChanged;
 using ReactiveUI;
 using Sextant;
 using Sextant.Plugins.Popup;
@@ -15,7 +17,8 @@ namespace SocialQ.Profile
             : base(popupViewStackService)
         {
             settings
-                .WhenAnyValue(x => x.UserName)
+                .WhenPropertyChanges(x => x.UserName)
+                .Select(x => x.value)
                 .ToProperty(this, nameof(UserName), out _userName)
                 .DisposeWith(Subscriptions);
 

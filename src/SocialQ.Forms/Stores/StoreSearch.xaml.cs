@@ -2,6 +2,7 @@ using System;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using ReactiveMarbles.PropertyChanged;
 using ReactiveUI;
 using SocialQ.Stores;
 using Xamarin.Forms;
@@ -17,19 +18,21 @@ namespace SocialQ.Forms.Stores
             this.OneWayBind(ViewModel, x => x.IsLoading, x => x.Loading.IsRunning)
                 .DisposeWith(PageDisposables);
 
-            this.WhenAnyValue(x => x.ViewModel)
-                .Where(x => x != null)
+            this.WhenPropertyChanges(x => x.ViewModel)
+                .Where(x => x.value != null)
                 .Select(x => Unit.Default)
                 .InvokeCommand(this, x => x.ViewModel.InitializeData)
                 .DisposeWith(PageDisposables);
 
-            this.WhenAnyValue(x => x.ViewModel.Stores)
-                .Where(x => x != null)
+            this.WhenPropertyChanges(x => x.ViewModel.Stores)
+                .Where(x => x.value != null)
+                .Select(x => x.value)
                 .BindTo(this, x => x.StoreList.ItemsSource)
                 .DisposeWith(PageDisposables);
 
-            this.WhenAnyValue(x => x.ViewModel.StoreCategories)
-                .Where(x => x != null)
+            this.WhenPropertyChanges(x => x.ViewModel.StoreCategories)
+                .Where(x => x.value != null)
+                .Select(x => x.value)
                 .BindTo(this, x => x.Categories.ItemsSource)
                 .DisposeWith(PageDisposables);
 

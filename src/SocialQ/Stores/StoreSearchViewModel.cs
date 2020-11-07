@@ -128,16 +128,8 @@ namespace SocialQ.Stores
             Observable
                 .Create<Unit>(observer =>
                 {
-                    Func<StoreDto, bool> Search(string term) =>
-                        dto =>
-                        {
-                            if (string.IsNullOrEmpty(term))
-                            {
-                                return true;
-                            }
-
-                            return dto.Name.ToLower().Contains(term.ToLower());
-                        };
+                    static Func<StoreDto, bool> Search(string term) =>
+                        dto => string.IsNullOrEmpty(term) || dto.Name.ToLower().Contains(term.ToLower());
 
                     _filterFunction.OnNext(Search(SearchText));
 
@@ -151,16 +143,8 @@ namespace SocialQ.Stores
             Observable
                 .Create<Unit>(observer =>
                 {
-                    Func<StoreDto, bool> Filter(string term) =>
-                        dto =>
-                        {
-                            if (string.IsNullOrEmpty(term))
-                            {
-                                return false;
-                            }
-
-                            return dto.Category.ToString().ToLower().Contains(term.ToLower());
-                        };
+                    static Func<StoreDto, bool> Filter(string term) =>
+                        dto => !string.IsNullOrEmpty(term) && dto.Category.ToString().ToLower().Contains(term.ToLower());
 
                     _filterFunction.OnNext(Filter(category));
 

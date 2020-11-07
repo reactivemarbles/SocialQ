@@ -2,6 +2,7 @@ using System;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using ReactiveMarbles.PropertyChanged;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Sextant;
@@ -34,8 +35,8 @@ namespace SocialQ.Stores
             var getStore =
                 ReactiveCommand.CreateFromObservable<Guid, Unit>(ExecuteGetStore);
 
-            this.WhenAnyValue(x => x.StoreId)
-                .Where(x => x != Guid.Empty)
+            this.WhenPropertyChanges(x => x.StoreId)
+                .Where(x => x.value != Guid.Empty)
                 .DistinctUntilChanged()
                 .InvokeCommand(getStore)
                 .DisposeWith(Subscriptions);

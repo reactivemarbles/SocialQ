@@ -1,5 +1,6 @@
 using System;
 using System.Reactive.Linq;
+using ReactiveMarbles.PropertyChanged;
 using ReactiveUI;
 
 namespace SocialQ.Queue
@@ -17,7 +18,8 @@ namespace SocialQ.Queue
             Name = dto.Store.Name;
             RemainingQueueTime = dto.RemainingQueueTime;
 
-            this.WhenAnyValue(x => x.RemainingQueueTime)
+            this.WhenPropertyChanges(x => x.RemainingQueueTime)
+                .Select(x => x.value)
                 .RemainingTime(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToProperty(this, nameof(CurrentQueueTime), out _currentQueueTime, dto.RemainingQueueTime.TimeOfDay - DateTimeOffset.Now.TimeOfDay);

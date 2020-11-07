@@ -2,6 +2,7 @@ using System;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using ReactiveMarbles.PropertyChanged;
 using ReactiveUI;
 using Xamarin.Forms;
 
@@ -13,13 +14,14 @@ namespace SocialQ.Forms.Queue
         {
             InitializeComponent();
 
-            this.WhenAnyValue(x => x.ViewModel.Queue)
-                .Where(x => x != null)
+            this.WhenPropertyChanges(x => x.ViewModel.Queue)
+                .Where(x => x.value != null)
+                .Select(x => x.value)
                 .BindTo(this, x => x.Queue.ItemsSource)
                 .DisposeWith(PageDisposables);
 
-            this.WhenAnyValue(x => x.ViewModel)
-                .Where(x => x != null)
+            this.WhenPropertyChanges(x => x.ViewModel)
+                .Where(x => x.value != null)
                 .Select(x => Unit.Default)
                 .InvokeCommand(this, x => x.ViewModel.InitializeData)
                 .DisposeWith(PageDisposables);

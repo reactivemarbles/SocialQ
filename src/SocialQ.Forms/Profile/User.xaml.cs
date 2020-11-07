@@ -1,5 +1,6 @@
 using System.Reactive;
 using System.Reactive.Linq;
+using ReactiveMarbles.PropertyChanged;
 using ReactiveUI;
 
 namespace SocialQ.Forms.Profile
@@ -11,7 +12,8 @@ namespace SocialQ.Forms.Profile
             InitializeComponent();
 
             var userNameChanged =
-                this.WhenAnyValue(x => x.ViewModel.UserName)
+                this.WhenPropertyChanges(x => x.ViewModel.UserName)
+                    .Select(x => x.value)
                     .Where(string.IsNullOrEmpty)
                     .Select(_ => Unit.Default);
 
