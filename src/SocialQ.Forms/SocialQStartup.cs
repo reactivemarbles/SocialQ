@@ -1,7 +1,10 @@
 using System;
+using System.Reactive.Concurrency;
 using Akavache;
+using Essentials.Mocks;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
+using Rocket.Surgery.Xamarin.Essentials.Abstractions;
 using Serilog;
 using Sextant;
 using Sextant.Plugins.Popup;
@@ -18,6 +21,7 @@ using SocialQ.Startup;
 using SocialQ.Stores;
 using Splat;
 using Splat.Microsoft.Extensions.DependencyInjection;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SocialQ.Forms
@@ -54,6 +58,12 @@ namespace SocialQ.Forms
                 .AddSingleton<IStartupOperation, UserStartup>()
                 .AddTransient<IStartupOperation, NotificationAccessOperation>()
                 .AddTransient<IStartupOperation, DelayOperation>()
+                .AddSingleton<IConnectivity, MockConnectivityEssential>(provider =>
+                    new MockConnectivityEssential(TaskPoolScheduler.Default, networkAccesses: new[]
+                    {
+                        NetworkAccess.ConstrainedInternet,
+                        NetworkAccess.Internet
+                    }))
                 .UseMicrosoftDependencyResolver();
         }
 

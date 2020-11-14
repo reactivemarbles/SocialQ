@@ -23,7 +23,7 @@ namespace SocialQ.Mocks.Stores
         public IObservable<IEnumerable<StoreDto>> GetStores(FunctionParameters parameters) =>
             Observable
                 .Return(Items)
-                .Delay(TimeSpan.FromSeconds(5));
+                .Delay(TimeSpan.FromSeconds(10));
 
         public IObservable<IEnumerable<string>> GetMetadata(FunctionParameters parameters) =>
             Observable

@@ -15,10 +15,12 @@
       <PackageReference Include="ReactiveUI.Fody" Version="12.1.5" />
       <PackageReference Include="refit" Version="5.1.67" />
       <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.6" />
+      <PackageReference Include="Rocket.Surgery.Xamarin.Essentials.Abstractions" Version="0.4.1" />
       <PackageReference Include="Sextant.Plugins.Popup" Version="2.8.1" />
       <PackageReference Include="Shiny.Core" Version="1.2.0.1755" />
       <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
       <PackageReference Include="Splat.Serilog" Version="9.5.6" />
+      <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
       <PackageReference Include="Xamarin.Forms" Version="4.7.0.1351" />
       <PackageReference Include="Xamarin.Forms.Auth" Version="2.0.16" />
     </ItemGroup>

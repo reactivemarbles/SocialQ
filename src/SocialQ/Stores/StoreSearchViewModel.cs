@@ -8,9 +8,11 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using DynamicData;
 using ReactiveUI;
+using Rocket.Surgery.Xamarin.Essentials.Abstractions;
 using Sextant;
 using Sextant.Plugins.Popup;
 using Shiny.Notifications;
+using Xamarin.Essentials;
 
 namespace SocialQ.Stores
 {
@@ -20,20 +22,27 @@ namespace SocialQ.Stores
         private readonly IPopupViewStackService _popupViewStackService;
         private readonly IStoreService _storeService;
         private readonly INotificationManager _notificationManager;
+        private readonly IDialogs _dialogs;
+        private readonly IConnectivity _connectivity;
         private readonly ObservableAsPropertyHelper<bool> _isLoading;
         private readonly ReadOnlyObservableCollection<StoreCardViewModel> _stores;
         private readonly ReadOnlyObservableCollection<string> _storeNames;
         private string _searchText;
+        private IObservable<ConnectivityChangedEventArgs> _iHasNoInternets;
 
         public StoreSearchViewModel(
             IPopupViewStackService popupViewStackService,
             IStoreService storeService,
-            INotificationManager notificationManager)
+            INotificationManager notificationManager,
+            IDialogs dialogs,
+            IConnectivity connectivity)
             : base(popupViewStackService)
         {
             _popupViewStackService = popupViewStackService;
             _storeService = storeService;
             _notificationManager = notificationManager;
+            _dialogs = dialogs;
+            _connectivity = connectivity;
 
             _filterFunction.DisposeWith(Subscriptions);
 
@@ -67,6 +76,17 @@ namespace SocialQ.Stores
 
             isLoading
                 .ToProperty(this, nameof(IsLoading), out _isLoading, deferSubscription: true)
+                .DisposeWith(Subscriptions);
+
+            _iHasNoInternets =  _connectivity.ConnectivityChanged.WhereAccessReasonsAreNot(NetworkAccess.Internet);
+
+            _iHasNoInternets
+                .Subscribe(_ => _dialogs.Snackbar($"The Internets Has Moved: {_.NetworkAccess}").Subscribe());
+
+            _iHasNoInternets
+                .Select(_ => _dialogs.Snackbar($"The Internets Has Moved: {_.NetworkAccess}"))
+                .Switch()
+                .Subscribe()
                 .DisposeWith(Subscriptions);
 
             var canExecute = isLoading.Select(x => !x).StartWith(true);
@@ -108,12 +128,14 @@ namespace SocialQ.Stores
                     _storeService
                         .GetStoreMetadata()
                         .Select(x => Unit.Default)
+                        .TakeUntil(_iHasNoInternets)
                         .Subscribe()
                         .DisposeWith(disposable);
 
                     _storeService
                         .GetStores()
                         .Select(x => Unit.Default)
+                        .TakeUntil(_iHasNoInternets)
                         .Subscribe(observer)
                         .DisposeWith(disposable);
 
@@ -136,6 +158,7 @@ namespace SocialQ.Stores
                     return _storeService
                         .GetStores(false)
                         .Select(x => Unit.Default)
+                        .TakeUntil(_iHasNoInternets)
                         .Subscribe(observer);
                 });
 
@@ -153,5 +176,15 @@ namespace SocialQ.Stores
                         .Select(x => Unit.Default)
                         .Subscribe(observer);
                 });
+    }
+
+    internal static class ConnectivityFunctions
+    {
+        public static IObservable<ConnectivityChangedEventArgs> WhereAccessReasonsAre(this IObservable<ConnectivityChangedEventArgs> connectionEvents,
+            params NetworkAccess[] networkAccesses) =>
+            connectionEvents.Where(x => networkAccesses.Contains(x.NetworkAccess));
+        public static IObservable<ConnectivityChangedEventArgs> WhereAccessReasonsAreNot(this IObservable<ConnectivityChangedEventArgs> connectionEvents,
+            params NetworkAccess[] networkAccesses) =>
+            connectionEvents.Where(x => !networkAccesses.Contains(x.NetworkAccess));
     }
 }
