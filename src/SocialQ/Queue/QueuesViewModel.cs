@@ -11,11 +11,19 @@ using Sextant.Plugins.Popup;
 
 namespace SocialQ.Queue
 {
+    /// <summary>
+    /// ViewModel for queues.
+    /// </summary>
     public class QueuesViewModel : ViewModelBase
     {
         private readonly IQueueService _queueService;
         private readonly ReadOnlyObservableCollection<QueuedItemViewModel> _queue;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueuesViewModel"/> class.
+        /// </summary>
+        /// <param name="popupViewStackService">The popup view stack service.</param>
+        /// <param name="queueService">The queue service.</param>
         public QueuesViewModel(IPopupViewStackService popupViewStackService, IQueueService queueService)
             : base(popupViewStackService)
         {
@@ -39,14 +47,21 @@ namespace SocialQ.Queue
                 .Subscribe(_ => _queueService.GetQueue(Guid.Empty))
                 .DisposeWith(Subscriptions);
 
-            InitializeData = ReactiveCommand.CreateFromObservable(ExecuteInitializeData);
+            InitializeData = ReactiveCommand.CreateFromObservable(ExecuteInitialize);
         }
 
-        public ReactiveCommand<Unit, Unit> InitializeData { get; set; }
+        /// <summary>
+        /// Gets a <see cref="ReactiveCommand"/> that initialized the data.
+        /// </summary>
+        public ReactiveCommand<Unit, Unit> InitializeData { get; }
 
+        /// <summary>
+        /// Gets the queues that are bound to the screen.
+        /// </summary>
         public ReadOnlyObservableCollection<QueuedItemViewModel> Queue => _queue;
 
-        private IObservable<Unit> ExecuteInitializeData() =>
+        /// <inheritdoc/>
+        protected override IObservable<Unit> ExecuteInitialize() =>
             _queueService
                 .GetQueue(Guid.Empty)
                 .Select(_ => Unit.Default);

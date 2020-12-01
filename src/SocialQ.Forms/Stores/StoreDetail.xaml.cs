@@ -6,8 +6,14 @@ using ReactiveUI;
 
 namespace SocialQ.Forms.Stores
 {
+    /// <summary>
+    /// Represents store detail.
+    /// </summary>
     public partial class StoreDetail
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StoreDetail"/> class.
+        /// </summary>
         public StoreDetail()
         {
             InitializeComponent();

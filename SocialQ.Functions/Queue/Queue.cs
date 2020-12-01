@@ -17,10 +17,7 @@ namespace SocialQ.Functions.Queue
     {
         private readonly ICosmosDbRepository<QueueDocument> _queueRepository;
 
-        public Queue(ICosmosDb cosmosDb)
-        {
-            _queueRepository = cosmosDb.Repository<QueueDocument>();
-        }
+        public Queue(ICosmosDb cosmosDb) => _queueRepository = cosmosDb.Repository<QueueDocument>();
 
         [FunctionName("UpdateQueue")]
         public async Task UpdateQueue(

@@ -12,6 +12,7 @@ using SocialQ.Resources;
 
 namespace SocialQ.Stores
 {
+    /// <inheritdoc />
     public class StoreDetailViewModel : ViewModelBase
     {
         private readonly IPopupViewStackService _popupViewStackService;
@@ -19,6 +20,13 @@ namespace SocialQ.Stores
         private readonly IQueueService _queueService;
         private readonly IDialogs _dialogs;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StoreDetailViewModel"/> class.
+        /// </summary>
+        /// <param name="popupViewStackService">The popup view stack service.</param>
+        /// <param name="storeService">The store service.</param>
+        /// <param name="queueService">The queue service.</param>
+        /// <param name="dialogs">The dialogs.</param>
         public StoreDetailViewModel(
             IPopupViewStackService popupViewStackService,
             IStoreService storeService,
@@ -30,7 +38,6 @@ namespace SocialQ.Stores
             _storeService = storeService;
             _queueService = queueService;
             _dialogs = dialogs;
-
 
             var getStore =
                 ReactiveCommand.CreateFromObservable<Guid, Unit>(ExecuteGetStore);
@@ -45,20 +52,33 @@ namespace SocialQ.Stores
             Add = ReactiveCommand.CreateFromObservable(ExecuteAdd);
         }
 
+        /// <summary>
+        /// Gets or sets the store id.
+        /// </summary>
         [Reactive] public Guid StoreId { get; set; }
 
-        [Reactive] public StoreDto Store { get; set;}
+        /// <summary>
+        /// Gets or sets the store.
+        /// </summary>
+        [Reactive] public StoreDto? Store { get; set; }
 
+        /// <summary>
+        /// Gets the initialize data command.
+        /// </summary>
         public ReactiveCommand<Guid, Unit> InitializeData { get; }
 
+        /// <summary>
+        /// Gets the initialize data command.
+        /// </summary>
         public ReactiveCommand<Unit, Unit> Add { get; }
 
+        /// <inheritdoc/>
         protected override IObservable<Unit> WhenNavigatingTo(INavigationParameter parameter) =>
             Observable
                 .Create<Unit>(_ =>
                 {
                     parameter.TryGetValue(WellKnownNavigationParameters.Id, out object id);
-                    StoreId = (Guid) id;
+                    StoreId = (Guid)id;
                     return Disposable.Empty;
                 });
 
@@ -68,10 +88,10 @@ namespace SocialQ.Stores
 
         private IObservable<Unit> ExecuteAdd() =>
             _queueService
-                .EnQueue(Guid.Empty, Store)
-                .Select(x => _popupViewStackService.PopPopup())
+                .EnQueue(Guid.Empty, Store!)
+                .Select(_ => _popupViewStackService.PopPopup())
                 .Switch()
-                .Select(x => _dialogs.Snackbar(string.Format(Strings.AddedToQueue, Store.Name)))
+                .Select(_ => _dialogs.Snackbar(string.Format(Strings.AddedToQueue!, Store?.Name)))
                 .Switch();
 
         private IObservable<Unit> ExecuteGetStore(Guid arg) =>

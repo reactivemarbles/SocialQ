@@ -28,7 +28,7 @@ namespace SocialQ.Droid.Effects
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Cannot set property on attached control. Error: ", ex.Message);
+                Console.WriteLine("Cannot set property on attached control. Error: {0}", ex.Message);
             }
         }
 

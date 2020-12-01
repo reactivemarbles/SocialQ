@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using Sextant;
 using Sextant.Plugins.Popup;
 using SocialQ.Profile;
@@ -10,20 +11,29 @@ using Splat;
 
 namespace SocialQ
 {
+    /// <summary>
+    /// <see cref="ViewModelBase"/> that represents the bottom menu.
+    /// </summary>
     public class BottomMenuViewModel : ViewModelBase
     {
-        private List<Func<IPopupViewStackService, TabViewModel>> _tabViewModels;
+        private List<Func<IPopupViewStackService, TabViewModel>>? _tabViewModels;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BottomMenuViewModel"/> class.
+        /// </summary>
+        /// <param name="popupViewStackService">The popup view stack service.</param>
         public BottomMenuViewModel(IPopupViewStackService popupViewStackService)
-            : base(popupViewStackService)
+            : base(popupViewStackService) => TabViewModels = new List<Func<IPopupViewStackService, TabViewModel>>
         {
-            TabViewModels = new List<Func<IPopupViewStackService, TabViewModel>>
-            {
-                service => new TabViewModel("Search", "", service, () => CreateMenuItem<StoreSearchViewModel>(service)),
-                service => new TabViewModel("Queue", "", service, () => CreateMenuItem<QueuesViewModel>(service)),
-                service => new TabViewModel("Me", "", service, () => CreateMenuItem<UserViewModel>(service))
-            };
-        }
+            service => new TabViewModel("Search", string.Empty, service, () => CreateMenuItem<StoreSearchViewModel>(service)),
+            service => new TabViewModel("Queue", string.Empty, service, () => CreateMenuItem<QueuesViewModel>(service)),
+            service => new TabViewModel("Me", string.Empty, service, () => CreateMenuItem<UserViewModel>(service))
+        };
+
+        /// <summary>
+        /// Gets or sets the tab view models.
+        /// </summary>
+        [Reactive] public List<Func<IPopupViewStackService, TabViewModel>>? TabViewModels { get; set; }
 
         private static ViewModelBase CreateMenuItem<TViewModel>(IPopupViewStackService service)
             where TViewModel : ViewModelBase
@@ -32,11 +42,5 @@ namespace SocialQ
             viewmodel.SetNavigationService(service);
             return viewmodel;
         }
-
-        public List<Func<IPopupViewStackService, TabViewModel>> TabViewModels
-        {
-            get => _tabViewModels;
-            set => this.RaiseAndSetIfChanged(ref _tabViewModels, value);
-        }
-    }
+}
 }

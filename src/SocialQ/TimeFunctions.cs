@@ -4,6 +4,9 @@ using System.Reactive.Linq;
 
 namespace SocialQ
 {
+    /// <summary>
+    /// Functions that affect time.
+    /// </summary>
     public static class TimeFunctions
     {
         private static readonly TimeSpan RefreshInterval = TimeSpan.FromSeconds(1);
@@ -26,7 +29,7 @@ namespace SocialQ
                     refreshInterval = refreshInterval == TimeSpan.Zero ? RefreshInterval : refreshInterval;
                     return Observable
                         .Interval(refreshInterval, scheduler)
-                        .Scan(schedulerNow, (acc, value) => acc - refreshInterval)
+                        .Scan(schedulerNow, (acc, _) => acc - refreshInterval)
                         .TakeUntil(timeSpan => timeSpan <= TimeSpan.FromSeconds(0));
                 })
                 .Switch();

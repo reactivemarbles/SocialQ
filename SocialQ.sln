@@ -12,6 +12,9 @@ ProjectSection(SolutionItems) = preProject
 	.gitignore = .gitignore
 	LICENSE = LICENSE
 	README.md = README.md
+	.editorconfig = .editorconfig
+	analyzers.ruleset = analyzers.ruleset
+	stylecop.json = stylecop.json
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{19F8436E-0A56-40CA-B404-24C1C204FD36}"

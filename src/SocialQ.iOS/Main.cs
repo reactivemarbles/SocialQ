@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Foundation;
@@ -7,14 +8,17 @@ using UIKit;
 
 namespace SocialQ.iOS
 {
+    /// <summary>
+    /// The iOS Application.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileNameMustMatchTypeName", Justification = "iOS is fun.")]
     public class Application
     {
-        // This is the main entry point of the application.
-        static void Main(string[] args)
-        {
-            // if you want to use a different Application Delegate class from "AppDelegate"
-            // you can specify it here.
+        /// <summary>
+        /// The application extension point.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        private static void Main(string[] args) =>
             UIApplication.Main(args, null, "AppDelegate");
-        }
     }
 }

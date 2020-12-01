@@ -5,8 +5,12 @@ using SocialQ.Queue;
 
 namespace SocialQ.Mocks.Queue
 {
+    /// <summary>
+    /// Represents a mock <see cref="IQueueApiContract"/>.
+    /// </summary>
     public class QueueApiContractMock : IQueueApiContract
     {
+        /// <inheritdoc/>
         public IObservable<QueuedStoreDto> Enqueue(EnqueueRequest enqueueRequest, FunctionParameters parameters) =>
             Observable.Return(new QueuedStoreDto
             {

@@ -8,15 +8,20 @@ using ReactiveUI;
 
 namespace SocialQ.Startup
 {
+    /// <summary>
+    /// Represents the application startup sequence.
+    /// </summary>
     public class AppStartup : IAppStartup
     {
         private readonly IEnumerable<IStartupOperation> _startupTasks;
 
-        public AppStartup(IEnumerable<IStartupOperation> startupTasks)
-        {
-            _startupTasks = startupTasks;
-        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AppStartup"/> class.
+        /// </summary>
+        /// <param name="startupTasks">The startup tasks.</param>
+        public AppStartup(IEnumerable<IStartupOperation> startupTasks) => _startupTasks = startupTasks;
 
+        /// <inheritdoc/>
         public IObservable<Unit> Startup() =>
             Observable.Create<Unit>(observer =>
             {

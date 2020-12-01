@@ -34,21 +34,23 @@ namespace SocialQ.Droid
 
             this.ShinyOnCreate();
         }
+
+        /// <inheritdoc/>
         protected override void OnNewIntent(Intent intent)
         {
             base.OnNewIntent(intent);
             this.ShinyOnNewIntent(intent);
         }
 
-
+        /// <inheritdoc/>
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             this.ShinyRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        protected override void OnActivityResult(int requestCode, 
-            Result resultCode, Intent data)
+        /// <inheritdoc/>
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
             AuthenticationContinuationHelper

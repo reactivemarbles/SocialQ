@@ -15,10 +15,7 @@ namespace SocialQ.Functions.Store
     {
         private readonly ICosmosDbRepository<StoreDocument> _storeRepository;
 
-        public Stores(ICosmosDb cosmosDb)
-        {
-            _storeRepository = cosmosDb.Repository<StoreDocument>();
-        }
+        public Stores(ICosmosDb cosmosDb) => _storeRepository = cosmosDb.Repository<StoreDocument>();
 
         [FunctionName("GetAllStores")]
         public async Task<IActionResult> GetAllStores(

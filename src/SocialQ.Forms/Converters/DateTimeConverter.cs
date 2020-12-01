@@ -4,8 +4,12 @@ using Xamarin.Forms;
 
 namespace SocialQ.Forms.Converters
 {
+    /// <summary>
+    /// <see cref="IValueConverter"/> that handles date time to string conversion.
+    /// </summary>
     public class DateTimeConverter : IValueConverter
     {
+        /// <inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is DateTime)
@@ -16,9 +20,7 @@ namespace SocialQ.Forms.Converters
             return string.Empty;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return null;
-        }
+        /// <inheritdoc/>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => null!;
     }
 }

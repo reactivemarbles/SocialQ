@@ -1,20 +1,18 @@
 using System;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace SocialQ.Stores
 {
-    public class StoreCardViewModel : ReactiveObject
+    /// <summary>
+    /// Store card view model.
+    /// </summary>
+    public class StoreCardViewModel : ItemViewModelBase
     {
-        private Coordinate _coordinate;
-        private Guid _id;
-        private string _name;
-        private DateTimeOffset _openingTime;
-        private DateTimeOffset _closeTime;
-        private TimeSpan _currentWait;
-        private TimeSpan _averageWait;
-        private bool _inStoreOperation;
-        private int _casesReported;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StoreCardViewModel"/> class.
+        /// </summary>
+        /// <param name="storeDto">The dto.</param>
         public StoreCardViewModel(StoreDto storeDto)
         {
             Id = storeDto.Id;
@@ -27,56 +25,49 @@ namespace SocialQ.Stores
             CasesReported = storeDto.CasesReported;
         }
 
-        public Guid Id 
-        {
-            get => _id;
-            set => this.RaiseAndSetIfChanged(ref _id, value);
-        }
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        [Reactive] public Guid Id { get; set; }
 
-        public string Name 
-        {
-            get => _name;
-            set => this.RaiseAndSetIfChanged(ref _name, value);
-        }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        [Reactive] public string? Name { get; set; }
 
-        public DateTimeOffset OpeningTime 
-        {
-            get => _openingTime;
-            set => this.RaiseAndSetIfChanged(ref _openingTime, value);
-        }
-        public DateTimeOffset CloseTime 
-        {
-            get => _closeTime;
-            set => this.RaiseAndSetIfChanged(ref _closeTime, value);
-        }
-        public TimeSpan CurrentWait 
-        {
-            get => _currentWait;
-            set => this.RaiseAndSetIfChanged(ref _currentWait, value);
-        }
+        /// <summary>
+        /// Gets or sets the opening time.
+        /// </summary>
+        [Reactive] public DateTimeOffset OpeningTime { get; set; }
 
-        public TimeSpan AverageWait 
-        {
-            get => _averageWait;
-            set => this.RaiseAndSetIfChanged(ref _averageWait, value);
-        }
+        /// <summary>
+        /// Gets or sets the close time.
+        /// </summary>
+        [Reactive] public DateTimeOffset CloseTime { get; set; }
 
-        public Coordinate Coordinate
-        {
-            get => _coordinate;
-            set => this.RaiseAndSetIfChanged(ref _coordinate, value);
-        }
+        /// <summary>
+        /// Gets or sets the current wait time.
+        /// </summary>
+        [Reactive] public TimeSpan CurrentWait { get; set; }
 
-        public bool InStoreOperation
-        {
-            get => _inStoreOperation;
-            set => this.RaiseAndSetIfChanged(ref _inStoreOperation, value);
-        }
+        /// <summary>
+        /// Gets or sets the average wait time.
+        /// </summary>
+        [Reactive] public TimeSpan AverageWait { get; set; }
 
-        public int CasesReported
-        {
-            get => _casesReported;
-            set => this.RaiseAndSetIfChanged(ref _casesReported, value);
-        }
+        /// <summary>
+        /// Gets or sets the coordinate.
+        /// </summary>
+        [Reactive] public Coordinate? Coordinate { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether get or sets a value indicating whether there is in store service.
+        /// </summary>
+        [Reactive] public bool InStoreOperation { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of cases reported.
+        /// </summary>
+        [Reactive] public int CasesReported { get; set; }
     }
 }

@@ -6,7 +6,6 @@ using Splat;
 
 namespace SocialQ
 {
-
     /// <summary>
     /// Provides extension methods for the Reactive Extensions provide.
     /// </summary>
@@ -32,9 +31,9 @@ namespace SocialQ
         public static IObservable<T> RetryWithBackoff<T>(
             this IObservable<T> source,
             int? retryCount = null,
-            Func<int, TimeSpan> strategy = null,
-            Func<Exception, bool> retryOnError = null,
-            IScheduler scheduler = null,
+            Func<int, TimeSpan>? strategy = null,
+            Func<Exception, bool>? retryOnError = null,
+            IScheduler? scheduler = null,
             IFullLogger? log = default)
         {
             strategy ??= DefaultStrategy;
@@ -48,8 +47,7 @@ namespace SocialQ
                 attempt = num + 1;
                 return (num == 0 ? source : source.DelaySubscription(strategy(attempt - 1), scheduler))
                     .Select(Notification.CreateOnNext)
-                    .Catch((Func<Exception, IObservable<Notification<T>>>)
-                        (ex =>
+                    .Catch((Func<Exception, IObservable<Notification<T>>>)(ex =>
                         {
                             log?.Warn(ex, $"Retrying attempt: {attempt}");
                             return !retryOnError(ex)

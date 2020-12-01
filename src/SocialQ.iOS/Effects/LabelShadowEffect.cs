@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CoreGraphics;
 using SocialQ.Forms.Effects;
@@ -8,10 +9,17 @@ using Xamarin.Forms.Platform.iOS;
 
 [assembly: ResolutionGroupName("SocialQ")]
 [assembly: ExportEffect(typeof(LabelShadowEffect), "LabelShadowEffect")]
+
+[assembly: SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "iOS is a thing.")]
+
 namespace SocialQ.iOS.Effects
 {
+    /// <summary>
+    /// Represents the ios shadow effect.
+    /// </summary>
     public class LabelShadowEffect : PlatformEffect
     {
+        /// <inheritdoc/>
         protected override void OnAttached()
         {
             try
@@ -27,10 +35,11 @@ namespace SocialQ.iOS.Effects
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Cannot set property on attached control. Error: ", ex.Message);
+                Console.WriteLine("Cannot set property on attached control. Error: {0}", ex.Message);
             }
         }
 
+        /// <inheritdoc/>
         protected override void OnDetached()
         {
         }

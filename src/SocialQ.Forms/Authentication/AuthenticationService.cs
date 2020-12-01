@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using ReactiveUI;
@@ -9,9 +8,11 @@ using Xamarin.Forms.Auth;
 
 namespace SocialQ.Authentication
 {
+    /// <summary>
+    /// Represent an authentication service.
+    /// </summary>
     public class AuthenticationService : ReactiveObject
     {
-        
         // assumes you have made a class called AuthenticationConfig
         private static readonly IPublicClientApplication AuthenticationClient = PublicClientApplicationBuilder
             .Create(AuthenticationConfig.ClientId)
@@ -20,18 +21,19 @@ namespace SocialQ.Authentication
             .WithExtraQueryParameters(AuthenticationConfig.AdditionalQueryHeaders)
             .Build();
 
-        public AuthenticationService()
-        {
-        }
-
-        public async Task<string> GetAccessToken(CancellationToken token = default)
+        /// <summary>
+        /// Gets an access token.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The access token.</returns>
+        public async Task<string> GetAccessToken(CancellationToken cancellationToken = default)
         {
             AuthenticationResult authResult;
 
             // let's see if we have the user details already available.
             try
             {
-                authResult = await AuthenticationClient.AcquireTokenSilent(AuthenticationConfig.Scopes).ExecuteAsync(token).ConfigureAwait(false);
+                authResult = await AuthenticationClient.AcquireTokenSilent(AuthenticationConfig.Scopes).ExecuteAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (AuthUiRequiredException)
             {
@@ -39,26 +41,17 @@ namespace SocialQ.Authentication
                 {
                     authResult = await AuthenticationClient.AcquireTokenInteractive(AuthenticationConfig.Scopes)
                         .WithParentActivityOrWindow(App.ParentWindow)
-                        .ExecuteAsync(token)
+                        .ExecuteAsync(cancellationToken)
                         .ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
                     this.Log().Warn(ex, "Could not log into the authentication system");
-                    return null;
+                    return null!;
                 }
             }
 
             return authResult.AccessToken;
         }
-    }
-
-    internal class AuthenticationConfig
-    {
-        public static string ClientId { get; set; }
-        public static Uri Authority { get; set; }
-        public static IEnumerable<string> Scopes { get; set; }
-        public static Uri RedirectUrl { get; set; }
-        public static IDictionary<string, string> AdditionalQueryHeaders { get; set; }
     }
 }

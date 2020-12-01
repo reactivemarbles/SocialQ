@@ -1,34 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SocialQ.Stores
 {
+    /// <summary>
+    /// Represents a store over the wire.
+    /// </summary>
     public class StoreDto : DtoBase
     {
-        public string Name { get; set; }
-
-        public DateTimeOffset OpeningTime { get; set; }
-
-        public DateTimeOffset CloseTime { get; set; }
-
-        public TimeSpan CurrentWait { get; set; }
-
-        public TimeSpan AverageWait { get; set; }
-
-        public Coordinate Coordinate { get; set; }
-
-        public Address Address { get; set; }
-
-        public string Email { get; set; }
-
-        public string Phone { get; set; }
-        public bool InStoreOperation { get; set; }
-
-        public int CasesReported { get; set; }
-
-        public StoreCategory Category { get; set; }
-
+        /// <summary>
+        /// Gets the default <see cref="StoreDto"/>.
+        /// </summary>
         public static StoreDto Default => new StoreDto
         {
             Id = Guid.NewGuid(),
@@ -38,43 +19,82 @@ namespace SocialQ.Stores
             AverageWait = TimeSpan.FromMinutes(30),
             CurrentWait = TimeSpan.FromMinutes(15),
             InStoreOperation = true,
-            OpeningTime = new DateTimeOffset(2020,01,01,8,0,0, TimeSpan.Zero),
-            CloseTime = new DateTimeOffset(2020,01,01,17,0,0, TimeSpan.Zero)
+            OpeningTime = new DateTimeOffset(
+                2020,
+                01,
+                01,
+                8,
+                0,
+                0,
+                TimeSpan.Zero),
+            CloseTime = new DateTimeOffset(
+                2020,
+                01,
+                01,
+                17,
+                0,
+                0,
+                TimeSpan.Zero)
         };
-    }
 
-    public class Address
-    {
-        public string AddressLine1 { get; set; }
-        public string AddressLine2 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string ZipCode { get; set; }
-    }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        public string? Name { get; set; }
 
-    public enum StoreCategory
-    {
-        Restaurant,
-        
-        Grocery,
+        /// <summary>
+        /// Gets or sets the opening time.
+        /// </summary>
+        public DateTimeOffset OpeningTime { get; set; }
 
-        Sporting,
+        /// <summary>
+        /// Gets or sets the close time.
+        /// </summary>
+        public DateTimeOffset CloseTime { get; set; }
 
-        Laundry,
+        /// <summary>
+        /// Gets or sets the current wait time.
+        /// </summary>
+        public TimeSpan CurrentWait { get; set; }
 
-        Furniture,
+        /// <summary>
+        /// Gets or sets average wait time.
+        /// </summary>
+        public TimeSpan AverageWait { get; set; }
 
-        HomeImprovement,
+        /// <summary>
+        /// Gets or sets the coordinate.
+        /// </summary>
+        public Coordinate? Coordinate { get; set; }
 
-        Gym,
+        /// <summary>
+        /// Gets or sets the address.
+        /// </summary>
+        public Address? Address { get; set; }
 
-        Electronics
-    }
+        /// <summary>
+        /// Gets or sets the email.
+        /// </summary>
+        public string? Email { get; set; }
 
-    public static class StoreCategoryExtensions
-    {
-        public static List<T> ListEnumeration<T>()
-            where T : Enum
-            => ((T[]) Enum.GetValues(typeof(T))).ToList();
+        /// <summary>
+        /// Gets or sets the phone number.
+        /// </summary>
+        public string? Phone { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets in store service.
+        /// </summary>
+        public bool InStoreOperation { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of cases reported.
+        /// </summary>
+        public int CasesReported { get; set; }
+
+        /// <summary>
+        /// Gets or sets the category.
+        /// </summary>
+        public StoreCategory Category { get; set; }
     }
 }

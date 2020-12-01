@@ -9,8 +9,14 @@ using Xamarin.Forms;
 
 namespace SocialQ.Forms.Stores
 {
+    /// <summary>
+    /// Represents store search.
+    /// </summary>
     public partial class StoreSearch
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StoreSearch"/> class.
+        /// </summary>
         public StoreSearch()
         {
             InitializeComponent();
@@ -21,16 +27,16 @@ namespace SocialQ.Forms.Stores
             this.WhenPropertyChanges(x => x.ViewModel)
                 .Where(x => x.value != null)
                 .Select(x => Unit.Default)
-                .InvokeCommand(this, x => x.ViewModel.InitializeData)
+                .InvokeCommand(this, x => x.ViewModel!.InitializeData)
                 .DisposeWith(PageDisposables);
 
-            this.WhenPropertyChanges(x => x.ViewModel.Stores)
+            this.WhenPropertyChanges(x => x.ViewModel!.Stores)
                 .Where(x => x.value != null)
                 .Select(x => x.value)
                 .BindTo(this, x => x.StoreList.ItemsSource)
                 .DisposeWith(PageDisposables);
 
-            this.WhenPropertyChanges(x => x.ViewModel.StoreCategories)
+            this.WhenPropertyChanges(x => x.ViewModel!.StoreCategories)
                 .Where(x => x.value != null)
                 .Select(x => x.value)
                 .BindTo(this, x => x.Categories.ItemsSource)
@@ -43,7 +49,7 @@ namespace SocialQ.Forms.Stores
                 .Where(x => x?.OldTextValue?.Length > 0 && x.NewTextValue?.Length == 0)
                 .Select(x => x.NewTextValue)
                 .ObserveOn(RxApp.MainThreadScheduler)
-                .InvokeCommand(this, x => x.ViewModel.Search)
+                .InvokeCommand(this, x => x.ViewModel!.Search)
                 .DisposeWith(PageDisposables);
 
             StoreList
@@ -51,7 +57,7 @@ namespace SocialQ.Forms.Stores
                 .ItemTapped
                 .Select(x => x.Item)
                 .Cast<StoreCardViewModel>()
-                .InvokeCommand(this, x => x.ViewModel.Details)
+                .InvokeCommand(this, x => x.ViewModel!.Details)
                 .DisposeWith(PageDisposables);
 
             StoreList

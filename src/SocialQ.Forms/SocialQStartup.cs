@@ -22,13 +22,28 @@ using Xamarin.Forms;
 
 namespace SocialQ.Forms
 {
+    /// <summary>
+    /// Application start up.
+    /// </summary>
     public class SocialQStartup : ShinyStartup
     {
+        /// <summary>
+        /// Navigate to the start <see cref="Page"/>.
+        /// </summary>
+        /// <typeparam name="T">The page type.</typeparam>
+        /// <returns>The page.</returns>
+        public static Page NavigateToStart<T>()
+            where T : IViewModel
+        {
+           Locator.Current.GetService<IPopupViewStackService>().PushPage<T>(resetStack: true, animate: false).Subscribe();
+           return (NavigationPage)Locator.Current.GetService<IView>();
+        }
+
+        /// <inheritdoc/>
         public override void ConfigureServices(IServiceCollection services)
         {
-
             RxApp.DefaultExceptionHandler = new SocialQExceptionHandler();
-            BlobCache.ApplicationName = $"{nameof(SocialQ)}";
+            BlobCache.ApplicationName = nameof(SocialQ);
 
             services.UseNotifications();
             services
@@ -55,13 +70,6 @@ namespace SocialQ.Forms
                 .AddTransient<IStartupOperation, NotificationAccessOperation>()
                 .AddTransient<IStartupOperation, DelayOperation>()
                 .UseMicrosoftDependencyResolver();
-        }
-
-        public static Page NavigateToStart<T>()
-            where T : IViewModel
-        {
-           Locator.Current.GetService<IPopupViewStackService>().PushPage<T>(resetStack: true, animate: false).Subscribe();
-            return (NavigationPage) Locator.Current.GetService<IView>();
         }
     }
 }

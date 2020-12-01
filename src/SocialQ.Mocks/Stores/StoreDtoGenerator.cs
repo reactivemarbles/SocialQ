@@ -6,44 +6,56 @@ using SocialQ.Stores;
 
 namespace SocialQ.Mocks.Stores
 {
+    /// <summary>
+    /// Represents store data generator.
+    /// </summary>
     public class StoreDtoGenerator
     {
+        private readonly IEnumerable<TimeSpan> _timeSpans = new List<TimeSpan>
+        {
+            TimeSpan.FromMinutes(30),
+            TimeSpan.FromMinutes(45),
+            TimeSpan.FromMinutes(60),
+            TimeSpan.FromMinutes(75),
+            TimeSpan.FromMinutes(90)
+        };
+
         private readonly IEnumerable<StoreNameCategory> _stores = new List<StoreNameCategory>
         {
-            new StoreNameCategory { Name = "Academy", Category = StoreCategory.Sporting},
-            new StoreNameCategory { Name = "Target", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "Walmart", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "Home Depot", Category = StoreCategory.HomeImprovement},
-            new StoreNameCategory { Name = "Lowes", Category = StoreCategory.HomeImprovement},
-            new StoreNameCategory { Name = "HEB", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "Randall's", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "Sam's Club", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "Costco", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "Aldi", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "H-Mart", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "Torchy's Tacos", Category = StoreCategory.Restaurant},
-            new StoreNameCategory { Name = "Velvet Taco", Category = StoreCategory.Restaurant},
-            new StoreNameCategory { Name = "CVS", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "Fudruckers", Category = StoreCategory.Restaurant},
-            new StoreNameCategory { Name = "Thai Lao Market", Category = StoreCategory.Restaurant},
-            new StoreNameCategory { Name = "Ikea", Category = StoreCategory.Furniture},
-            new StoreNameCategory { Name = "Mattress Firm", Category = StoreCategory.Furniture},
-            new StoreNameCategory { Name = "Rooms to Go", Category = StoreCategory.Furniture},
-            new StoreNameCategory { Name = "Mattress Firm", Category = StoreCategory.Furniture},
-            new StoreNameCategory { Name = "Toasted Yolk", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "LA Fitness", Category = StoreCategory.Gym},
-            new StoreNameCategory { Name = "Apple", Category = StoreCategory.Electronics},
-            new StoreNameCategory { Name = "AT&T", Category = StoreCategory.Electronics},
-            new StoreNameCategory { Name = "Verizon", Category = StoreCategory.Electronics},
-            new StoreNameCategory { Name = "TMobile", Category = StoreCategory.Electronics},
-            new StoreNameCategory { Name = "Woolworth's", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "K-Mart", Category = StoreCategory.Grocery},
-            new StoreNameCategory { Name = "Bunning's", Category = StoreCategory.HomeImprovement},
-            new StoreNameCategory { Name = "Telstra", Category = StoreCategory.Electronics},
-            new StoreNameCategory { Name = "JB Hi-Fi", Category = StoreCategory.Electronics},
-            new StoreNameCategory { Name = "Best Buy", Category = StoreCategory.Electronics},
-            new StoreNameCategory { Name = "Fry's", Category = StoreCategory.Electronics},
-            new StoreNameCategory { Name = "McDonald's", Category = StoreCategory.Restaurant}
+            new StoreNameCategory { Name = "Academy", Category = StoreCategory.Sporting },
+            new StoreNameCategory { Name = "Target", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "Walmart", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "Home Depot", Category = StoreCategory.HomeImprovement },
+            new StoreNameCategory { Name = "Lowes", Category = StoreCategory.HomeImprovement },
+            new StoreNameCategory { Name = "HEB", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "Randall's", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "Sam's Club", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "Costco", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "Aldi", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "H-Mart", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "Torchy's Tacos", Category = StoreCategory.Restaurant },
+            new StoreNameCategory { Name = "Velvet Taco", Category = StoreCategory.Restaurant },
+            new StoreNameCategory { Name = "CVS", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "Fudruckers", Category = StoreCategory.Restaurant },
+            new StoreNameCategory { Name = "Thai Lao Market", Category = StoreCategory.Restaurant },
+            new StoreNameCategory { Name = "Ikea", Category = StoreCategory.Furniture },
+            new StoreNameCategory { Name = "Mattress Firm", Category = StoreCategory.Furniture },
+            new StoreNameCategory { Name = "Rooms to Go", Category = StoreCategory.Furniture },
+            new StoreNameCategory { Name = "Mattress Firm", Category = StoreCategory.Furniture },
+            new StoreNameCategory { Name = "Toasted Yolk", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "LA Fitness", Category = StoreCategory.Gym },
+            new StoreNameCategory { Name = "Apple", Category = StoreCategory.Electronics },
+            new StoreNameCategory { Name = "AT&T", Category = StoreCategory.Electronics },
+            new StoreNameCategory { Name = "Verizon", Category = StoreCategory.Electronics },
+            new StoreNameCategory { Name = "TMobile", Category = StoreCategory.Electronics },
+            new StoreNameCategory { Name = "Woolworth's", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "K-Mart", Category = StoreCategory.Grocery },
+            new StoreNameCategory { Name = "Bunning's", Category = StoreCategory.HomeImprovement },
+            new StoreNameCategory { Name = "Telstra", Category = StoreCategory.Electronics },
+            new StoreNameCategory { Name = "JB Hi-Fi", Category = StoreCategory.Electronics },
+            new StoreNameCategory { Name = "Best Buy", Category = StoreCategory.Electronics },
+            new StoreNameCategory { Name = "Fry's", Category = StoreCategory.Electronics },
+            new StoreNameCategory { Name = "McDonald's", Category = StoreCategory.Restaurant }
         };
 
         private readonly IEnumerable<string> _zips = new List<string>
@@ -74,56 +86,46 @@ namespace SocialQ.Mocks.Stores
             new DateTimeOffset(2020, 01, 01, 19, 0,  0, TimeSpan.Zero)
         };
 
-        private readonly IEnumerable<TimeSpan> _timeSpans = new List<TimeSpan>
-        {
-            TimeSpan.FromMinutes(30),
-            TimeSpan.FromMinutes(45),
-            TimeSpan.FromMinutes(60),
-            TimeSpan.FromMinutes(75),
-            TimeSpan.FromMinutes(90)
-        };
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StoreDtoGenerator"/> class.
+        /// </summary>
         public StoreDtoGenerator()
         {
             var addressFaker =
                 new Faker<Address>()
-                    .RuleFor(x => x.AddressLine1, x => x.Address.StreetAddress())
-                    .RuleFor(x => x.AddressLine2, x => x.Address.City())
-                    .RuleFor(x => x.City, x => "Houston")
-                    .RuleFor(x => x.State, x => "Texas")
-                    .RuleFor(x => x.ZipCode, x => x.PickRandom(_zips));
+                   .RuleFor(x => x.AddressLine1, x => x.Address.StreetAddress())
+                   .RuleFor(x => x.AddressLine2, x => x.Address.City())
+                   .RuleFor(x => x.City, x => "Houston")
+                   .RuleFor(x => x.State, x => "Texas")
+                   .RuleFor(x => x.ZipCode, x => x.PickRandom(_zips));
 
             var coordinateFaker =
                 new Faker<Coordinate>()
-                    .RuleFor(x => x.Latitude, x => x.Address.Latitude(29.925131, 29.92901))
-                    .RuleFor(x => x.Longitude, x => x.Address.Longitude(-95.552773, -95.207016));
+                   .RuleFor(x => x.Latitude, x => x.Address.Latitude(29.925131, 29.92901))
+                   .RuleFor(x => x.Longitude, x => x.Address.Longitude(-95.552773, -95.207016));
 
             var faker =
                 new Faker<StoreDto>()
-                    .RuleFor(x => x.Id, x => Guid.NewGuid())
-                    .Rules((f, o) =>
+                   .RuleFor(x => x.Id, x => Guid.NewGuid())
+                   .Rules((f, o) =>
                     {
                         var storeFaker = f.PickRandom(_stores);
                         o.Name = storeFaker.Name;
                         o.Category = storeFaker.Category;
                     })
-                    .RuleFor(x => x.Address, x => addressFaker.Generate())
-                    .RuleFor(x => x.Coordinate, x => coordinateFaker.Generate())
-                    .RuleFor(x => x.AverageWait, x => x.PickRandom(_timeSpans))
-                    .RuleFor(x => x.CurrentWait, x => x.PickRandom(_timeSpans))
-                    .RuleFor(x => x.Email, x => x.Internet.Email())
-                    .RuleFor(x => x.Phone, x => x.Phone.PhoneNumber());
+                   .RuleFor(x => x.Address, x => addressFaker.Generate())
+                   .RuleFor(x => x.Coordinate, x => coordinateFaker.Generate())
+                   .RuleFor(x => x.AverageWait, x => x.PickRandom(_timeSpans))
+                   .RuleFor(x => x.CurrentWait, x => x.PickRandom(_timeSpans))
+                   .RuleFor(x => x.Email, x => x.Internet.Email())
+                   .RuleFor(x => x.Phone, x => x.Phone.PhoneNumber());
 
             Items = faker.Generate(500).ToList();
         }
 
+        /// <summary>
+        /// Gets or sets the items.
+        /// </summary>
         public List<StoreDto> Items { get; set; }
-    }
-
-    public class StoreNameCategory
-    {
-        public string Name { get; set; }
-
-        public StoreCategory Category { get; set; }
     }
 }

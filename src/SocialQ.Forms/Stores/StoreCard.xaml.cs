@@ -3,8 +3,14 @@ using ReactiveUI;
 
 namespace SocialQ.Forms
 {
+    /// <summary>
+    /// Represents a store card.
+    /// </summary>
     public partial class StoreCard
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StoreCard"/> class.
+        /// </summary>
         public StoreCard()
         {
             InitializeComponent();

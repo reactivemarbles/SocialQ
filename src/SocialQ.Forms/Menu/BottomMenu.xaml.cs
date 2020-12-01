@@ -12,8 +12,14 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace SocialQ.Forms.Menu
 {
-    public partial class BottomMenu : ReactiveTabbedPage<BottomMenuViewModel>
+    /// <summary>
+    /// Represents the bottom menu <see cref="ReactiveTabbedPage{TViewModel}"/>.
+    /// </summary>
+    public partial class BottomMenu
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BottomMenu"/> class.
+        /// </summary>
         public BottomMenu()
         {
             InitializeComponent();
@@ -22,7 +28,7 @@ namespace SocialQ.Forms.Menu
 
             NavigationPage.SetHasNavigationBar(this, false);
 
-            this.WhenActivated(disposables => { ViewModel.TabViewModels.ForEach(x => Children.Add(CreateTab(x))); });
+            this.WhenActivated(_ => ViewModel!.TabViewModels!.ForEach(x => Children.Add(CreateTab(x))));
         }
 
         private Page CreateTab(Func<IPopupViewStackService, TabViewModel> viewModelFunc)

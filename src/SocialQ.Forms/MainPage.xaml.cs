@@ -1,12 +1,13 @@
 ﻿namespace SocialQ.Forms
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
+    /// <summary>
+    /// Represents the main page.
+    /// </summary>
     public partial class MainPage
     {
-        public MainPage()
-        {
-            InitializeComponent();
-        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainPage"/> class.
+        /// </summary>
+        public MainPage() => InitializeComponent();
     }
 }

@@ -6,6 +6,9 @@ using Splat;
 
 namespace SocialQ.Forms
 {
+    /// <summary>
+    /// Reactive global exception handler.
+    /// </summary>
     public class SocialQExceptionHandler : IObserver<Exception>, IEnableLogger
     {
         /// <inheritdoc />

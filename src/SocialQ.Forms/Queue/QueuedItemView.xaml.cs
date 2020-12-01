@@ -3,8 +3,14 @@ using ReactiveUI;
 
 namespace SocialQ.Forms.Queue
 {
+    /// <summary>
+    /// Represents a queued item.
+    /// </summary>
     public partial class QueuedItemView
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueuedItemView"/> class.
+        /// </summary>
         public QueuedItemView()
         {
             InitializeComponent();

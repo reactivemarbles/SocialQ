@@ -6,8 +6,14 @@ using SocialQ.Queue;
 
 namespace SocialQ.Mocks.Queue
 {
+    /// <summary>
+    /// Represents a mock <see cref="HubClientMock{T}"/>.
+    /// </summary>
     public class QueueHubClientMock : HubClientMock<QueuedStoreDto>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueueHubClientMock"/> class.
+        /// </summary>
         public QueueHubClientMock()
         {
             // Items.AddRange(new[]

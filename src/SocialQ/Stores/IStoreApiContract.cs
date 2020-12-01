@@ -4,6 +4,9 @@ using Refit;
 
 namespace SocialQ.Stores
 {
+    /// <summary>
+    /// Interface representing an api contract for <see cref="Refit"/>.
+    /// </summary>
     public interface IStoreApiContract
     {
         /// <summary>
@@ -29,6 +32,6 @@ namespace SocialQ.Stores
         /// <param name="parameters">The azure function parameters.</param>
         /// <returns>An observable which signals with the stores.</returns>
         [Get("/api/metadata/stores")]
-        IObservable<IEnumerable<string>> GetMetadata([Query] FunctionParameters parameters);
+        IObservable<IEnumerable<string?>> GetMetadata([Query] FunctionParameters parameters);
     }
 }

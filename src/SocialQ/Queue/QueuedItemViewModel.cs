@@ -2,20 +2,25 @@ using System;
 using System.Reactive.Linq;
 using ReactiveMarbles.PropertyChanged;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace SocialQ.Queue
 {
-    public class QueuedItemViewModel : ReactiveObject
+    /// <summary>
+    /// <see cref="ItemViewModelBase"/> for a <see cref="QueuedStoreDto"/>.
+    /// </summary>
+    public class QueuedItemViewModel : ItemViewModelBase
     {
-        private string _name;
-        private Guid _id;
-        private DateTimeOffset _remainingQueueTime;
         private readonly ObservableAsPropertyHelper<TimeSpan> _currentQueueTime;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueuedItemViewModel"/> class.
+        /// </summary>
+        /// <param name="dto">The queued store.</param>
         public QueuedItemViewModel(QueuedStoreDto dto)
         {
             Id = dto.Id;
-            Name = dto.Store.Name;
+            Name = dto.Store?.Name ?? string.Empty;
             RemainingQueueTime = dto.RemainingQueueTime;
 
             this.WhenPropertyChanges(x => x.RemainingQueueTime)
@@ -25,24 +30,24 @@ namespace SocialQ.Queue
                 .ToProperty(this, nameof(CurrentQueueTime), out _currentQueueTime, dto.RemainingQueueTime.TimeOfDay - DateTimeOffset.Now.TimeOfDay);
         }
 
-        public Guid Id
-        {
-            get => _id;
-            set => this.RaiseAndSetIfChanged(ref _id, value);
-        }
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        [Reactive] public Guid Id { get; set; }
 
-        public string Name
-        {
-            get => _name;
-            set => this.RaiseAndSetIfChanged(ref _name, value);
-        }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        [Reactive] public string Name { get; set; }
 
-        public DateTimeOffset RemainingQueueTime
-        {
-            get => _remainingQueueTime;
-            set => this.RaiseAndSetIfChanged(ref _remainingQueueTime, value);
-        }
+        /// <summary>
+        /// Gets or sets the remaining queue time.
+        /// </summary>
+        [Reactive] public DateTimeOffset RemainingQueueTime { get; set; }
 
+        /// <summary>
+        /// Gets the current queue time.
+        /// </summary>
         public TimeSpan CurrentQueueTime => _currentQueueTime.Value;
     }
 }

@@ -5,21 +5,27 @@ using ReactiveUI;
 
 namespace SocialQ.Forms.Profile
 {
+    /// <summary>
+    /// Represents a user profile page.
+    /// </summary>
     public partial class User
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="User"/> class.
+        /// </summary>
         public User()
         {
             InitializeComponent();
 
             var userNameChanged =
-                this.WhenPropertyChanges(x => x.ViewModel.UserName)
+                this.WhenPropertyChanges(x => x.ViewModel!.UserName)
                     .Select(x => x.value)
                     .Where(string.IsNullOrEmpty)
                     .Select(_ => Unit.Default);
 
             WhenAppearing
                 .CombineLatest(userNameChanged, (appearing, username) => Unit.Default)
-                .InvokeCommand(this, x => x.ViewModel.SignUp);
+                .InvokeCommand(this, x => x.ViewModel!.SignUp);
         }
     }
 }
