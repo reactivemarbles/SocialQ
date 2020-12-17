@@ -33,7 +33,7 @@ namespace SocialQ.Functions.Queue
                 // Rerun Stored Procedure
 
                 // Send back new queue to user
-                await signalRMessages.AddAsync(new SignalRMessage());
+                await signalRMessages.AddAsync(new SignalRMessage()).ConfigureAwait(false);
             }
         }
 
@@ -45,14 +45,14 @@ namespace SocialQ.Functions.Queue
         {
             log.LogInformation($"C# HTTP trigger {nameof(AddStore)} function processed a request.");
 
-            var dto = await req.Convert<QueueDocument>();
+            var dto = await req.Convert<QueueDocument>().ConfigureAwait(false);
 
             if (dto == null)
             {
                 return new BadRequestObjectResult("The dto provided is not valid.");
             }
-            
-            var documents = await _queueRepository.AddAsync(dto);
+
+            var documents = await _queueRepository.AddAsync(dto).ConfigureAwait(false);
             return new OkObjectResult(documents);
         }
     }

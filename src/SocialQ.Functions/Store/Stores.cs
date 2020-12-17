@@ -40,7 +40,7 @@ namespace SocialQ.Functions.Store
                 return new BadRequestObjectResult($"{nameof(id)} not provided");
             }
             
-            var documents = await _storeRepository.FindAsync(x => x.Id == id);
+            var documents = await _storeRepository.FindAsync(x => x.Id == id).ConfigureAwait(false);
             return new OkObjectResult(documents);
         }
 
@@ -69,7 +69,7 @@ namespace SocialQ.Functions.Store
         {
             log.LogInformation($"C# HTTP trigger {nameof(GetStoreMetadata)} function processed a request.");
 
-            var documents = await _storeRepository.SelectAsync(x => x.Name);
+            var documents = await _storeRepository.SelectAsync(x => x.Name).ConfigureAwait(false);
             var grouping = documents.GroupBy(x => x).SelectMany(x => x.Distinct());
             return new OkObjectResult(grouping);
         }

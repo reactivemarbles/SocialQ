@@ -11,8 +11,6 @@ namespace SocialQ.Queue
     /// </summary>
     public class QueuedItemViewModel : ItemViewModelBase
     {
-        private readonly ObservableAsPropertyHelper<TimeSpan> _currentQueueTime;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="QueuedItemViewModel"/> class.
         /// </summary>
@@ -27,7 +25,7 @@ namespace SocialQ.Queue
                 .Select(x => x.value)
                 .RemainingTime(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
-                .ToProperty(this, nameof(CurrentQueueTime), out _currentQueueTime, dto.RemainingQueueTime.TimeOfDay - DateTimeOffset.Now.TimeOfDay);
+                .ToProperty(this, nameof(CurrentQueueTime), dto.RemainingQueueTime.TimeOfDay - DateTimeOffset.Now.TimeOfDay);
         }
 
         /// <summary>
@@ -48,6 +46,6 @@ namespace SocialQ.Queue
         /// <summary>
         /// Gets the current queue time.
         /// </summary>
-        public TimeSpan CurrentQueueTime => _currentQueueTime.Value;
+        public TimeSpan CurrentQueueTime { get; }
     }
 }

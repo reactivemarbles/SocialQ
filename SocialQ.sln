@@ -25,15 +25,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialQ", "src\SocialQ\Soci
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{122A6898-FF4F-4DD3-A240-755E1D39FBBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialQ.UnitTests", "SocialQ.UnitTests\SocialQ.UnitTests.csproj", "{C91CAF29-A508-4391-BD69-097CCA98D2B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialQ.UnitTests", "src\SocialQ.UnitTests\SocialQ.UnitTests.csproj", "{C91CAF29-A508-4391-BD69-097CCA98D2B0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "functions", "functions", "{6F03B842-DCE3-43EC-8F26-0055042AC9DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialQ.Functions", "SocialQ.Functions\SocialQ.Functions.csproj", "{7BF9889C-898B-4D03-A300-59F66816A9CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialQ.Functions", "src\SocialQ.Functions\SocialQ.Functions.csproj", "{7BF9889C-898B-4D03-A300-59F66816A9CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialQ.Mocks", "src\SocialQ.Mocks\SocialQ.Mocks.csproj", "{31C749E6-89D5-4328-AF74-BFD0DF175F38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialQ.Avalonia", "SocialQ.Avalonia\SocialQ.Avalonia.csproj", "{418C6D78-B5B5-414E-B19E-2130A066096B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialQ.Avalonia", "src\SocialQ.Avalonia\SocialQ.Avalonia.csproj", "{418C6D78-B5B5-414E-B19E-2130A066096B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialQ.Resources", "src\SocialQ.Resources\SocialQ.Resources.csproj", "{18B1D6B9-AEBC-4169-9E1A-F34A18981B13}"
 EndProject

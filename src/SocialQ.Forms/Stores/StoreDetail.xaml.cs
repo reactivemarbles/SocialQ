@@ -18,10 +18,10 @@ namespace SocialQ.Forms.Stores
         {
             InitializeComponent();
 
-            this.WhenPropertyChanges(x => x.ViewModel.StoreId)
+            this.WhenPropertyChanges(x => x.ViewModel!.StoreId)
                 .Select(x => x.value)
                 .Where(x => x != Guid.Empty)
-                .InvokeCommand(this, x => x.ViewModel.InitializeData)
+                .InvokeCommand(this, x => x.ViewModel!.InitializeData)
                 .DisposeWith(PageDisposables);
         }
     }

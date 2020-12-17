@@ -13,8 +13,12 @@ using SocialQ.Functions.Store;
 [assembly: FunctionsStartup(typeof(Startup))]
 namespace SocialQ.Functions
 {
+    /// <summary>
+    /// Starts the application.
+    /// </summary>
     public class Startup : FunctionsStartup
     {
+        /// <inheritdoc/>
         public override void Configure(IFunctionsHostBuilder builder)
         {
             var configuration = new ConfigurationBuilder()

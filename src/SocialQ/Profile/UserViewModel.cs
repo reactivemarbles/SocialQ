@@ -15,8 +15,6 @@ namespace SocialQ.Profile
     /// </summary>
     public class UserViewModel : ViewModelBase
     {
-        private readonly ObservableAsPropertyHelper<string?> _userName;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="UserViewModel"/> class.
         /// </summary>
@@ -28,7 +26,7 @@ namespace SocialQ.Profile
             settings
                 .WhenPropertyChanges(x => x.UserName)
                 .Select(x => x.value)
-                .ToProperty(this, nameof(UserName), out _userName, initialValue: string.Empty)
+               .ToProperty(this, nameof(UserName), string.Empty)
                 .DisposeWith(Subscriptions);
 
             SignUp = ReactiveCommand.CreateFromObservable(ExecuteSignUp);
@@ -42,7 +40,7 @@ namespace SocialQ.Profile
         /// <summary>
         /// Gets the user name.
         /// </summary>
-        public string? UserName => _userName.Value;
+        public string? UserName { get; }
 
         private IObservable<Unit> ExecuteSignUp() =>
             ViewStackService.PushModal<SignUpViewModel>(withNavigationPage: true);

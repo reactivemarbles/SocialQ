@@ -52,18 +52,19 @@ namespace SocialQ.Forms.Stores
                 .InvokeCommand(this, x => x.ViewModel!.Search)
                 .DisposeWith(PageDisposables);
 
-            StoreList
-                .Events()
-                .ItemTapped
-                .Select(x => x.Item)
-                .Cast<StoreCardViewModel>()
-                .InvokeCommand(this, x => x.ViewModel!.Details)
-                .DisposeWith(PageDisposables);
+            Observable
+               .Cast<StoreCardViewModel>(
+                    StoreList
+                       .Events()
+                       .ItemTapped
+                       .Select(x => x.Item))
+               .InvokeCommand(this, x => x.ViewModel!.Details)
+               .DisposeWith(PageDisposables);
 
             StoreList
                 .Events()
                 .ItemSelected
-                .Subscribe(item => StoreList.SelectedItem = null)
+                .Subscribe(_ => StoreList.SelectedItem = null)
                 .DisposeWith(PageDisposables);
         }
     }
