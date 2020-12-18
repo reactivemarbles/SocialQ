@@ -19,6 +19,7 @@ namespace SocialQ.Stores
         private readonly IStoreService _storeService;
         private readonly IQueueService _queueService;
         private readonly IDialogs _dialogs;
+        private Guid _storeId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreDetailViewModel"/> class.
@@ -43,10 +44,11 @@ namespace SocialQ.Stores
                 ReactiveCommand.CreateFromObservable<Guid, Unit>(ExecuteGetStore);
 
             this.WhenPropertyChanges(x => x.StoreId)
-                .Where(x => x.value != Guid.Empty)
-                .DistinctUntilChanged()
-                .InvokeCommand(getStore)
-                .DisposeWith(Subscriptions);
+               .Select(x => x.value)
+               .Where(x => x != Guid.Empty)
+               .DistinctUntilChanged()
+               .InvokeCommand(getStore)
+               .DisposeWith(Subscriptions);
 
             InitializeData = ReactiveCommand.CreateFromObservable<Guid, Unit>(ExecuteInitializeData);
             Add = ReactiveCommand.CreateFromObservable(ExecuteAdd);
@@ -55,7 +57,7 @@ namespace SocialQ.Stores
         /// <summary>
         /// Gets or sets the store id.
         /// </summary>
-        [Reactive] public Guid StoreId { get; set; }
+        public Guid StoreId { get => _storeId; set => this.RaiseAndSetIfChanged(ref _storeId, value); }
 
         /// <summary>
         /// Gets or sets the store.
@@ -73,13 +75,19 @@ namespace SocialQ.Stores
         public ReactiveCommand<Unit, Unit> Add { get; }
 
         /// <inheritdoc/>
-        protected override IObservable<Unit> WhenNavigatingTo(INavigationParameter parameter) =>
-            Observable
-                .Create<Unit>(_ =>
+        protected override IObservable<Unit> WhenNavigatingTo(INavigationParameter parameter) => Observable
+           .Create<Unit>(
+                _ =>
                 {
-                    parameter.TryGetValue(WellKnownNavigationParameters.Id, out object id);
-                    StoreId = (Guid)id;
-                    return Disposable.Empty;
+                    if (parameter.TryGetValue(WellKnownNavigationParameters.Id, out object id))
+                    {
+                        if (Guid.TryParse(id.ToString(), out var storeId))
+                        {
+                            StoreId = storeId;
+                        }
+                    }
+
+                    return Disposable.Create(() => { });
                 });
 
         private IObservable<Unit> ExecuteInitializeData(Guid id) =>

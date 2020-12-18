@@ -18,6 +18,7 @@ using SocialQ.Startup;
 using SocialQ.Stores;
 using Splat;
 using Splat.Microsoft.Extensions.DependencyInjection;
+using Splat.Serilog;
 using Xamarin.Forms;
 
 namespace SocialQ.Forms

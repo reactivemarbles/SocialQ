@@ -14,6 +14,7 @@
                      Padding="48, 250">
     <ContentPage.Content>
         <forms:StoreCardView
+            x:DataType="stores:StoreDetailViewModel"
             StoreName="{Binding Store.Name}"
             StoreColor="{Binding Store.Category, Converter={StaticResource StoreCategoryConverter}}"
             CurrentTime="{Binding Store.CurrentWait}"

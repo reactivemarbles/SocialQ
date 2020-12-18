@@ -12,6 +12,7 @@ using SocialQ.Mocks.Stores;
 using SocialQ.Queue;
 using SocialQ.Stores;
 using Splat;
+using Splat.Serilog;
 
 namespace SocialQ.Forms
 {
@@ -75,6 +76,7 @@ namespace SocialQ.Forms
                 return new SerilogFullLogger(actualLogger);
             });
 
+            Locator.CurrentMutable.UseSerilogFullLogger();
             serviceCollection.AddSingleton<ILogManager>(funcLogManager);
 
             return serviceCollection;
