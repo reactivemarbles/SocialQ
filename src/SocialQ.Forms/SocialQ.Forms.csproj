@@ -19,7 +19,7 @@
     <PackageReference Include="Pharmacist.Common" Version="1.*" />
     <PackageReference Include="Pharmacist.MsBuild" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="ReactiveUI.XamForms" Version="12.1.5" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.6" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
     <PackageReference Include="Sextant.Plugins.Popup" Version="2.9.1" />
     <PackageReference Include="Sextant.XamForms" Version="2.9.1" />
     <PackageReference Include="Serilog.Sinks.AppCenter.Crash" Version="1.2.1" />
