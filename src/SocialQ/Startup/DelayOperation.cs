@@ -1,7 +1,6 @@
 using System;
 using System.Reactive;
 using System.Reactive.Linq;
-using ReactiveUI;
 
 namespace SocialQ.Startup
 {
@@ -11,11 +10,7 @@ namespace SocialQ.Startup
     public class DelayOperation : StartupOperationBase
     {
         /// <inheritdoc/>
-        protected override IObservable<Unit> Start() =>
-            Observable.Create<Unit>(observer =>
-                Observable.Return(Unit.Default).Delay(TimeSpans.DefaultDelay, RxApp.MainThreadScheduler)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Subscribe(observer));
+        protected override IObservable<Unit> Start() => Observable.Return(Unit.Default).Delay(TimeSpans.DefaultDelay);
 
         /// <inheritdoc/>
         protected override bool CanStart()

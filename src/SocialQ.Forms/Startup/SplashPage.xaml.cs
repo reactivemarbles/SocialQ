@@ -1,8 +1,10 @@
+using System;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveMarbles.PropertyChanged;
 using ReactiveUI;
+using Xamarin.Forms;
 
 namespace SocialQ.Forms.Startup
 {
@@ -21,10 +23,10 @@ namespace SocialQ.Forms.Startup
             this.OneWayBind(ViewModel, x => x.IsLoading, x => x.Loading.IsRunning)
                 .DisposeWith(PageDisposables);
 
-            this.WhenPropertyChanges(x => x.ViewModel)
-                .Where(x => x.value != null)
-                .Select(x => Unit.Default)
-                .InvokeCommand(this, x => x.ViewModel!.Initialize);
+            this.WhenPropertyValueChanges(x => x.ViewModel)
+               .CombineLatest(this.Events().Appearing, (viewModel, appearing) => (viewModel, appearing))
+               .Select(x => Unit.Default)
+               .InvokeCommand(this, x => x.ViewModel!.Initialize);
         }
     }
 }

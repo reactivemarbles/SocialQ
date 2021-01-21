@@ -5,7 +5,7 @@ namespace SocialQ
     /// <summary>
     /// The default time spans for various operations of the sub system.
     /// </summary>
-    public class TimeSpans
+    public static class TimeSpans
     {
         /// <summary>
         /// Gets the default text change time.

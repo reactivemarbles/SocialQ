@@ -9,6 +9,11 @@ namespace SocialQ.Startup
     public interface IAppStartup
     {
         /// <summary>
+        /// Gets a value indicating whether the startup is complete.
+        /// </summary>
+        bool IsCompleted { get; }
+
+        /// <summary>
         /// Starts the application life cycle.
         /// </summary>
         /// <returns>A completion notification.</returns>

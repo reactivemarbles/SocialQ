@@ -5,13 +5,14 @@ using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace SocialQ.Startup
 {
     /// <summary>
     /// Represents the application startup sequence.
     /// </summary>
-    public class AppStartup : IAppStartup
+    public class AppStartup : ReactiveObject, IAppStartup
     {
         private readonly IEnumerable<IStartupOperation> _startupTasks;
 
@@ -22,6 +23,9 @@ namespace SocialQ.Startup
         public AppStartup(IEnumerable<IStartupOperation> startupTasks) => _startupTasks = startupTasks;
 
         /// <inheritdoc/>
+        [Reactive] public bool IsCompleted { get; private set; }
+
+        /// <inheritdoc/>
         public IObservable<Unit> Startup() =>
             Observable.Create<Unit>(observer =>
             {
@@ -29,10 +33,11 @@ namespace SocialQ.Startup
 
                 foreach (var task in _startupTasks.Where(x => x.CanStart()))
                 {
-                    task.Start().ObserveOn(RxApp.MainThreadScheduler).Subscribe().DisposeWith(disposable);
+                    var unit = task.Start().Wait();
+                    observer.OnNext(unit);
                 }
 
-                observer.OnNext(Unit.Default);
+                IsCompleted = true;
                 observer.OnCompleted();
                 return disposable;
             });

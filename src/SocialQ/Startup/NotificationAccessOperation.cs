@@ -21,8 +21,8 @@ namespace SocialQ.Startup
         // TODO: [rlittlesii: September 18, 2020] Should probably check the status.
 
         /// <inheritdoc/>
-        public IObservable<Unit> Start() =>
-            Observable.FromAsync(() => _notificationManager.RequestAccess()).Select(_ => Unit.Default);
+        public IObservable<Unit> Start() => Observable.Create<Unit>(
+            observer => Observable.FromAsync(() => _notificationManager.RequestAccess()).Select(_ => Unit.Default).Subscribe(observer));
 
         /// <inheritdoc/>
         public bool CanStart() => true;

@@ -12,7 +12,7 @@ namespace SocialQ
     /// <summary>
     /// Base abstraction for a ViewModel.
     /// </summary>
-    public abstract class ViewModelBase : ReactiveObject, INavigable, IDestructible, IDisposable, IInitialize
+    public abstract class ViewModelBase : ReactiveObject, IInitialize, INavigable, IDestructible, IDisposable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelBase"/> class.

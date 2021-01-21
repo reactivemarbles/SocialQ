@@ -9,10 +9,10 @@ namespace SocialQ
     /// </summary>
     public static class TimeFunctions
     {
-        private static readonly TimeSpan RefreshInterval = TimeSpan.FromSeconds(1);
+        private static readonly TimeSpan DefaultRefreshInterval = TimeSpan.FromSeconds(1);
 
         /// <summary>
-        ///     Sets a timer.
+        ///     Returns the remaining time from a provided start time.
         /// </summary>
         /// <param name="startTime">The start time.</param>
         /// <param name="scheduler">The thread scheduler to execute the timer.</param>
@@ -26,7 +26,7 @@ namespace SocialQ
                 .Select(x =>
                 {
                     var schedulerNow = x - scheduler.Now;
-                    refreshInterval = refreshInterval == TimeSpan.Zero ? RefreshInterval : refreshInterval;
+                    refreshInterval = refreshInterval == TimeSpan.Zero ? DefaultRefreshInterval : refreshInterval;
                     return Observable
                         .Interval(refreshInterval, scheduler)
                         .Scan(schedulerNow, (acc, _) => acc - refreshInterval)

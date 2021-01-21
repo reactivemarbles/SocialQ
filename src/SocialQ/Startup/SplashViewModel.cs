@@ -2,8 +2,8 @@ using System;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using ReactiveMarbles.PropertyChanged;
 using ReactiveUI;
-using Sextant;
 using Sextant.Plugins.Popup;
 
 namespace SocialQ.Startup
@@ -33,14 +33,15 @@ namespace SocialQ.Startup
                    .StartWith(false);
 
             initializing
-               .ToProperty(this, nameof(IsLoading), out _loading)
-               .DisposeWith(Subscriptions);
-
-            initializing
                .Zip(initializing.Skip(1), (first, second) => first && !second)
                .Where(x => x)
                .Select(_ => Unit.Default)
                .InvokeCommand(Navigate);
+
+            this.WhenPropertyValueChanges(x => x._appStartup.IsCompleted)
+               .DistinctUntilChanged()
+               .ToProperty(this, nameof(IsLoading), out _loading, scheduler: RxApp.MainThreadScheduler)
+               .DisposeWith(Subscriptions);
         }
 
         /// <summary>

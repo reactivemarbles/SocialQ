@@ -141,13 +141,13 @@ namespace SocialQ.Stores
 
                     _storeService
                        .GetStoreMetadata()
-                       .Select(x => Unit.Default)
+                       .Select(_ => Unit.Default)
                        .Subscribe()
                        .DisposeWith(disposable);
 
                     _storeService
                        .GetStores()
-                       .Select(x => Unit.Default)
+                       .Select(_ => Unit.Default)
                        .Subscribe(observer)
                        .DisposeWith(disposable);
 
@@ -167,7 +167,7 @@ namespace SocialQ.Stores
 
                     return _storeService
                        .GetStores(false)
-                       .Select(x => Unit.Default)
+                       .Select(_ => Unit.Default)
                        .Subscribe(observer);
                 });
 
