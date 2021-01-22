@@ -32,7 +32,7 @@ jobs:
         with:
           dotnet-version: 5.0.x
 
-      - name: NuGet Restore
+      - name: Dotnet Restore
         run: dotnet restore
 
       - name: Setup Xamarin
@@ -46,8 +46,8 @@ jobs:
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Restore/Build SocialQ
-        run: msbuild SocialQ.iOS.csproj /t:restore,build /maxcpucount /p:NoPackageAnalysis=true /verbosity:minimal /p:Configuration=$env:Configuration
+      - name: Build SocialQ
+        run: msbuild SocialQ.iOS.csproj /t:build /maxcpucount /p:NoPackageAnalysis=true /verbosity:minimal /p:Configuration=$env:Configuration
         working-directory: src/SocialQ.iOS
         env:
           Configuration: ${{ matrix.configuration }}
