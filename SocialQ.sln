@@ -15,6 +15,7 @@ ProjectSection(SolutionItems) = preProject
 	.editorconfig = .editorconfig
 	analyzers.ruleset = analyzers.ruleset
 	stylecop.json = stylecop.json
+	.github\workflows\build.yml = .github\workflows\build.yml
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{19F8436E-0A56-40CA-B404-24C1C204FD36}"
