@@ -15,7 +15,7 @@
       <PackageReference Include="ReactiveMarbles.PropertyChanged" Version="1.4.1" />
       <PackageReference Include="ReactiveUI" Version="13.0.1" />
       <PackageReference Include="ReactiveUI.Fody" Version="13.0.38" />
-      <PackageReference Include="refit" Version="5.1.67" />
+      <PackageReference Include="refit" Version="5.2.4" />
       <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
       <PackageReference Include="Sextant.Plugins.Popup" Version="2.9.5" />
       <PackageReference Include="Shiny.Core" Version="1.2.0.1755" />
