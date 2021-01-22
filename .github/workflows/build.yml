@@ -40,6 +40,6 @@ jobs:
         run: Start-Process -Wait -PassThru -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" -ArgumentList "update --passive --norestart --installpath ""C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"""
 
       - name: Build SocialQ
-        run: msbuild SocialQ.sln /t:restore,build /p:NoPackageAnalysis=true /verbosity:minimal /p:Configuration=$env:Configuration
+        run: msbuild SocialQ.sln /t:restore,build /p:NoPackageAnalysis=true /verbosity:minimal /p:Configuration=${{ env.configuration }}
         env:
           Configuration: ${{ matrix.configuration }}
