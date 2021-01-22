@@ -26,20 +26,10 @@ namespace SocialQ.Startup
         [Reactive] public bool IsCompleted { get; private set; }
 
         /// <inheritdoc/>
-        public IObservable<Unit> Startup() =>
-            Observable.Create<Unit>(observer =>
-            {
-                var disposable = new CompositeDisposable();
-
-                foreach (var task in _startupTasks.Where(x => x.CanStart()))
-                {
-                    var unit = task.Start().Wait();
-                    observer.OnNext(unit);
-                }
-
-                IsCompleted = true;
-                observer.OnCompleted();
-                return disposable;
-            });
+        public IObservable<Unit> Startup() => _startupTasks
+           .Where(x => x.CanStart())
+           .Select(x => x.Start())
+           .Concat()
+           .Finally(() => IsCompleted = true);
     }
 }
