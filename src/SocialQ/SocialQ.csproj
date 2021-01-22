@@ -11,12 +11,12 @@
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.5" />
       <PackageReference Include="LanguageExt.Core" Version="3.4.15" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.5" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.5" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
       <PackageReference Include="ReactiveMarbles.PropertyChanged" Version="1.4.1" />
       <PackageReference Include="ReactiveUI" Version="13.0.38" />
       <PackageReference Include="ReactiveUI.Fody" Version="13.0.38" />
       <PackageReference Include="refit" Version="5.2.4" />
-      <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
+      <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.9" />
       <PackageReference Include="Sextant.Plugins.Popup" Version="2.9.1" />
       <PackageReference Include="Shiny.Core" Version="1.2.0.1755" />
       <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
