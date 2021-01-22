@@ -24,7 +24,7 @@
     <PackageReference Include="Sextant.XamForms" Version="2.9.1" />
     <PackageReference Include="Serilog.Sinks.AppCenter.Crash" Version="1.2.1" />
     <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
-    <PackageReference Include="SkiaSharp" Version="2.80.1" />
+    <PackageReference Include="SkiaSharp" Version="2.80.2" />
     <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Splat.Serilog" Version="9.8.1" />
     <PackageReference Include="System.Reactive" Version="5.0.0" />
