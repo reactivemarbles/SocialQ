@@ -12,7 +12,7 @@ jobs:
       matrix:
         configuration: [Debug, Release]
 
-    runs-on: macos-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
