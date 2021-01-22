@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.reactivemarbles.socialq">
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
 	<application android:label="SocialQ.Forms.Android"></application>
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--Intent filter to capture System Browser calling back to our app after Sign In-->
-    <activity android:name="xamarin.forms.auth.BrowserTabActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="https" android:host="<REDIRECT-URL>" />
-        </intent-filter>
-    </activity>
 </manifest>

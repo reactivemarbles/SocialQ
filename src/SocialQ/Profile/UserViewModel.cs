@@ -25,7 +25,7 @@ namespace SocialQ.Profile
         {
             settings
                 .WhenPropertyChanges(x => x.UserName)
-                .Select(x => x.value)
+                .Select(x => x.Value)
                .ToProperty(this, nameof(UserName), string.Empty)
                 .DisposeWith(Subscriptions);
 
