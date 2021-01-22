@@ -21,7 +21,7 @@
     <PackageReference Include="ReactiveUI.XamForms" Version="13.1.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
     <PackageReference Include="Sextant.Plugins.Popup" Version="2.10.1" />
-    <PackageReference Include="Sextant.XamForms" Version="2.9.5" />
+    <PackageReference Include="Sextant.XamForms" Version="2.10.1" />
     <PackageReference Include="Serilog.Sinks.AppCenter.Crash" Version="1.2.1" />
     <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
     <PackageReference Include="SkiaSharp" Version="2.80.2" />
