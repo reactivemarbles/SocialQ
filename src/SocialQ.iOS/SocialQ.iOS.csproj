@@ -129,9 +129,9 @@
     <PackageReference Include="Sextant" Version="2.9.5" />
     <PackageReference Include="Shiny.Core" Version="1.2.0.1755" />
     <PackageReference Include="SkiaSharp" Version="2.80.2" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
-    <PackageReference Include="Xamarin.Forms.Auth" Version="2.0.16" />
+    <PackageReference Include="ReactiveUI.XamForms" Version="13.0.38" />
+    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SocialQ.Forms\SocialQ.Forms.csproj">

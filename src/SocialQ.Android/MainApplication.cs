@@ -9,10 +9,10 @@ namespace SocialQ.Droid
     [Application]
     public class MainApplication : ShinyAndroidApplication<SocialQStartup>
     {
-        public MainApplication(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer)
+        public MainApplication(IntPtr handle, JniHandleOwnership transfer)
+            : base(handle, transfer)
         {
         }
-
 
         public override void OnCreate()
         {
