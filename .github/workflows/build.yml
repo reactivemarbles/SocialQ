@@ -32,14 +32,11 @@ jobs:
         with:
           dotnet-version: 5.0.x
 
-      - name: NuGet Restore
-        run: dotnet restore
-
       # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Restore/Build the sample
+      - name: Restore/Build SocialQ
         run: msbuild SocialQ.sln /t:restore,build /maxcpucount /p:NoPackageAnalysis=true /verbosity:minimal /p:Configuration=$env:Configuration
         env:
           Configuration: ${{ matrix.configuration }}
