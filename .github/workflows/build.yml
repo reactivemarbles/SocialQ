@@ -38,6 +38,5 @@ jobs:
 
       - name: Restore/Build the sample
         run: msbuild SocialQ.sln /t:restore,build /maxcpucount /p:NoPackageAnalysis=true /verbosity:minimal /p:Configuration=$env:Configuration
-        working-directory: ./
         env:
           Configuration: ${{ matrix.configuration }}
