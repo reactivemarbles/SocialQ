@@ -47,13 +47,14 @@ namespace SocialQ
             blobCache ??= BlobCache.LocalMachine;
 
             return Observable
-                .Create<IChangeSet<TSource, TKey>>(observer =>
+                .Create<IChangeSet<TSource, TKey>>(_ =>
                     source
                         .ToCollection()
                         .Concat(
                             blobCache
                                 .GetObject<List<TSource>>(cacheKey)
                                 .Catch(Observable.Return(new List<TSource>())))
+                        .Where(x => x is not null).Select(x => x!)
                         .Subscribe(items =>
                         {
                             log?.Debug("CACHE: Writing {@count} items to cache with key: {@cacheKey}", items.Count, cacheKey);
@@ -107,7 +108,8 @@ namespace SocialQ
                 .GetOrFetchObject(
                     cacheKey,
                     () => source.Timeout(TimeSpans.DefaultRequestTimeout),
-                    DateTimeOffset.Now.Add(expiration));
+                    DateTimeOffset.Now.Add(expiration))
+                .Where(x => x is not null).Select(x => x!);
         }
     }
 }
