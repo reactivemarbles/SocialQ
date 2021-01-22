@@ -10,11 +10,10 @@
         <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
         <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.8" />
         <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SignalRService" Version="1.2.2" />
-        <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.8" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.5" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.8" />
         <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.11" />
         <PackageReference Include="CosmosDbRepository" Version="1.1.98" />
     </ItemGroup>
