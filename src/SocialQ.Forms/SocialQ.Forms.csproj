@@ -31,7 +31,7 @@
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
-    <PackageReference Include="XF.Material" Version="1.7.0" />
+    <PackageReference Include="XF.Material" Version="1.7.7" />
   </ItemGroup>
 
   <ItemGroup>
