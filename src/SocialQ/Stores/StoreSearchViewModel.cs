@@ -27,7 +27,6 @@ namespace SocialQ.Stores
         private readonly ObservableAsPropertyHelper<bool> _isLoading;
         private readonly ReadOnlyObservableCollection<StoreCardViewModel> _stores;
         private readonly ReadOnlyObservableCollection<string?> _storeNames;
-        private string? _searchText;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreSearchViewModel"/> class.

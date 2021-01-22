@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using Akavache;
 using DynamicData;
@@ -47,21 +46,25 @@ namespace SocialQ
             blobCache ??= BlobCache.LocalMachine;
 
             return Observable
-                .Create<IChangeSet<TSource, TKey>>(observer =>
-                    source
-                        .ToCollection()
-                        .Concat(
-                            blobCache
-                                .GetObject<List<TSource>>(cacheKey)
-                                .Catch(Observable.Return(new List<TSource>())))
-                        .Subscribe(items =>
-                        {
-                            log?.Debug("CACHE: Writing {@count} items to cache with key: {@cacheKey}", items.Count, cacheKey);
+               .Create<IChangeSet<TSource, TKey>>(
+                    _ =>
+                        source
+                           .ToCollection()
+                           .Concat(
+                                blobCache
+                                   .GetObject<List<TSource>>(cacheKey)
+                                   .Catch(Observable.Return(new List<TSource>())))
+                           .Where(x => x is not null)
+                           .Select(x => x!)
+                           .Subscribe(
+                                items =>
+                                {
+                                    log?.Debug("CACHE: Writing {@count} items to cache with key: {@cacheKey}", items.Count, cacheKey);
 
-                            blobCache
-                                .InsertObject(cacheKey, items.ToList())
-                                .Catch(Observable.Return(Unit.Default).Do(unit => log?.Error("Failed to add items to cache")));
-                        }));
+                                    blobCache
+                                       .InsertObject(cacheKey, items.ToList())
+                                       .Catch(Observable.Return(Unit.Default).Do(__ => log?.Error("Failed to add items to cache")));
+                                }));
         }
 
         /// <summary>
@@ -104,10 +107,12 @@ namespace SocialQ
 
             // TODO: [rlittlesii: July 30, 2020] Add retry and cached
             return blobCache
-                .GetOrFetchObject(
+               .GetOrFetchObject(
                     cacheKey,
                     () => source.Timeout(TimeSpans.DefaultRequestTimeout),
-                    DateTimeOffset.Now.Add(expiration));
+                    DateTimeOffset.Now.Add(expiration))
+               .Where(x => x is not null)
+               .Select(x => x!);
         }
     }
 }

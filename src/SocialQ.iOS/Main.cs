@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace SocialQ.iOS
     /// The iOS Application.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileNameMustMatchTypeName", Justification = "iOS is fun.")]
-    public class Application
+    public static class Application
     {
         /// <summary>
         /// The application extension point.
