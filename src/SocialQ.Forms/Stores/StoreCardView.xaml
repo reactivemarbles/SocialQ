@@ -12,8 +12,7 @@
                 WidthRequest="320"
                 Margin="10"
                 HorizontalOptions="Center"
-                CornerRadius="25"
-                Elevation="2"
+                CornerRadius="25"                
                 BackgroundColor="{TemplateBinding StoreColor}">
                 <Grid
                     RowSpacing="0"

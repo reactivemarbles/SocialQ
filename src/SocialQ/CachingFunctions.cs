@@ -32,6 +32,7 @@ namespace SocialQ
             string cacheKey,
             IBlobCache? blobCache = null,
             IFullLogger? log = default)
+            where TKey : notnull
         {
             if (source == null)
             {
@@ -70,7 +71,6 @@ namespace SocialQ
         /// <param name="cacheKey">The cache key.</param>
         /// <param name="blobCache">The cache.</param>
         /// <param name="logger">The logger.</param>
-        /// <param name="scheduler">The scheduler.</param>
         /// <param name="forceUpdate">Force an update.</param>
         /// <param name="expiration">The expiration.</param>
         /// <typeparam name="T">The observable type.</typeparam>
@@ -80,7 +80,6 @@ namespace SocialQ
             string cacheKey,
             IBlobCache blobCache,
             IFullLogger? logger = null,
-            IScheduler? scheduler = null,
             bool forceUpdate = false,
             TimeSpan expiration = default)
         {

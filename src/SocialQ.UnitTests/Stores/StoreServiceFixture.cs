@@ -18,7 +18,7 @@ namespace SocialQ.UnitTests.Stores
                 .Returns(Observable.Return(new List<StoreDto> { StoreDto.Default }));
         }
 
-        public StoreServiceFixture WithClient(IStoreApiClient client) => this.With(ref _client, client);
+        public StoreServiceFixture WithClient(IStoreApiClient client) => this.With(out _client, client);
 
         public static implicit operator StoreService(StoreServiceFixture fixture) => fixture.Build();
 

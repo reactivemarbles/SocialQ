@@ -5,8 +5,9 @@ using SocialQ.Forms.Effects;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly:ResolutionGroupName ("SocialQ")]
-[assembly:ExportEffect (typeof(LabelShadowEffect), "LabelShadowEffect")]
+[assembly:ResolutionGroupName("SocialQ")]
+[assembly:ExportEffect(typeof(LabelShadowEffect), "LabelShadowEffect")]
+
 namespace SocialQ.Droid.Effects
 {
     public class LabelShadowEffect : PlatformEffect
@@ -16,7 +17,7 @@ namespace SocialQ.Droid.Effects
             try
             {
                 var control = Control as Android.Widget.TextView;
-                var effect = (ShadowEffect) Element.Effects.FirstOrDefault(e => e is ShadowEffect);
+                var effect = (ShadowEffect)Element.Effects.FirstOrDefault(e => e is ShadowEffect);
                 if (effect != null)
                 {
                     float radius = effect.Radius;
@@ -32,7 +33,7 @@ namespace SocialQ.Droid.Effects
             }
         }
 
-        protected override void OnDetached ()
+        protected override void OnDetached()
         {
         }
     }

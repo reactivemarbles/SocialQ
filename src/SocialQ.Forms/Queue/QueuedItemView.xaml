@@ -7,7 +7,7 @@
                    x:Class="SocialQ.Forms.Queue.QueuedItemView"
                    x:TypeArguments="queue:QueuedItemViewModel">
 
-    <pancakeView:PancakeView HeightRequest="180" WidthRequest="320" Margin="10" HorizontalOptions="Center" CornerRadius="25" Elevation="2" BackgroundColor="Chocolate">
+    <pancakeView:PancakeView HeightRequest="180" WidthRequest="320" Margin="10" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="Chocolate">
         <Grid RowSpacing="0" ColumnSpacing="0">
             <Image x:Name="CoffeeBackground" Aspect="AspectFill" Grid.RowSpan="4" Grid.Row="0" />
             <Grid.RowDefinitions>
