@@ -32,7 +32,7 @@ jobs:
         with:
           dotnet-version: 5.0.x
 
-      - name: Dotnet Restore
+      - name: DotNet Restore
         run: dotnet restore
 
       # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
