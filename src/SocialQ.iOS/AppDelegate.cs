@@ -31,7 +31,7 @@ namespace SocialQ.iOS
             XF.Material.iOS.Material.Init();
 
             Aurora.ComponentLoader.Init("hB3/dJoOX+oKUsAISq+HedynauXfjtIs7vlQFItEVfYmP0zDwOy71jao+fCo8mIfEPZ8Oecs0oK0VCiIN07ysCauJQY3vy4LcGu27hulZaFSrSgyqqSBI8eUhloFuUm/DtqebdFh8Ny/TEpaCz9XOTDaFo5Wt8EAz9XA+GWEnY8=");
-            Locator.CurrentMutable.RegisterLazySingleton<IPopupNavigation>(() => PopupNavigation.Instance);
+            Locator.CurrentMutable.RegisterLazySingleton(() => PopupNavigation.Instance);
 
             LoadApplication(new App());
 
