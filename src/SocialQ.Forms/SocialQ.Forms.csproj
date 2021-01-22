@@ -14,23 +14,23 @@
   <ItemGroup>
     <PackageReference Include="akavache" Version="7.1.1" />
     <PackageReference Include="AuroraControls.Core" Version="1.2020.520.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Pharmacist.Common" Version="2.*" />
-    <PackageReference Include="Pharmacist.MsBuild" Version="2.*" PrivateAssets="all" />
-    <PackageReference Include="ReactiveUI.XamForms" Version="13.0.38" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
-    <PackageReference Include="Sextant.Plugins.Popup" Version="2.9.5" />
-    <PackageReference Include="Sextant.XamForms" Version="2.9.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.5" />
+    <PackageReference Include="Pharmacist.Common" Version="1.*" />
+    <PackageReference Include="Pharmacist.MsBuild" Version="1.8.1" PrivateAssets="all" />
+    <PackageReference Include="ReactiveUI.XamForms" Version="12.1.5" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.6" />
+    <PackageReference Include="Sextant.Plugins.Popup" Version="2.9.1" />
+    <PackageReference Include="Sextant.XamForms" Version="2.9.1" />
     <PackageReference Include="Serilog.Sinks.AppCenter.Crash" Version="1.2.1" />
     <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
     <PackageReference Include="SkiaSharp" Version="2.80.2" />
     <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Splat.Serilog" Version="10.0.1" />
     <PackageReference Include="System.Reactive" Version="5.0.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
-    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.1.0.714" />
     <PackageReference Include="XF.Material" Version="1.7.7" />
   </ItemGroup>
 
