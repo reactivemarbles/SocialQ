@@ -37,6 +37,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.2
 
       - name: Restore/Build SocialQ
-        run: msbuild SocialQ.sln /t:restore,build /maxcpucount /p:NoPackageAnalysis=true /verbosity:minimal /p:Configuration=$env:Configuration
+        run: msbuild SocialQ.iOS.csproj /t:restore,build /maxcpucount /p:NoPackageAnalysis=true /verbosity:minimal /p:Configuration=$env:Configuration
+        working-directory: src/SocialQ.iOS
         env:
           Configuration: ${{ matrix.configuration }}
