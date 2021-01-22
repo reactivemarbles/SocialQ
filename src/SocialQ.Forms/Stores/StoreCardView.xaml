@@ -13,7 +13,6 @@
                 Margin="10"
                 HorizontalOptions="Center"
                 CornerRadius="25"
-                Elevation="2"
                 BackgroundColor="{TemplateBinding StoreColor}">
                 <Grid
                     RowSpacing="0"

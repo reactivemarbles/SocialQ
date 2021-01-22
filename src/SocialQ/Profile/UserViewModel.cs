@@ -24,10 +24,9 @@ namespace SocialQ.Profile
             : base(popupViewStackService)
         {
             settings
-                .WhenPropertyChanges(x => x.UserName)
-                .Select(x => x.value)
+               .WhenPropertyValueChanges(x => x.UserName)
                .ToProperty(this, nameof(UserName), string.Empty)
-                .DisposeWith(Subscriptions);
+               .DisposeWith(Subscriptions);
 
             SignUp = ReactiveCommand.CreateFromObservable(ExecuteSignUp);
         }

@@ -18,13 +18,12 @@ namespace SocialQ.Forms.Profile
             InitializeComponent();
 
             var userNameChanged =
-                this.WhenPropertyChanges(x => x.ViewModel!.UserName)
-                    .Select(x => x.value)
+                this.WhenPropertyValueChanges(x => x.ViewModel!.UserName)
                     .Where(string.IsNullOrEmpty)
                     .Select(_ => Unit.Default);
 
             WhenAppearing
-                .CombineLatest(userNameChanged, (appearing, username) => Unit.Default)
+                .CombineLatest(userNameChanged, (_, __) => Unit.Default)
                 .InvokeCommand(this, x => x.ViewModel!.SignUp);
         }
     }
