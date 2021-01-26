@@ -18,8 +18,7 @@ namespace SocialQ.Forms.Profile
             InitializeComponent();
 
             var userNameChanged =
-                this.WhenPropertyChanges(x => x.ViewModel!.UserName)
-                    .Select(x => x.Value)
+                this.WhenPropertyValueChanges(x => x.ViewModel!.UserName)
                     .Where(string.IsNullOrEmpty)
                     .Select(_ => Unit.Default);
 

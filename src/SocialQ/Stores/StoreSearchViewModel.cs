@@ -20,7 +20,7 @@ namespace SocialQ.Stores
     /// </summary>
     public class StoreSearchViewModel : ViewModelBase
     {
-        private readonly BehaviorSubject<Func<StoreDto, bool>> _filterFunction = new BehaviorSubject<Func<StoreDto, bool>>(dto => false);
+        private readonly BehaviorSubject<Func<StoreDto, bool>> _filterFunction = new (_ => false);
         private readonly IPopupViewStackService _popupViewStackService;
         private readonly IStoreService _storeService;
         private readonly INotificationManager _notificationManager;

@@ -24,21 +24,16 @@ namespace SocialQ.Forms.Stores
             this.OneWayBind(ViewModel, x => x.IsLoading, x => x.Loading.IsRunning)
                 .DisposeWith(PageDisposables);
 
-            this.WhenPropertyChanges(x => x.ViewModel)
-                .Where(x => x.Value != null)
-                .Select(x => Unit.Default)
+            this.WhenPropertyValueChanges(x => x.ViewModel)
+                .Select(_ => Unit.Default)
                 .InvokeCommand(this, x => x.ViewModel!.InitializeData)
                 .DisposeWith(PageDisposables);
 
-            this.WhenPropertyChanges(x => x.ViewModel!.Stores)
-                .Where(x => x.Value != null)
-                .Select(x => x.Value)
+            this.WhenPropertyValueChanges(x => x.ViewModel!.Stores)
                 .BindTo(this, x => x.StoreList.ItemsSource)
                 .DisposeWith(PageDisposables);
 
-            this.WhenPropertyChanges(x => x.ViewModel!.StoreCategories)
-                .Where(x => x.Value != null)
-                .Select(x => x.Value)
+            this.WhenPropertyValueChanges(x => x.ViewModel!.StoreCategories)
                 .BindTo(this, x => x.Categories.ItemsSource)
                 .DisposeWith(PageDisposables);
 
@@ -52,12 +47,11 @@ namespace SocialQ.Forms.Stores
                 .InvokeCommand(this, x => x.ViewModel!.Search)
                 .DisposeWith(PageDisposables);
 
-            Observable
-               .Cast<StoreCardViewModel>(
-                    StoreList
-                       .Events()
-                       .ItemTapped
-                       .Select(x => x.Item))
+            StoreList
+               .Events()
+               .ItemTapped
+               .Select(x => x.Item)
+               .Cast<StoreCardViewModel>()
                .InvokeCommand(this, x => x.ViewModel!.Details)
                .DisposeWith(PageDisposables);
 

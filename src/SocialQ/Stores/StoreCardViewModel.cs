@@ -1,5 +1,4 @@
 using System;
-using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 namespace SocialQ.Stores

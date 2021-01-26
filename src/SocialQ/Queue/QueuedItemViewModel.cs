@@ -21,8 +21,7 @@ namespace SocialQ.Queue
             Name = dto.Store?.Name ?? string.Empty;
             RemainingQueueTime = dto.RemainingQueueTime;
 
-            this.WhenPropertyChanges(x => x.RemainingQueueTime)
-                .Select(x => x.Value)
+            this.WhenPropertyValueChanges(x => x.RemainingQueueTime)
                 .RemainingTime(RxApp.TaskpoolScheduler)
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .ToProperty(this, nameof(CurrentQueueTime), dto.RemainingQueueTime.TimeOfDay - DateTimeOffset.Now.TimeOfDay);

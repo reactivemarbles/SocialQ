@@ -43,8 +43,7 @@ namespace SocialQ.Stores
             var getStore =
                 ReactiveCommand.CreateFromObservable<Guid, Unit>(ExecuteGetStore);
 
-            this.WhenPropertyChanges(x => x.StoreId)
-               .Select(x => x.Value)
+            this.WhenPropertyValueChanges(x => x.StoreId)
                .Where(x => x != Guid.Empty)
                .DistinctUntilChanged()
                .InvokeCommand(getStore)
