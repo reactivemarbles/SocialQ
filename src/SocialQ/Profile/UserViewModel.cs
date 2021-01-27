@@ -24,8 +24,7 @@ namespace SocialQ.Profile
             : base(popupViewStackService)
         {
             settings
-                .WhenPropertyChanges(x => x.UserName)
-                .Select(x => x.Value)
+                .WhenPropertyValueChanges(x => x.UserName)
                .ToProperty(this, nameof(UserName), string.Empty)
                 .DisposeWith(Subscriptions);
 

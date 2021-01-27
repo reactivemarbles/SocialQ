@@ -20,14 +20,11 @@ namespace SocialQ.Forms.Queue
         {
             InitializeComponent();
 
-            this.WhenPropertyChanges(x => x.ViewModel!.Queue)
-                .Where(x => x.Value != null)
-                .Select(x => x.Value)
+            this.WhenPropertyValueChanges(x => x.ViewModel!.Queue)
                 .BindTo(this, x => x.Queue.ItemsSource)
                 .DisposeWith(PageDisposables);
 
-            this.WhenPropertyChanges(x => x.ViewModel)
-                .Where(x => x.Value != null)
+            this.WhenPropertyValueChanges(x => x.ViewModel)
                 .Select(x => Unit.Default)
                 .InvokeCommand(this, x => x.ViewModel!.InitializeData)
                 .DisposeWith(PageDisposables);
