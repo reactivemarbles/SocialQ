@@ -1,6 +1,13 @@
 # SocialQ
 A social distancing queuing application
 
+<!-- history badges -->
+| GitHub Actions |
+| -------------- |
+| [![github-badge]][github] |
+| [![github-history-badge]][github] |
+<!-- history badges -->
+
 # Allow social login
 - Github
 - [Xamarin.Forms.Auth](https://github.com/glennawatson/Xamarin.Forms.Auth)
@@ -42,3 +49,7 @@ A social distancing queuing application
     - Cupertino Button
     - Cupertino Toggle Switch
     - Gradient Color View
+
+[github]: https://github.com/reactivemarbles/SocialQ/actions?query=workflow%3ABuild
+[github-badge]: https://img.shields.io/github/workflow/status/reactivemarbles/SocialQ/Build.svg?label=github&logo=github&color=b845fc&logoColor=b845fc&style=flat "GitHub Actions Status"
+[github-history-badge]: https://buildstats.info/github/chart/reactivemarbles/SocialQ?includeBuildsFromPullRequest=false "GitHub Actions History"
