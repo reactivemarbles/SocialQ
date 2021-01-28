@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Reactive;
 
 namespace SocialQ.Startup
@@ -6,7 +7,7 @@ namespace SocialQ.Startup
     /// <summary>
     /// Interface representing that application startup sequence.
     /// </summary>
-    public interface IAppStartup
+    public interface IAppStartup : INotifyPropertyChanged
     {
         /// <summary>
         /// Gets a value indicating whether the startup is complete.

@@ -7,11 +7,12 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-
+using Rg.Plugins.Popup.Contracts;
+using Rg.Plugins.Popup.Services;
 using Shiny;
 
 using SocialQ.Forms;
-
+using Splat;
 using Xamarin.Forms.Auth;
 
 namespace SocialQ.Droid
@@ -36,6 +37,7 @@ namespace SocialQ.Droid
             base.OnCreate(savedInstanceState);
 
             Rg.Plugins.Popup.Popup.Init(this);
+            Locator.CurrentMutable.RegisterLazySingleton<IPopupNavigation>(() => PopupNavigation.Instance);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
