@@ -22,7 +22,7 @@ namespace SocialQ.Startup
         public AppStartup(IEnumerable<IStartupOperation> startupTasks) => _startupTasks = startupTasks;
 
         /// <inheritdoc/>
-        [Reactive] public bool IsCompleted { get; private set; }
+        [Reactive] public bool IsCompleted { get; set; }
 
         /// <inheritdoc/>
         public IObservable<Unit> Startup() => _startupTasks

@@ -38,7 +38,8 @@ namespace SocialQ.Startup
                .Select(_ => Unit.Default)
                .InvokeCommand(Navigate);
 
-            this.WhenPropertyValueChanges(x => x._appStartup.IsCompleted)
+            _appStartup
+               .WhenPropertyValueChanges(x => x.IsCompleted)
                .DistinctUntilChanged()
                .ToProperty(this, nameof(IsLoading), out _loading, scheduler: RxApp.MainThreadScheduler)
                .DisposeWith(Subscriptions);

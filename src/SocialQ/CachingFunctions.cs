@@ -54,7 +54,7 @@ namespace SocialQ
                                 blobCache
                                    .GetObject<List<TSource>>(cacheKey)
                                    .Catch(Observable.Return(new List<TSource>())))
-                           .Where(x => x is not null)
+                           .Where(x => x != null)
                            .Select(x => x!)
                            .Subscribe(
                                 items =>
@@ -111,7 +111,7 @@ namespace SocialQ
                     cacheKey,
                     () => source.Timeout(TimeSpans.DefaultRequestTimeout),
                     DateTimeOffset.Now.Add(expiration))
-               .Where(x => x is not null)
+               .Where(x => x != null)
                .Select(x => x!);
         }
     }
