@@ -6,7 +6,7 @@
         <WarningsAsErrors>None</WarningsAsErrors>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Bogus" Version="32.0.2" />
+        <PackageReference Include="Bogus" Version="33.0.2" />
         <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
         <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.8" />
         <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SignalRService" Version="1.2.2" />
