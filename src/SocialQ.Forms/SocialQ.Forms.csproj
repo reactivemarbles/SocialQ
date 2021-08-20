@@ -18,7 +18,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Pharmacist.Common" Version="2.*" />
     <PackageReference Include="Pharmacist.MsBuild" Version="2.*" PrivateAssets="all" />
-    <PackageReference Include="ReactiveUI.XamForms" Version="13.1.1" />
+    <PackageReference Include="ReactiveUI.XamForms" Version="15.1.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
     <PackageReference Include="Sextant.Plugins.Popup" Version="2.11.1" />
     <PackageReference Include="Sextant.XamForms" Version="2.11.1" />
