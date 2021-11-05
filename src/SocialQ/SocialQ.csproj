@@ -14,7 +14,7 @@
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
       <PackageReference Include="ReactiveMarbles.PropertyChanged" Version="1.4.1" />
       <PackageReference Include="ReactiveUI" Version="13.1.1" />
-      <PackageReference Include="ReactiveUI.Fody" Version="13.1.1" />
+      <PackageReference Include="ReactiveUI.Fody" Version="16.3.10" />
       <PackageReference Include="ReactiveUI.XamForms" Version="13.1.1" />
       <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
       <PackageReference Include="refit" Version="6.0.38" />
