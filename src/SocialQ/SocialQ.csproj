@@ -20,7 +20,7 @@
       <PackageReference Include="refit" Version="6.0.38" />
       <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
       <PackageReference Include="Sextant.Plugins.Popup" Version="2.11.1" />
-      <PackageReference Include="Shiny.Core" Version="1.2.0.1755" />
+      <PackageReference Include="Shiny.Core" Version="2.4.3.3024" />
       <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
       <PackageReference Include="Splat.Serilog" Version="10.0.1" />
       <PackageReference Include="Xamarin.Forms.Auth" Version="2.0.16" />
