@@ -127,7 +127,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Sextant" Version="2.12.4" />
-    <PackageReference Include="Shiny.Core" Version="1.2.0.1755" />
+    <PackageReference Include="Shiny.Core" Version="2.5.1" />
     <PackageReference Include="SkiaSharp" Version="2.80.2" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="ReactiveUI.XamForms" Version="13.1.1" />
