@@ -25,7 +25,7 @@
     <PackageReference Include="Serilog.Sinks.AppCenter.Crash" Version="1.2.1" />
     <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
     <PackageReference Include="SkiaSharp" Version="2.80.2" />
-    <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="14.4.1" />
     <PackageReference Include="Splat.Serilog" Version="10.0.1" />
     <PackageReference Include="System.Reactive" Version="5.0.0" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
