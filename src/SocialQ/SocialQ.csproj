@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="akavache" Version="7.2.1" />
+      <PackageReference Include="akavache" Version="7.3.47" />
       <PackageReference Include="DynamicData" Version="7.1.1" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.7" />
       <PackageReference Include="LanguageExt.Core" Version="3.4.15" />
