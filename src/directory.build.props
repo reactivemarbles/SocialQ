@@ -28,7 +28,7 @@
   </ItemGroup>
   
   <ItemGroup Condition="'$(AndroidProject)'!='true' AND '$(iOSProject)'!='true' AND '$(AvaloniaProject)'!='true' AND '$(FunctionsProject)'!='true' AND '$(TestProject)'!='true'">
-    <PackageReference Include="stylecop.analyzers" Version="1.2.0-beta.205" PrivateAssets="all" />
+    <PackageReference Include="stylecop.analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1" PrivateAssets="all" />
     <PackageReference Include="Roslynator.Analyzers" Version="3.0.0" PrivateAssets="All" />
   </ItemGroup>
