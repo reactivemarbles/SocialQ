@@ -16,7 +16,7 @@
         <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
         <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.11" />
-        <PackageReference Include="CosmosDbRepository" Version="1.1.98" />
+        <PackageReference Include="CosmosDbRepository" Version="1.1.106" />
     </ItemGroup>
     <ItemGroup>
         <None Update="host.json">
